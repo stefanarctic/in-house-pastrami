@@ -123,7 +123,6 @@ export function MenuItemDialog({
               </Button>
             </div>
           </div>
-        </div>
       </DialogContent>
     </Dialog>
   );
