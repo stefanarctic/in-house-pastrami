@@ -98,7 +98,7 @@ export function MenuItemDialog({
                 <button
                   type="button"
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  className="h-10 w-10 grid place-items-center hover:bg-muted transition-colors"
+                  className="h-10 w-10 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
                   aria-label="Decrease quantity"
                 >
                   <Minus className="h-4 w-4" />
@@ -107,7 +107,7 @@ export function MenuItemDialog({
                 <button
                   type="button"
                   onClick={() => setQty((q) => q + 1)}
-                  className="h-10 w-10 grid place-items-center hover:bg-muted transition-colors"
+                  className="h-10 w-10 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
                   aria-label="Increase quantity"
                 >
                   <Plus className="h-4 w-4" />
