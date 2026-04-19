@@ -37,10 +37,14 @@ export const Route = createRootRoute({
       { name: "description", content: "House-smoked beef pastrami, Reuben sandwiches, burgers & poutine in Bucharest. Order direct from Strada Speranței 1." },
       { name: "author", content: "In House Pastrami & More" },
       { name: "keywords", content: "pastrami bucharest, best sandwich bucharest, reuben sandwich bucharest, smoked meat bucharest" },
-      { property: "og:title", content: "In House Pastrami & More — Bucharest" },
-      { property: "og:description", content: "Probably the best pastrami in Bucharest. Smoked in-house, sliced to order." },
+      { property: "og:title", content: "In House Pastrami & More — Probably the best pastrami in Bucharest" },
+      { property: "og:description", content: "House-smoked beef pastrami, Reuben sandwiches, burgers & poutine in Bucharest. Order direct from Strada Speranței 1." },
       { property: "og:type", content: "restaurant" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "In House Pastrami & More — Probably the best pastrami in Bucharest" },
+      { name: "twitter:description", content: "House-smoked beef pastrami, Reuben sandwiches, burgers & poutine in Bucharest. Order direct from Strada Speranței 1." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c6aae3e2-ee0b-400c-ae3f-1ea2ab790014/id-preview-eaa72689--b10611d1-2651-414a-afa3-3bb8d762e470.lovable.app-1776597365992.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c6aae3e2-ee0b-400c-ae3f-1ea2ab790014/id-preview-eaa72689--b10611d1-2651-414a-afa3-3bb8d762e470.lovable.app-1776597365992.png" },
     ],
     links: [
       {
