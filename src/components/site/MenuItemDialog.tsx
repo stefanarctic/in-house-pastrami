@@ -43,7 +43,7 @@ export function MenuItemDialog({
             )}
           </div>
 
-          <div className="p-6 md:p-8 flex flex-col overflow-y-auto min-h-0">
+          <div className="p-6 md:p-8 flex flex-col overflow-y-auto min-h-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             <DialogTitle className="font-display text-3xl md:text-4xl leading-none">
               {item.name}
             </DialogTitle>
