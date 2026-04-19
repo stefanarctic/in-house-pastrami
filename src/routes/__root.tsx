@@ -1,4 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { StickyOrder } from "@/components/site/StickyOrder";
 
 import appCss from "../styles.css?url";
 
@@ -29,14 +32,14 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
+      { title: "In House Pastrami & More — Probably the best pastrami in Bucharest" },
+      { name: "description", content: "House-smoked beef pastrami, Reuben sandwiches, burgers & poutine in Bucharest. Order direct from Strada Speranței 1." },
+      { name: "author", content: "In House Pastrami & More" },
+      { name: "keywords", content: "pastrami bucharest, best sandwich bucharest, reuben sandwich bucharest, smoked meat bucharest" },
+      { property: "og:title", content: "In House Pastrami & More — Bucharest" },
+      { property: "og:description", content: "Probably the best pastrami in Bucharest. Smoked in-house, sliced to order." },
+      { property: "og:type", content: "restaurant" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
@@ -65,5 +68,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+      <StickyOrder />
+    </>
+  );
 }
