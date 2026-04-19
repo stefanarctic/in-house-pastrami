@@ -1,6 +1,6 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { Star, MapPin, Phone, Clock, Flame, Timer, Beef, ArrowRight, Instagram } from "lucide-react";
+import { Star, MapPin, Phone, Clock, Flame, Timer, Beef, ArrowRight, Instagram, ShoppingBag } from "lucide-react";
 import heroImg from "@/assets/hero-pastrami.jpg";
 import seasoningImg from "@/assets/seasoning.jpg";
 import smokingImg from "@/assets/smoking.jpg";
@@ -43,10 +43,10 @@ function Index() {
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Button asChild size="lg" className="bg-gradient-meat shadow-meat text-base h-12 px-7 hover:opacity-95">
-                <a href="#order">Order Now <ArrowRight className="ml-1 h-4 w-4" /></a>
+                <Link to="/menu">Order Now <ArrowRight className="ml-1 h-4 w-4" /></Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 px-7 border-foreground/20 hover:bg-foreground/5">
-                <a href="#menu">See the Menu</a>
+                <Link to="/menu">See the Menu</Link>
               </Button>
             </div>
             <div className="mt-8 flex items-center gap-5 text-sm text-muted-foreground">
@@ -124,7 +124,7 @@ function Index() {
               <h2 className="font-display text-5xl md:text-7xl leading-none">Built around the meat.</h2>
             </div>
             <Button asChild size="lg" className="bg-gradient-meat shadow-meat hover:opacity-95">
-              <a href="#order">Order Now</a>
+              <Link to="/menu">See full menu <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
           </div>
 
@@ -147,7 +147,7 @@ function Index() {
                   <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.desc}</p>
                   <div className="flex items-center justify-between mt-3">
                     <span className="font-display text-2xl text-accent">{item.price}</span>
-                    <a href="#order" className="text-xs uppercase tracking-widest text-primary hover:underline">Add to order →</a>
+                    <Link to="/menu" className="text-xs uppercase tracking-widest text-primary hover:underline">Add to order →</Link>
                   </div>
                 </div>
               </article>
@@ -193,10 +193,10 @@ function Index() {
           </p>
           <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg" className="bg-background text-foreground hover:bg-background/90 h-14 px-8 text-base font-semibold">
-              <a href={PHONE}><Phone className="mr-2 h-5 w-5" /> Call to Order</a>
+              <Link to="/menu"><ShoppingBag className="mr-2 h-5 w-5" /> Start your order</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10">
-              <a href="#visit"><MapPin className="mr-2 h-5 w-5" /> Pickup at Speranței 1</a>
+              <a href={PHONE}><Phone className="mr-2 h-5 w-5" /> Call to Order</a>
             </Button>
           </div>
 
