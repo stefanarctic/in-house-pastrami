@@ -33,9 +33,8 @@ export function MenuItemDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden bg-card border-border/60">
-        <div className="grid md:grid-cols-2">
-          <div className="relative aspect-square md:aspect-auto md:h-full bg-muted">
+      <DialogContent className="max-w-2xl p-0 overflow-hidden bg-card border-border/60 max-h-[90vh] grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-2 gap-0">
+          <div className="relative h-48 md:h-auto bg-muted">
             <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
             {item.tag && (
               <span className="absolute top-4 left-4 text-[10px] uppercase tracking-widest px-2 py-1 bg-primary text-primary-foreground rounded">
@@ -44,7 +43,7 @@ export function MenuItemDialog({
             )}
           </div>
 
-          <div className="p-6 md:p-8 flex flex-col max-h-[80vh] overflow-y-auto">
+          <div className="p-6 md:p-8 flex flex-col overflow-y-auto min-h-0">
             <DialogTitle className="font-display text-3xl md:text-4xl leading-none">
               {item.name}
             </DialogTitle>
@@ -124,7 +123,6 @@ export function MenuItemDialog({
               </Button>
             </div>
           </div>
-        </div>
       </DialogContent>
     </Dialog>
   );
