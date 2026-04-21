@@ -11,16 +11,16 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "Menu — In House Pastrami & More · Bucharest" },
+      { title: "Meniu — In House Pastrami & More · București" },
       {
         name: "description",
         content:
-          "Full menu: house-smoked pastrami sandwiches, smash burgers, poutine, sides and drinks. Order direct in Bucharest.",
+          "Meniul complet: sandvișuri cu pastramă afumată în casă, smash burgeri, poutine, garnituri și băuturi. Comandă direct în București.",
       },
-      { property: "og:title", content: "Menu — In House Pastrami & More" },
+      { property: "og:title", content: "Meniu — In House Pastrami & More" },
       {
         property: "og:description",
-        content: "Reuben, classic pastrami, smash burgers, pastrami poutine and more. Order direct.",
+        content: "Reuben, pastramă clasică, smash burgeri, poutine cu pastramă și multe altele. Comandă direct.",
       },
     ],
   }),
@@ -58,7 +58,7 @@ function MenuPage() {
   const quickAdd = (e: React.MouseEvent, item: MenuItem) => {
     e.stopPropagation();
     add(item, 1);
-    toast.success(`${item.name} added`, { description: `${item.price} lei` });
+    toast.success(`${item.name} adăugat`, { description: `${item.price} lei` });
   };
 
   return (

@@ -8,10 +8,10 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
-      { title: "Checkout — In House Pastrami & More" },
-      { name: "description", content: "Review your order and check out for pickup or delivery in Bucharest." },
-      { property: "og:title", content: "Checkout — In House Pastrami & More" },
-      { property: "og:description", content: "Order direct. Skip the platforms." },
+      { title: "Finalizare comandă — In House Pastrami & More" },
+      { name: "description", content: "Verifică comanda și finalizează pentru ridicare sau livrare în București." },
+      { property: "og:title", content: "Finalizare comandă — In House Pastrami & More" },
+      { property: "og:description", content: "Comandă direct. Sari peste platforme." },
     ],
   }),
   component: CheckoutPage,
@@ -43,20 +43,20 @@ function CheckoutPage() {
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!lines.length) {
-      toast.error("Your cart is empty.");
+      toast.error("Coșul tău e gol.");
       return;
     }
     if (!form.name || !form.phone) {
-      toast.error("We need your name and phone number.");
+      toast.error("Avem nevoie de numele și numărul tău de telefon.");
       return;
     }
     if (mode === "delivery" && !form.address) {
-      toast.error("Please add a delivery address.");
+      toast.error("Te rugăm adaugă o adresă de livrare.");
       return;
     }
     setSubmitted(true);
     clear();
-    toast.success("Order placed!", { description: "We'll call you to confirm." });
+    toast.success("Comandă plasată!", { description: "Te sunăm să confirmăm." });
   };
 
   if (submitted) {
@@ -65,17 +65,17 @@ function CheckoutPage() {
         <div className="mx-auto h-16 w-16 grid place-items-center rounded-full bg-primary/15 text-primary mb-6">
           <CheckCircle2 className="h-8 w-8" />
         </div>
-        <h1 className="font-display text-5xl">Order received.</h1>
+        <h1 className="font-display text-5xl">Comandă primită.</h1>
         <p className="text-muted-foreground mt-4">
-          We'll call <span className="text-foreground font-semibold">{form.phone}</span> in a minute to confirm
-          your {mode === "pickup" ? "pickup" : "delivery"}. Thanks for ordering direct.
+          Te sunăm la <span className="text-foreground font-semibold">{form.phone}</span> într-un minut ca să confirmăm
+          {mode === "pickup" ? " ridicarea" : " livrarea"}. Mulțumim că ai comandat direct.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <Button asChild size="lg" className="bg-gradient-meat shadow-meat">
-            <Link to="/menu">Order more</Link>
+            <Link to="/menu">Mai comandă</Link>
           </Button>
           <Button asChild size="lg" variant="outline">
-            <Link to="/">Back home</Link>
+            <Link to="/">Înapoi acasă</Link>
           </Button>
         </div>
       </main>
@@ -88,16 +88,16 @@ function CheckoutPage() {
         <div className="mx-auto h-16 w-16 grid place-items-center rounded-full bg-muted text-muted-foreground mb-6">
           <ShoppingBag className="h-8 w-8" />
         </div>
-        <h1 className="font-display text-5xl">Your cart is empty.</h1>
+        <h1 className="font-display text-5xl">Coșul tău e gol.</h1>
         <p className="text-muted-foreground mt-4">
-          Pick something from the menu — we recommend the Reuben.
+          Alege ceva din meniu — îți recomandăm Reuben-ul.
         </p>
         <Button
           size="lg"
           className="mt-8 bg-gradient-meat shadow-meat"
           onClick={() => navigate({ to: "/menu" })}
         >
-          See the menu
+          Vezi meniul
         </Button>
       </main>
     );
@@ -106,32 +106,32 @@ function CheckoutPage() {
   return (
     <main className="container mx-auto px-4 py-10 md:py-16">
       <Link to="/menu" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6">
-        <ArrowLeft className="h-4 w-4" /> Back to menu
+        <ArrowLeft className="h-4 w-4" /> Înapoi la meniu
       </Link>
 
-      <h1 className="font-display text-5xl md:text-6xl leading-none mb-2">Checkout</h1>
-      <p className="text-muted-foreground mb-10">Order direct. Faster, fresher, no platform fees.</p>
+      <h1 className="font-display text-5xl md:text-6xl leading-none mb-2">Finalizare</h1>
+      <p className="text-muted-foreground mb-10">Comandă direct. Mai rapid, mai proaspăt, fără comisioane de platformă.</p>
 
       <div className="grid lg:grid-cols-[1fr_400px] gap-10">
         {/* LEFT — Cart + Form */}
         <div className="space-y-8">
           {/* CART */}
           <section>
-            <h2 className="font-display text-2xl mb-4">Your order</h2>
+            <h2 className="font-display text-2xl mb-4">Comanda ta</h2>
             <ul className="rounded-2xl border border-border/60 bg-card/40 divide-y divide-border/60 overflow-hidden">
               {lines.map((line) => (
                 <li key={line.id} className="p-4 flex gap-4 items-center">
                   <img src={line.image} alt={line.name} className="h-16 w-16 rounded-lg object-cover" />
                   <div className="flex-1 min-w-0">
                     <div className="font-display text-xl truncate">{line.name}</div>
-                    {line.notes && <div className="text-xs text-muted-foreground">Note: {line.notes}</div>}
+                    {line.notes && <div className="text-xs text-muted-foreground">Notă: {line.notes}</div>}
                     <div className="text-sm text-accent font-display">{line.price} lei</div>
                   </div>
                   <div className="flex items-center border border-border rounded-md">
                     <button
                       onClick={() => setQuantity(line.id, line.quantity - 1)}
                       className="h-8 w-8 grid place-items-center hover:bg-muted"
-                      aria-label="Decrease"
+                      aria-label="Scade"
                     >
                       <Minus className="h-3.5 w-3.5" />
                     </button>
@@ -139,7 +139,7 @@ function CheckoutPage() {
                     <button
                       onClick={() => setQuantity(line.id, line.quantity + 1)}
                       className="h-8 w-8 grid place-items-center hover:bg-muted"
-                      aria-label="Increase"
+                      aria-label="Crește"
                     >
                       <Plus className="h-3.5 w-3.5" />
                     </button>
@@ -148,7 +148,7 @@ function CheckoutPage() {
                   <button
                     onClick={() => remove(line.id)}
                     className="text-muted-foreground hover:text-destructive transition-colors"
-                    aria-label="Remove"
+                    aria-label="Șterge"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -161,7 +161,7 @@ function CheckoutPage() {
           <form onSubmit={onSubmit} className="space-y-6">
             {/* Mode toggle */}
             <div>
-              <h2 className="font-display text-2xl mb-4">How do you want it?</h2>
+              <h2 className="font-display text-2xl mb-4">Cum o vrei?</h2>
               <div className="grid grid-cols-2 gap-3">
                 {(["pickup", "delivery"] as Mode[]).map((m) => (
                   <button
@@ -176,10 +176,10 @@ function CheckoutPage() {
                   >
                     <div className="flex items-center gap-2 font-display text-xl">
                       {m === "pickup" ? <MapPin className="h-5 w-5 text-primary" /> : <Clock className="h-5 w-5 text-primary" />}
-                      {m === "pickup" ? "Pickup" : "Delivery"}
+                      {m === "pickup" ? "Ridicare" : "Livrare"}
                     </div>
                     <div className="text-xs text-muted-foreground mt-1">
-                      {m === "pickup" ? "Ready in ~15 min · Speranței 1" : "30–45 min · 12 lei in central Bucharest"}
+                      {m === "pickup" ? "Gata în ~15 min · Speranței 1" : "30–45 min · 12 lei în centrul Bucureștiului"}
                     </div>
                   </button>
                 ))}
@@ -188,17 +188,17 @@ function CheckoutPage() {
 
             {/* Contact */}
             <div className="space-y-4">
-              <h2 className="font-display text-2xl">Your details</h2>
+              <h2 className="font-display text-2xl">Datele tale</h2>
               <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Name" required>
+                <Field label="Nume" required>
                   <input
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="input"
-                    placeholder="Your name"
+                    placeholder="Numele tău"
                   />
                 </Field>
-                <Field label="Phone" required>
+                <Field label="Telefon" required>
                   <input
                     type="tel"
                     value={form.phone}
@@ -209,34 +209,34 @@ function CheckoutPage() {
                 </Field>
               </div>
               {mode === "delivery" && (
-                <Field label="Delivery address" required>
+                <Field label="Adresă de livrare" required>
                   <input
                     value={form.address}
                     onChange={(e) => setForm({ ...form, address: e.target.value })}
                     className="input"
-                    placeholder="Street, number, apartment, intercom code…"
+                    placeholder="Stradă, număr, apartament, cod interfon…"
                   />
                 </Field>
               )}
-              <Field label="When">
+              <Field label="Când">
                 <select
                   value={form.time}
                   onChange={(e) => setForm({ ...form, time: e.target.value })}
                   className="input"
                 >
-                  <option value="asap">As soon as possible</option>
-                  <option value="30">In 30 minutes</option>
-                  <option value="60">In 1 hour</option>
-                  <option value="later">Later — call me</option>
+                  <option value="asap">Cât mai repede</option>
+                  <option value="30">În 30 de minute</option>
+                  <option value="60">Într-o oră</option>
+                  <option value="later">Mai târziu — sună-mă</option>
                 </select>
               </Field>
-              <Field label="Notes (optional)">
+              <Field label="Observații (opțional)">
                 <textarea
                   rows={3}
                   value={form.notes}
                   onChange={(e) => setForm({ ...form, notes: e.target.value })}
                   className="input resize-none"
-                  placeholder="Allergies, ring twice, leave at door…"
+                  placeholder="Alergii, sună de două ori, lasă la ușă…"
                 />
               </Field>
             </div>
@@ -247,7 +247,7 @@ function CheckoutPage() {
               size="lg"
               className="w-full lg:hidden bg-gradient-meat shadow-meat h-14 text-base"
             >
-              Place order · {total} lei
+              Plasează comanda · {total} lei
             </Button>
           </form>
         </div>
@@ -255,9 +255,9 @@ function CheckoutPage() {
         {/* RIGHT — Summary */}
         <aside className="lg:sticky lg:top-24 h-fit">
           <div className="rounded-2xl border border-border/60 bg-card/60 p-6 space-y-4">
-            <h2 className="font-display text-2xl">Summary</h2>
+            <h2 className="font-display text-2xl">Sumar</h2>
             <Row label="Subtotal" value={`${subtotal} lei`} />
-            <Row label={mode === "pickup" ? "Pickup" : "Delivery fee"} value={deliveryFee ? `${deliveryFee} lei` : "Free"} />
+            <Row label={mode === "pickup" ? "Ridicare" : "Taxă livrare"} value={deliveryFee ? `${deliveryFee} lei` : "Gratis"} />
             <div className="h-px bg-border/60" />
             <div className="flex items-center justify-between">
               <span className="font-display text-xl">Total</span>
@@ -269,10 +269,10 @@ function CheckoutPage() {
               onClick={onSubmit}
               className="hidden lg:flex w-full bg-gradient-meat shadow-meat h-14 text-base"
             >
-              Place order
+              Plasează comanda
             </Button>
             <p className="text-xs text-muted-foreground flex items-center gap-2 pt-2">
-              <Phone className="h-3.5 w-3.5" /> We'll call to confirm before preparing your order.
+              <Phone className="h-3.5 w-3.5" /> Te sunăm să confirmăm înainte să pregătim comanda.
             </p>
           </div>
         </aside>

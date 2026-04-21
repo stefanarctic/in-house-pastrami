@@ -28,7 +28,7 @@ function Index() {
       {/* HERO */}
       <section className="relative min-h-[92vh] flex items-center">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="House-smoked Reuben pastrami sandwich, Bucharest" width={1920} height={1080} className="w-full h-full object-cover" />
+          <img src={heroImg} alt="Sandviș Reuben cu pastramă afumată în casă, București" width={1920} height={1080} className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
         </div>
@@ -68,11 +68,11 @@ function Index() {
         <div className="flex gap-12 whitespace-nowrap animate-marquee font-display tracking-widest text-2xl text-muted-foreground/70">
           {Array.from({ length: 2 }).map((_, k) => (
             <div key={k} className="flex gap-12 shrink-0">
-              <span>★ 4.8 ON GLOVO</span><span className="text-primary">●</span>
-              <span>HOUSE-SMOKED PASTRAMI</span><span className="text-primary">●</span>
-              <span>★ 4.9 ON BOLT FOOD</span><span className="text-primary">●</span>
-              <span>SLICED TO ORDER</span><span className="text-primary">●</span>
-              <span>★ 5.0 ON WOLT</span><span className="text-primary">●</span>
+              <span>★ 4.8 PE GLOVO</span><span className="text-primary">●</span>
+              <span>PASTRAMĂ AFUMATĂ ÎN CASĂ</span><span className="text-primary">●</span>
+              <span>★ 4.9 PE BOLT FOOD</span><span className="text-primary">●</span>
+              <span>FELIATĂ LA COMANDĂ</span><span className="text-primary">●</span>
+              <span>★ 5.0 PE WOLT</span><span className="text-primary">●</span>
               <span>STRADA SPERANȚEI 1</span><span className="text-primary">●</span>
             </div>
           ))}
@@ -84,21 +84,21 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-ember pointer-events-none" />
         <div className="container mx-auto px-4 relative">
           <div className="max-w-2xl">
-            <p className="text-accent uppercase tracking-[0.3em] text-xs mb-4">The Process</p>
+            <p className="text-accent uppercase tracking-[0.3em] text-xs mb-4">Procesul</p>
             <h2 className="font-display text-5xl md:text-7xl leading-none">
-              7 days of work.<br />
-              <span className="text-gradient-meat">One perfect bite.</span>
+              7 zile de muncă.<br />
+              <span className="text-gradient-meat">O singură îmbucătură perfectă.</span>
             </h2>
             <p className="mt-6 text-muted-foreground text-lg">
-              Real pastrami isn't fast food. It's a craft. We cure whole beef briskets for days, rub them with cracked black pepper and coriander, then smoke them until the bark is dark and the meat melts.
+              Pastrama adevărată nu e fast food. E un meșteșug. Maturăm piepturi întregi de vită zile întregi, le ungem cu piper negru spart și coriandru, apoi le afumăm până când crusta e închisă la culoare și carnea se topește.
             </p>
           </div>
 
           <div className="mt-16 grid md:grid-cols-3 gap-6">
             {[
-              { img: seasoningImg, icon: Beef, step: "01", title: "Cured & Rubbed", text: "Whole briskets brined for days, then crusted in a pepper & spice rub." },
-              { img: smokingImg, icon: Flame, step: "02", title: "Smoked Low & Slow", text: "Hours over wood smoke until the bark is black and the inside turns ruby pink." },
-              { img: slicingImg, icon: Timer, step: "03", title: "Sliced To Order", text: "Never pre-cut. Every slice is hand-cut the moment you order it." },
+              { img: seasoningImg, icon: Beef, step: "01", title: "Maturat & Condimentat", text: "Piepturi întregi puse la saramură zile întregi, apoi învelite într-un rub de piper și mirodenii." },
+              { img: smokingImg, icon: Flame, step: "02", title: "Afumat Lent", text: "Ore întregi în fumul de lemn, până când crusta e neagră și interiorul devine roz-rubiniu." },
+              { img: slicingImg, icon: Timer, step: "03", title: "Feliat la Comandă", text: "Niciodată pre-tăiat. Fiecare felie e tăiată manual chiar în momentul comenzii." },
             ].map((s) => (
               <div key={s.step} className="group relative rounded-2xl overflow-hidden bg-card border border-border/60 shadow-deep">
                 <div className="aspect-[4/5] overflow-hidden">
@@ -106,7 +106,7 @@ function Index() {
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-background via-background/90 to-transparent">
                   <div className="flex items-center gap-3 text-accent text-xs uppercase tracking-widest">
-                    <s.icon className="h-4 w-4" /> Step {s.step}
+                    <s.icon className="h-4 w-4" /> Pasul {s.step}
                   </div>
                   <h3 className="font-display text-2xl mt-2">{s.title}</h3>
                   <p className="text-sm text-muted-foreground mt-1">{s.text}</p>
@@ -122,20 +122,20 @@ function Index() {
         <div className="container mx-auto px-4">
           <div className="flex items-end justify-between flex-wrap gap-4 mb-12">
             <div>
-              <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">The Menu</p>
-              <h2 className="font-display text-5xl md:text-7xl leading-none">Built around the meat.</h2>
+              <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">Meniul</p>
+              <h2 className="font-display text-5xl md:text-7xl leading-none">Construit în jurul cărnii.</h2>
             </div>
             <Button asChild size="lg" className="bg-gradient-meat shadow-meat hover:opacity-95">
-              <Link to="/menu">See full menu <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              <Link to="/menu">Vezi tot meniul <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { img: reubenImg, name: "The Reuben", tag: "Bestseller", desc: "House pastrami, melted swiss, sauerkraut, russian dressing on grilled rye.", price: "42 lei" },
-              { img: classicImg, name: "Classic Pastrami", tag: "Bestseller", desc: "Stacked high on rye with mustard and a pickle. The way it should be.", price: "38 lei" },
-              { img: burgerImg, name: "Smash Burger", desc: "Double smashed beef, american cheese, caramelized onion, house sauce.", price: "39 lei" },
-              { img: poutineImg, name: "Pastrami Poutine", desc: "Crispy fries, gravy, cheese curds, topped with shredded pastrami.", price: "34 lei" },
+              { img: reubenImg, name: "The Reuben", tag: "Bestseller", desc: "Pastramă de casă, swiss topit, varză murată, dressing russian pe pâine de secară prăjită.", price: "42 lei" },
+              { img: classicImg, name: "Pastramă Clasică", tag: "Bestseller", desc: "Stivuită generos pe secară, cu muștar și un castravecior. Așa cum trebuie.", price: "38 lei" },
+              { img: burgerImg, name: "Smash Burger", desc: "Două chiftele smash, cașcaval american, ceapă caramelizată, sos de casă.", price: "39 lei" },
+              { img: poutineImg, name: "Poutine cu Pastramă", desc: "Cartofi crocanți, sos de carne, cheese curds, acoperiți cu pastramă mărunțită.", price: "34 lei" },
             ].map((item) => (
               <article key={item.name} className="group flex gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-background/60 border border-border/60 hover:border-primary/60 transition-colors">
                 <div className="shrink-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-xl overflow-hidden">
@@ -149,7 +149,7 @@ function Index() {
                   <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.desc}</p>
                   <div className="flex items-center justify-between gap-2 mt-3 flex-wrap">
                     <span className="font-display text-xl sm:text-2xl text-accent">{item.price}</span>
-                    <Link to="/menu" className="text-xs uppercase tracking-widest text-primary hover:underline whitespace-nowrap">Add →</Link>
+                    <Link to="/menu" className="text-xs uppercase tracking-widest text-primary hover:underline whitespace-nowrap">Adaugă →</Link>
                   </div>
                 </div>
               </article>
@@ -161,13 +161,13 @@ function Index() {
       {/* TESTIMONIALS */}
       <section className="py-24">
         <div className="container mx-auto px-4">
-          <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">Word on the street</p>
-          <h2 className="font-display text-4xl md:text-6xl mb-12 max-w-3xl">People don't shut up about it.</h2>
+          <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">Vorba de pe stradă</p>
+          <h2 className="font-display text-4xl md:text-6xl mb-12 max-w-3xl">Lumea nu mai tace despre el.</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { q: "The Reuben here ruined every other sandwich for me. Genuinely the best pastrami in the city.", a: "Andrei M." },
-              { q: "You can taste the smoke. You can taste the time. Worth every leu.", a: "Ioana D." },
-              { q: "I've had pastrami in NYC. This holds up. Not joking.", a: "Mihai R." },
+              { q: "Reuben-ul de aici mi-a stricat orice alt sandviș. Sincer, cea mai bună pastramă din oraș.", a: "Andrei M." },
+              { q: "Simți fumul. Simți timpul. Merită fiecare leu.", a: "Ioana D." },
+              { q: "Am mâncat pastramă în NYC. Asta se ridică la nivel. Nu glumesc.", a: "Mihai R." },
             ].map((t) => (
               <div key={t.a} className="p-7 rounded-2xl border border-border/60 bg-card/60">
                 <div className="flex gap-0.5 mb-4">
@@ -186,24 +186,24 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-meat opacity-90" />
         <div className="absolute inset-0" style={{ backgroundImage: `url(${heroImg})`, backgroundSize: 'cover', backgroundPosition: 'center', mixBlendMode: 'overlay', opacity: 0.25 }} />
         <div className="relative container mx-auto px-4 text-center max-w-3xl">
-          <p className="uppercase tracking-[0.3em] text-xs text-primary-foreground/80 mb-4">Order Direct</p>
+          <p className="uppercase tracking-[0.3em] text-xs text-primary-foreground/80 mb-4">Comandă Direct</p>
           <h2 className="font-display text-5xl md:text-7xl text-primary-foreground leading-none">
-            Skip the apps.<br />Order straight from us.
+            Sari peste aplicații.<br />Comandă direct de la noi.
           </h2>
           <p className="mt-5 text-primary-foreground/90 text-lg">
-            Faster pickup. No platform delays. Same pastrami, fresher in your hands.
+            Ridicare mai rapidă. Fără întârzieri de platformă. Aceeași pastramă, mai proaspătă în mâinile tale.
           </p>
           <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
             <Button asChild size="lg" className="bg-background text-foreground hover:bg-background/90 h-14 px-8 text-base font-semibold">
-              <Link to="/menu"><ShoppingBag className="mr-2 h-5 w-5" /> Start your order</Link>
+              <Link to="/menu"><ShoppingBag className="mr-2 h-5 w-5" /> Începe comanda</Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="h-14 px-8 text-base border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10">
-              <a href={PHONE}><Phone className="mr-2 h-5 w-5" /> Call to Order</a>
+              <a href={PHONE}><Phone className="mr-2 h-5 w-5" /> Sună pentru comandă</a>
             </Button>
           </div>
 
           <div className="mt-12 pt-8 border-t border-primary-foreground/20">
-            <p className="text-xs uppercase tracking-widest text-primary-foreground/70 mb-4">Or use a delivery app</p>
+            <p className="text-xs uppercase tracking-widest text-primary-foreground/70 mb-4">Sau folosește o aplicație de livrare</p>
             <div className="flex flex-wrap items-center justify-center gap-3">
               {[
                 { name: "Glovo", url: GLOVO },
@@ -223,12 +223,12 @@ function Index() {
       <section id="visit" className="py-24">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
           <div>
-            <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">Come Eat</p>
-            <h2 className="font-display text-5xl md:text-6xl leading-none mb-8">Find us.</h2>
+            <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">Vino să mănânci</p>
+            <h2 className="font-display text-5xl md:text-6xl leading-none mb-8">Găsește-ne.</h2>
             <ul className="space-y-5 text-lg">
               <li className="flex gap-4"><MapPin className="h-6 w-6 text-primary shrink-0" /> Strada Speranței 1, București</li>
-              <li className="flex gap-4"><Clock className="h-6 w-6 text-primary shrink-0" /> Mon–Sun · 12:00 – 22:00</li>
-              <li className="flex gap-4"><Phone className="h-6 w-6 text-primary shrink-0" /> Call ahead for pickup</li>
+              <li className="flex gap-4"><Clock className="h-6 w-6 text-primary shrink-0" /> Lun–Dum · 12:00 – 22:00</li>
+              <li className="flex gap-4"><Phone className="h-6 w-6 text-primary shrink-0" /> Sună înainte pentru ridicare</li>
               <li className="flex gap-4"><Instagram className="h-6 w-6 text-primary shrink-0" />
                 <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="hover:text-primary">@pastrami.and.more</a>
               </li>

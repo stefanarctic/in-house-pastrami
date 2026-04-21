@@ -32,10 +32,10 @@ export function StickyOrder() {
       {hasItems ? (
         <>
           <ShoppingBag className="h-5 w-5" />
-          <span>VIEW CART · {subtotal} LEI</span>
+          <span>VEZI COȘUL · {subtotal} LEI</span>
         </>
       ) : (
-        <span>ORDER NOW →</span>
+        <span>COMANDĂ ACUM →</span>
       )}
     </Link>
   );

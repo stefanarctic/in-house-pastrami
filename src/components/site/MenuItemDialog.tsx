@@ -25,7 +25,7 @@ export function MenuItemDialog({
 
   const handleAdd = () => {
     add(item, qty, notes.trim() || undefined);
-    toast.success(`${qty} × ${item.name} added`, {
+    toast.success(`${qty} × ${item.name} adăugat`, {
       description: `${(qty * item.price).toFixed(0)} lei`,
     });
     onOpenChange(false);
