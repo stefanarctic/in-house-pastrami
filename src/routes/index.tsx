@@ -135,19 +135,19 @@ function Index() {
               { img: burgerImg, name: "Smash Burger", desc: "Double smashed beef, american cheese, caramelized onion, house sauce.", price: "39 lei" },
               { img: poutineImg, name: "Pastrami Poutine", desc: "Crispy fries, gravy, cheese curds, topped with shredded pastrami.", price: "34 lei" },
             ].map((item) => (
-              <article key={item.name} className="group flex gap-5 p-5 rounded-2xl bg-background/60 border border-border/60 hover:border-primary/60 transition-colors">
-                <div className="shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden">
+              <article key={item.name} className="group flex gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-background/60 border border-border/60 hover:border-primary/60 transition-colors">
+                <div className="shrink-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-xl overflow-hidden">
                   <img src={item.img} alt={item.name} loading="lazy" width={400} height={400} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
                 </div>
-                <div className="flex-1 flex flex-col">
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-display text-2xl md:text-3xl">{item.name}</h3>
+                <div className="flex-1 min-w-0 flex flex-col">
+                  <div className="flex items-start gap-2 flex-wrap">
+                    <h3 className="font-display text-xl sm:text-2xl md:text-3xl">{item.name}</h3>
                     {item.tag && <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-primary/15 text-primary rounded">{item.tag}</span>}
                   </div>
                   <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.desc}</p>
-                  <div className="flex items-center justify-between mt-3">
-                    <span className="font-display text-2xl text-accent">{item.price}</span>
-                    <Link to="/menu" className="text-xs uppercase tracking-widest text-primary hover:underline">Add to order →</Link>
+                  <div className="flex items-center justify-between gap-2 mt-3 flex-wrap">
+                    <span className="font-display text-xl sm:text-2xl text-accent">{item.price}</span>
+                    <Link to="/menu" className="text-xs uppercase tracking-widest text-primary hover:underline whitespace-nowrap">Add →</Link>
                   </div>
                 </div>
               </article>
