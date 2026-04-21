@@ -9,6 +9,7 @@ import classicImg from "@/assets/menu-classic.jpg";
 import reubenImg from "@/assets/menu-reuben.jpg";
 import burgerImg from "@/assets/menu-burger.jpg";
 import poutineImg from "@/assets/menu-poutine.jpg";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -21,6 +22,7 @@ const WOLT = "https://wolt.com/en/rou/bucharest/restaurant/in-house-pastrami-mor
 const INSTAGRAM = "https://www.instagram.com/pastrami.and.more/";
 
 function Index() {
+  const { t } = useLanguage();
   return (
     <main className="overflow-x-hidden">
       {/* HERO */}
@@ -33,20 +35,20 @@ function Index() {
         <div className="relative container mx-auto px-4 py-24 grid md:grid-cols-2 gap-10 items-center">
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/40 bg-accent/10 text-accent text-xs uppercase tracking-widest mb-6">
-              <Flame className="h-3.5 w-3.5" /> Smoked in-house · Bucharest
+              <Flame className="h-3.5 w-3.5" /> {t("hero.badge")}
             </div>
             <h1 className="font-display text-6xl md:text-8xl leading-[0.9] tracking-tight">
-              Probably the <span className="text-gradient-meat">best pastrami</span> in Bucharest.
+              {t("hero.title1")} <span className="text-gradient-meat">{t("hero.titleAccent")}</span> {t("hero.title2")}
             </h1>
             <p className="mt-6 text-lg text-muted-foreground max-w-md">
-              Brisket cured for days. Smoked low and slow. Hand-sliced to order. No shortcuts, no compromises.
+              {t("hero.sub")}
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Button asChild size="lg" className="bg-gradient-meat shadow-meat text-base h-12 px-7 hover:opacity-95">
-                <Link to="/menu">Order Now <ArrowRight className="ml-1 h-4 w-4" /></Link>
+                <Link to="/menu">{t("cta.orderNow")} <ArrowRight className="ml-1 h-4 w-4" /></Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 px-7 border-foreground/20 hover:bg-foreground/5">
-                <Link to="/menu">See the Menu</Link>
+                <Link to="/menu">{t("cta.seeMenu")}</Link>
               </Button>
             </div>
             <div className="mt-8 flex items-center gap-5 text-sm text-muted-foreground">
@@ -55,7 +57,7 @@ function Index() {
                 <span className="ml-1 text-foreground font-semibold">4.8</span>
               </div>
               <span>·</span>
-              <span>1.000+ reviews on delivery apps</span>
+              <span>{t("hero.reviews")}</span>
             </div>
           </div>
         </div>
