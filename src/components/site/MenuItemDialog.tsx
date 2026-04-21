@@ -5,6 +5,7 @@ import { Minus, Plus, Flame, ShoppingBag } from "lucide-react";
 import type { MenuItem } from "@/data/menu";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function MenuItemDialog({
   item,
@@ -18,6 +19,7 @@ export function MenuItemDialog({
   const [qty, setQty] = useState(1);
   const [notes, setNotes] = useState("");
   const add = useCart((s) => s.add);
+  const { t } = useLanguage();
 
   if (!item) return null;
 
@@ -33,7 +35,10 @@ export function MenuItemDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl w-[calc(100%-2rem)] p-0 overflow-hidden bg-card border-border/60 max-h-[85vh] grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-2 gap-0 rounded-2xl">
+      <DialogContent
+        onOpenAutoFocus={(e) => e.preventDefault()}
+        className="max-w-2xl w-[calc(100%-2rem)] p-0 overflow-hidden bg-card border-border/60 max-h-[85vh] grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-2 gap-0 rounded-2xl"
+      >
         <div className="relative h-32 sm:h-40 md:h-auto bg-muted">
           <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
           {item.tag && (
@@ -55,7 +60,7 @@ export function MenuItemDialog({
             </DialogDescription>
 
             <div className="mt-4">
-              <p className="text-xs uppercase tracking-widest text-accent mb-1.5">What's in it</p>
+              <p className="text-xs uppercase tracking-widest text-accent mb-1.5">{t("dialog.whats")}</p>
               <ul className="text-sm text-muted-foreground space-y-0.5">
                 {item.ingredients.map((i) => (
                   <li key={i} className="flex gap-2">
@@ -82,13 +87,13 @@ export function MenuItemDialog({
 
             <div className="mt-4">
               <label htmlFor="notes" className="text-xs uppercase tracking-widest text-accent block mb-1.5">
-                Special instructions
+                {t("dialog.notes")}
               </label>
               <textarea
                 id="notes"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
-                placeholder="No pickles, extra mustard…"
+                placeholder={t("dialog.notesPh")}
                 rows={2}
                 className="w-full rounded-md bg-input border border-border px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-ring resize-none"
               />
@@ -121,7 +126,7 @@ export function MenuItemDialog({
               className="flex-1 bg-gradient-meat shadow-meat hover:opacity-95 h-11"
             >
               <ShoppingBag className="h-4 w-4" />
-              Add · {(qty * item.price).toFixed(0)} lei
+              {t("cta.add")} · {(qty * item.price).toFixed(0)} lei
             </Button>
           </div>
         </div>

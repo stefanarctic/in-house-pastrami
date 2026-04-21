@@ -6,6 +6,7 @@ import { MENU, CATEGORIES, type MenuItem, type Category } from "@/data/menu";
 import { MenuItemDialog } from "@/components/site/MenuItemDialog";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
+import { useLanguage } from "@/i18n/LanguageProvider";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -31,6 +32,7 @@ function MenuPage() {
   const [selected, setSelected] = useState<MenuItem | null>(null);
   const [open, setOpen] = useState(false);
   const add = useCart((s) => s.add);
+  const { t } = useLanguage();
 
   const visible = useMemo(
     () => (active === "all" ? MENU : MENU.filter((m) => m.category === active)),
@@ -65,12 +67,12 @@ function MenuPage() {
       <section className="relative pt-16 pb-10 md:pt-24 md:pb-14 border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-ember pointer-events-none" />
         <div className="container mx-auto px-4 relative">
-          <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">The Full Menu</p>
+          <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">{t("menu.heroKicker")}</p>
           <h1 className="font-display text-5xl md:text-7xl leading-none">
-            Pick your <span className="text-gradient-meat">weapon.</span>
+            {t("menu.heroTitle1")} <span className="text-gradient-meat">{t("menu.heroTitleAccent")}</span>
           </h1>
           <p className="mt-5 text-muted-foreground max-w-xl text-lg">
-            Tap any item for full details, allergens and special instructions. Add as you go.
+            {t("menu.heroSub")}
           </p>
         </div>
       </section>
@@ -78,7 +80,7 @@ function MenuPage() {
       {/* TABS */}
       <section className="sticky top-[57px] z-30 bg-background/85 backdrop-blur-md border-b border-border/40">
         <div className="container mx-auto px-4 py-3 flex gap-2 overflow-x-auto">
-          {[{ id: "all" as const, label: "All" }, ...CATEGORIES.map((c) => ({ id: c.id, label: c.label }))].map(
+          {[{ id: "all" as const, label: t("menu.tabsAll") }, ...CATEGORIES.map((c) => ({ id: c.id, label: c.label }))].map(
             (t) => (
               <button
                 key={t.id}
@@ -148,7 +150,7 @@ function MenuPage() {
                             }}
                             className="inline-flex items-center gap-1 h-9 px-3 rounded-md bg-gradient-meat text-primary-foreground text-xs uppercase tracking-widest shadow-meat hover:opacity-95"
                           >
-                            <Plus className="h-3.5 w-3.5" /> Add
+                            <Plus className="h-3.5 w-3.5" /> {t("cta.add")}
                           </span>
                         </div>
                       </div>
@@ -165,12 +167,12 @@ function MenuPage() {
       <section className="py-16 border-t border-border/40 bg-card/30">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
-            <h3 className="font-display text-3xl md:text-4xl">Ready to eat?</h3>
-            <p className="text-muted-foreground mt-1">Review your order and check out — pickup or delivery.</p>
+            <h3 className="font-display text-3xl md:text-4xl">{t("menu.readyTitle")}</h3>
+            <p className="text-muted-foreground mt-1">{t("menu.readySub")}</p>
           </div>
           <Button asChild size="lg" className="bg-gradient-meat shadow-meat hover:opacity-95 h-12 px-7">
             <Link to="/checkout">
-              Go to checkout <ArrowRight className="ml-1 h-4 w-4" />
+              {t("cta.checkout")} <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </Button>
         </div>

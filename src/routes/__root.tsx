@@ -3,6 +3,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { StickyOrder } from "@/components/site/StickyOrder";
 import { Toaster } from "@/components/ui/sonner";
+import { LanguageProvider } from "@/i18n/LanguageProvider";
 
 import appCss from "../styles.css?url";
 
@@ -74,12 +75,12 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   return (
-    <>
+    <LanguageProvider>
       <Header />
       <Outlet />
       <Footer />
       <StickyOrder />
       <Toaster richColors position="top-center" />
-    </>
+    </LanguageProvider>
   );
 }
