@@ -56,15 +56,7 @@ const LanguageContext = createContext<Ctx | null>(null);
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("ro");
 
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("lang") as Lang | null;
-      if (saved === "ro" || saved === "en") setLangState(saved);
-    } catch {
-      // ignore
-    }
-  }, []);
-
+  // Limbă fixată pe RO momentan; setLang acceptat pentru compatibilitate viitoare.
   const setLang = (l: Lang) => {
     setLangState(l);
     try {
