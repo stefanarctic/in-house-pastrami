@@ -33,29 +33,30 @@ export function MenuItemDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl p-0 overflow-hidden bg-card border-border/60 max-h-[90vh] grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-2 gap-0">
-          <div className="relative h-48 md:h-auto bg-muted">
-            <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
-            {item.tag && (
-              <span className="absolute top-4 left-4 text-[10px] uppercase tracking-widest px-2 py-1 bg-primary text-primary-foreground rounded">
-                {item.tag}
-              </span>
-            )}
-          </div>
+      <DialogContent className="max-w-2xl w-[calc(100%-2rem)] p-0 overflow-hidden bg-card border-border/60 max-h-[85vh] grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-2 gap-0 rounded-2xl">
+        <div className="relative h-32 sm:h-40 md:h-auto bg-muted">
+          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+          {item.tag && (
+            <span className="absolute top-3 left-3 text-[10px] uppercase tracking-widest px-2 py-1 bg-primary text-primary-foreground rounded">
+              {item.tag}
+            </span>
+          )}
+        </div>
 
-          <div className="p-6 md:p-8 flex flex-col overflow-y-auto min-h-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-            <DialogTitle className="font-display text-3xl md:text-4xl leading-none">
+        <div className="flex flex-col min-h-0 overflow-hidden">
+          <div className="p-5 md:p-6 flex-1 overflow-y-auto min-h-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <DialogTitle className="font-display text-2xl md:text-3xl leading-none pr-8">
               {item.name}
             </DialogTitle>
-            <div className="mt-2 font-display text-2xl text-accent">{item.price} lei</div>
+            <div className="mt-1.5 font-display text-xl text-accent">{item.price} lei</div>
 
-            <DialogDescription className="mt-4 text-foreground/80 text-base leading-relaxed">
+            <DialogDescription className="mt-3 text-foreground/80 text-sm leading-relaxed">
               {item.longDesc}
             </DialogDescription>
 
-            <div className="mt-5">
-              <p className="text-xs uppercase tracking-widest text-accent mb-2">What's in it</p>
-              <ul className="text-sm text-muted-foreground space-y-1">
+            <div className="mt-4">
+              <p className="text-xs uppercase tracking-widest text-accent mb-1.5">What's in it</p>
+              <ul className="text-sm text-muted-foreground space-y-0.5">
                 {item.ingredients.map((i) => (
                   <li key={i} className="flex gap-2">
                     <span className="text-primary">·</span> {i}
@@ -65,7 +66,7 @@ export function MenuItemDialog({
             </div>
 
             {(item.allergens?.length || item.kcal) && (
-              <div className="mt-4 flex flex-wrap gap-2 text-xs">
+              <div className="mt-3 flex flex-wrap gap-1.5 text-xs">
                 {item.kcal && (
                   <span className="px-2 py-1 rounded-full bg-muted text-muted-foreground inline-flex items-center gap-1">
                     <Flame className="h-3 w-3" /> {item.kcal} kcal
@@ -79,8 +80,8 @@ export function MenuItemDialog({
               </div>
             )}
 
-            <div className="mt-5">
-              <label htmlFor="notes" className="text-xs uppercase tracking-widest text-accent block mb-2">
+            <div className="mt-4">
+              <label htmlFor="notes" className="text-xs uppercase tracking-widest text-accent block mb-1.5">
                 Special instructions
               </label>
               <textarea
@@ -92,37 +93,38 @@ export function MenuItemDialog({
                 className="w-full rounded-md bg-input border border-border px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-ring resize-none"
               />
             </div>
-
-            <div className="mt-6 flex items-center gap-3">
-              <div className="flex items-center border border-border rounded-md">
-                <button
-                  type="button"
-                  onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  className="h-10 w-10 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
-                  aria-label="Decrease quantity"
-                >
-                  <Minus className="h-4 w-4" />
-                </button>
-                <span className="w-10 text-center font-semibold">{qty}</span>
-                <button
-                  type="button"
-                  onClick={() => setQty((q) => q + 1)}
-                  className="h-10 w-10 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
-                  aria-label="Increase quantity"
-                >
-                  <Plus className="h-4 w-4" />
-                </button>
-              </div>
-              <Button
-                onClick={handleAdd}
-                size="lg"
-                className="flex-1 bg-gradient-meat shadow-meat hover:opacity-95 h-12"
-              >
-                <ShoppingBag className="h-4 w-4" />
-                Add {qty > 1 ? `${qty} ` : ""}· {(qty * item.price).toFixed(0)} lei
-              </Button>
-            </div>
           </div>
+
+          <div className="flex items-center gap-2 p-4 md:p-5 border-t border-border/40 bg-card">
+            <div className="flex items-center border border-border rounded-md shrink-0">
+              <button
+                type="button"
+                onClick={() => setQty((q) => Math.max(1, q - 1))}
+                className="h-10 w-9 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
+                aria-label="Decrease quantity"
+              >
+                <Minus className="h-4 w-4" />
+              </button>
+              <span className="w-8 text-center font-semibold">{qty}</span>
+              <button
+                type="button"
+                onClick={() => setQty((q) => q + 1)}
+                className="h-10 w-9 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
+                aria-label="Increase quantity"
+              >
+                <Plus className="h-4 w-4" />
+              </button>
+            </div>
+            <Button
+              onClick={handleAdd}
+              size="lg"
+              className="flex-1 bg-gradient-meat shadow-meat hover:opacity-95 h-11"
+            >
+              <ShoppingBag className="h-4 w-4" />
+              Add · {(qty * item.price).toFixed(0)} lei
+            </Button>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
