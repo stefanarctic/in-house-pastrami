@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { CartButton } from "@/components/site/CartButton";
-import { LanguageSwitch } from "@/components/site/LanguageSwitch";
 import { useLanguage } from "@/i18n/LanguageProvider";
 
 export function Header() {
@@ -20,7 +19,6 @@ export function Header() {
           <a href="/#visit" className="hover:text-primary transition-colors">{t("nav.visit")}</a>
         </nav>
         <div className="flex items-center gap-2">
-          <LanguageSwitch />
           <CartButton />
           <Button asChild variant="default" size="sm" className="bg-gradient-meat shadow-meat hover:opacity-95">
             <Link to="/menu">{t("cta.orderNow")}</Link>
