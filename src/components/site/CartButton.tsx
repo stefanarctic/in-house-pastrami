@@ -11,7 +11,7 @@ export function CartButton({ className = "" }: { className?: string }) {
   return (
     <Link
       to="/checkout"
-      aria-label="View cart"
+      aria-label="Vezi coșul"
       className={`relative inline-flex items-center justify-center h-9 w-9 rounded-md border border-border/60 hover:bg-muted transition-colors ${className}`}
     >
       <ShoppingBag className="h-4 w-4" />
