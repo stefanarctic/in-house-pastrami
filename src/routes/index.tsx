@@ -286,8 +286,8 @@ function Index() {
               { src: galReuben, alt: "Sandviș Reuben cu pastramă afumată", caption: "Reuben cu pastramă" },
               { src: galPoutine, alt: "Pastrami Poutine cu sos brun", caption: "Pastrami Poutine" },
               { src: galBurgerTrufe, alt: "Burger cu sos de trufe", caption: "Burger cu trufe" },
-              { src: galSalata, alt: "Salată cu pastramă", caption: "Salată Pastrami" },
               { src: galSausages, alt: "Cârnați făcuți în casă", caption: "Cârnați In House" },
+              { src: galSalata, alt: "Salată cu pastramă", caption: "Salată Pastrami" },
             ]}
           />
         </div>
