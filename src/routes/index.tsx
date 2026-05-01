@@ -258,6 +258,55 @@ function Index() {
         </div>
       </section>
 
+      {/* GALLERY */}
+      <section id="gallery" className="py-24 md:py-32 border-t border-border/40">
+        <div className="container mx-auto px-4">
+          <div className="flex items-end justify-between flex-wrap gap-4 mb-12">
+            <div className="max-w-2xl">
+              <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">Galerie</p>
+              <h2 className="font-display text-5xl md:text-7xl leading-none">
+                Vezi cu <span className="text-gradient-meat">ochii tăi.</span>
+              </h2>
+              <p className="mt-5 text-muted-foreground text-lg">
+                Crustă neagră, miez roz-rubiniu, fum, unt topit pe pâine prăjită. Fără filtre,
+                fără efecte. Doar carne adevărată.
+              </p>
+            </div>
+            <Button asChild variant="outline" className="border-foreground/20 hover:bg-foreground/5">
+              <a href={INSTAGRAM} target="_blank" rel="noreferrer">
+                <Instagram className="mr-1 h-4 w-4" /> @pastrami.and.more
+              </a>
+            </Button>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
+            {[
+              { src: galReuben, alt: "Sandviș Reuben cu pastramă afumată", span: "row-span-2 aspect-[3/4] md:aspect-auto" },
+              { src: galPastramiHouse, alt: "Pastramă feliată la comandă", span: "aspect-square" },
+              { src: galPhilly, alt: "Philly Cheesesteak topit", span: "aspect-square" },
+              { src: galPoutine, alt: "Pastrami Poutine cu sos brun", span: "aspect-square" },
+              { src: galBurgerTrufe, alt: "Burger cu sos de trufe", span: "aspect-square" },
+              { src: galSausages, alt: "Cârnați făcuți în casă", span: "row-span-2 aspect-[3/4] md:aspect-auto" },
+              { src: galPulled, alt: "Pulled beef tras la fum", span: "aspect-square" },
+              { src: galSalata, alt: "Salată cu pastramă", span: "aspect-square" },
+            ].map((g, i) => (
+              <div
+                key={i}
+                className={`group relative overflow-hidden rounded-xl md:rounded-2xl border border-border/60 bg-card ${g.span}`}
+              >
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* TESTIMONIALS */}
       <section className="py-24">
         <div className="container mx-auto px-4">
