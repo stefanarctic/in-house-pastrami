@@ -26,6 +26,7 @@ import galPulled from "@/assets/menu-items/pulled beef.jpeg";
 import galSalata from "@/assets/menu-items/SALATA PASTRAMI 350G.jpg";
 import { MENU, type MenuItem } from "@/data/menu";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { GalleryBento } from "@/components/site/GalleryBento";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -279,31 +280,18 @@ function Index() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {[
-              { src: galReuben, alt: "Sandviș Reuben cu pastramă afumată", span: "row-span-2 aspect-[3/4] md:aspect-auto" },
-              { src: galPastramiHouse, alt: "Pastramă feliată la comandă", span: "aspect-square" },
-              { src: galPhilly, alt: "Philly Cheesesteak topit", span: "aspect-square" },
-              { src: galPoutine, alt: "Pastrami Poutine cu sos brun", span: "aspect-square" },
-              { src: galBurgerTrufe, alt: "Burger cu sos de trufe", span: "aspect-square" },
-              { src: galSausages, alt: "Cârnați făcuți în casă", span: "row-span-2 aspect-[3/4] md:aspect-auto" },
-              { src: galPulled, alt: "Pulled beef tras la fum", span: "aspect-square" },
-              { src: galSalata, alt: "Salată cu pastramă", span: "aspect-square" },
-            ].map((g, i) => (
-              <div
-                key={i}
-                className={`group relative overflow-hidden rounded-xl md:rounded-2xl border border-border/60 bg-card ${g.span}`}
-              >
-                <img
-                  src={g.src}
-                  alt={g.alt}
-                  loading="lazy"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              </div>
-            ))}
-          </div>
+          <GalleryBento
+            images={[
+              { src: galReuben, alt: "Sandviș Reuben cu pastramă afumată", caption: "Reuben cu pastramă" },
+              { src: galPastramiHouse, alt: "Pastramă feliată la comandă", caption: "Pastrami In House" },
+              { src: galPhilly, alt: "Philly Cheesesteak topit", caption: "Philly Cheesesteak" },
+              { src: galPoutine, alt: "Pastrami Poutine cu sos brun", caption: "Pastrami Poutine" },
+              { src: galBurgerTrufe, alt: "Burger cu sos de trufe", caption: "Burger cu trufe" },
+              { src: galSausages, alt: "Cârnați făcuți în casă", caption: "Cârnați In House" },
+              { src: galPulled, alt: "Pulled beef tras la fum", caption: "Pulled Beef" },
+              { src: galSalata, alt: "Salată cu pastramă", caption: "Salată Pastrami" },
+            ]}
+          />
         </div>
       </section>
 
