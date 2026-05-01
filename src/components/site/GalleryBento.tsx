@@ -16,12 +16,12 @@ export function GalleryBento({ images }: { images: GalleryImage[] }) {
   // 5: 4×1 wide landscape (bottom)
   // Mobile (4 cols): natural flow with mixed shapes.
   const layout = [
-    "col-span-4 row-span-2 md:col-span-4 md:row-span-2", // 0 BIG landscape
-    "col-span-2 row-span-3 md:col-span-2 md:row-span-3", // 1 TALL portrait
-    "col-span-2 row-span-2 md:col-span-2 md:row-span-2", // 2 square
-    "col-span-2 row-span-2 md:col-span-2 md:row-span-2", // 3 square
-    "col-span-2 row-span-2 md:col-span-2 md:row-span-2", // 4 square
-    "col-span-4 row-span-1 md:col-span-4 md:row-span-1", // 5 wide landscape
+    "col-span-4 row-span-2 md:col-start-1 md:row-start-1 md:col-span-4 md:row-span-2", // 0 BIG landscape
+    "col-span-2 row-span-3 md:col-start-5 md:row-start-1 md:col-span-2 md:row-span-3", // 1 TALL portrait
+    "col-span-2 row-span-2 md:col-start-1 md:row-start-3 md:col-span-2 md:row-span-2", // 2 square
+    "col-span-2 row-span-2 md:col-start-3 md:row-start-3 md:col-span-2 md:row-span-2", // 3 square
+    "col-span-2 row-span-2 md:col-start-5 md:row-start-4 md:col-span-2 md:row-span-2", // 4 square
+    "col-span-4 row-span-1 md:col-start-1 md:row-start-5 md:col-span-4 md:row-span-1", // 5 wide landscape
   ];
 
   const current = openIdx !== null ? images[openIdx] : null;
