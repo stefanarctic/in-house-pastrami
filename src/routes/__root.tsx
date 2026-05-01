@@ -35,17 +35,47 @@ export const Route = createRootRoute({
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "In House Pastrami & More — Probabil cea mai bună pastramă din București" },
-      { name: "description", content: "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1." },
+      {
+        name: "description",
+        content:
+          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1.",
+      },
       { name: "author", content: "In House Pastrami & More" },
-      { name: "keywords", content: "pastrama bucuresti, cel mai bun sandvis bucuresti, sandvis reuben bucuresti, carne afumata bucuresti" },
-      { property: "og:title", content: "In House Pastrami & More — Probabil cea mai bună pastramă din București" },
-      { property: "og:description", content: "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1." },
+      {
+        name: "keywords",
+        content:
+          "pastrama bucuresti, cel mai bun sandvis bucuresti, sandvis reuben bucuresti, carne afumata bucuresti",
+      },
+      {
+        property: "og:title",
+        content: "In House Pastrami & More — Probabil cea mai bună pastramă din București",
+      },
+      {
+        property: "og:description",
+        content:
+          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1.",
+      },
       { property: "og:type", content: "restaurant" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "In House Pastrami & More — Probabil cea mai bună pastramă din București" },
-      { name: "twitter:description", content: "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c6aae3e2-ee0b-400c-ae3f-1ea2ab790014/id-preview-eaa72689--b10611d1-2651-414a-afa3-3bb8d762e470.lovable.app-1776597365992.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c6aae3e2-ee0b-400c-ae3f-1ea2ab790014/id-preview-eaa72689--b10611d1-2651-414a-afa3-3bb8d762e470.lovable.app-1776597365992.png" },
+      {
+        name: "twitter:title",
+        content: "In House Pastrami & More — Probabil cea mai bună pastramă din București",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c6aae3e2-ee0b-400c-ae3f-1ea2ab790014/id-preview-eaa72689--b10611d1-2651-414a-afa3-3bb8d762e470.lovable.app-1776597365992.png",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c6aae3e2-ee0b-400c-ae3f-1ea2ab790014/id-preview-eaa72689--b10611d1-2651-414a-afa3-3bb8d762e470.lovable.app-1776597365992.png",
+      },
     ],
     links: [
       {

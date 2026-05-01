@@ -15,12 +15,12 @@ export const Route = createFileRoute("/menu")({
       {
         name: "description",
         content:
-          "Meniul complet: sandvișuri cu pastramă afumată în casă, smash burgeri, poutine, garnituri și băuturi. Comandă direct în București.",
+          "Meniul complet: pastramă făcută în house, burgeri, poutine, salate și sandvișuri cu carne. Comandă direct în București.",
       },
       { property: "og:title", content: "Meniu — In House Pastrami & More" },
       {
         property: "og:description",
-        content: "Reuben, pastramă clasică, smash burgeri, poutine cu pastramă și multe altele. Comandă direct.",
+        content: "Pastrami Classic, Reuben, burgeri cu sos de trufe, poutine cu pastramă și multe altele. Comandă direct.",
       },
     ],
   }),
@@ -41,10 +41,10 @@ function MenuPage() {
 
   const grouped = useMemo(() => {
     const groups: Record<Category, MenuItem[]> = {
-      sandwiches: [],
+      carne: [],
       burgers: [],
-      sides: [],
-      drinks: [],
+      poutine: [],
+      salate: [],
     };
     visible.forEach((m) => groups[m.category].push(m));
     return groups;

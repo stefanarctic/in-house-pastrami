@@ -27,7 +27,9 @@ export const useCart = create<CartState>()(
       lines: [],
       add: (item, quantity = 1, notes) =>
         set((state) => {
-          const existing = state.lines.find((l) => l.id === item.id && (l.notes ?? "") === (notes ?? ""));
+          const existing = state.lines.find(
+            (l) => l.id === item.id && (l.notes ?? "") === (notes ?? ""),
+          );
           if (existing) {
             return {
               lines: state.lines.map((l) =>
@@ -38,7 +40,14 @@ export const useCart = create<CartState>()(
           return {
             lines: [
               ...state.lines,
-              { id: item.id, name: item.name, price: item.price, image: item.image, quantity, notes },
+              {
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                image: item.image,
+                quantity,
+                notes,
+              },
             ],
           };
         }),

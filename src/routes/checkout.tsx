@@ -1,7 +1,17 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Minus, Plus, Trash2, ArrowLeft, MapPin, Phone, Clock, ShoppingBag, CheckCircle2 } from "lucide-react";
+import {
+  Minus,
+  Plus,
+  Trash2,
+  ArrowLeft,
+  MapPin,
+  Phone,
+  Clock,
+  ShoppingBag,
+  CheckCircle2,
+} from "lucide-react";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
 
@@ -9,7 +19,10 @@ export const Route = createFileRoute("/checkout")({
   head: () => ({
     meta: [
       { title: "Finalizare comandă — In House Pastrami & More" },
-      { name: "description", content: "Verifică comanda și finalizează pentru ridicare sau livrare în București." },
+      {
+        name: "description",
+        content: "Verifică comanda și finalizează pentru ridicare sau livrare în București.",
+      },
       { property: "og:title", content: "Finalizare comandă — In House Pastrami & More" },
       { property: "og:description", content: "Comandă direct. Sari peste platforme." },
     ],
@@ -67,7 +80,8 @@ function CheckoutPage() {
         </div>
         <h1 className="font-display text-5xl">Comandă primită.</h1>
         <p className="text-muted-foreground mt-4">
-          Te sunăm la <span className="text-foreground font-semibold">{form.phone}</span> într-un minut ca să confirmăm
+          Te sunăm la <span className="text-foreground font-semibold">{form.phone}</span> într-un
+          minut ca să confirmăm
           {mode === "pickup" ? " ridicarea" : " livrarea"}. Mulțumim că ai comandat direct.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
@@ -105,12 +119,19 @@ function CheckoutPage() {
 
   return (
     <main className="container mx-auto px-4 py-6 md:py-16 pb-28 md:pb-16">
-      <Link to="/menu" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4 md:mb-6">
+      <Link
+        to="/menu"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-4 md:mb-6"
+      >
         <ArrowLeft className="h-4 w-4" /> Înapoi la meniu
       </Link>
 
-      <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-none mb-2">Finalizare</h1>
-      <p className="text-muted-foreground text-sm sm:text-base mb-6 md:mb-10">Comandă direct. Mai rapid, mai proaspăt, fără comisioane de platformă.</p>
+      <h1 className="font-display text-4xl sm:text-5xl md:text-6xl leading-none mb-2">
+        Finalizare
+      </h1>
+      <p className="text-muted-foreground text-sm sm:text-base mb-6 md:mb-10">
+        Comandă direct. Mai rapid, mai proaspăt, fără comisioane de platformă.
+      </p>
 
       <div className="grid lg:grid-cols-[1fr_400px] gap-10">
         {/* LEFT — Cart + Form */}
@@ -120,11 +141,22 @@ function CheckoutPage() {
             <h2 className="font-display text-2xl mb-4">Comanda ta</h2>
             <ul className="rounded-2xl border border-border/60 bg-card/40 divide-y divide-border/60 overflow-hidden">
               {lines.map((line) => (
-                <li key={line.id} className="p-3 sm:p-4 grid grid-cols-[auto_1fr_auto] sm:flex gap-3 sm:gap-4 sm:items-center">
-                  <img src={line.image} alt={line.name} className="h-14 w-14 sm:h-16 sm:w-16 rounded-lg object-cover row-span-2" />
+                <li
+                  key={line.id}
+                  className="p-3 sm:p-4 grid grid-cols-[auto_1fr_auto] sm:flex gap-3 sm:gap-4 sm:items-center"
+                >
+                  <img
+                    src={line.image}
+                    alt={line.name}
+                    className="h-14 w-14 sm:h-16 sm:w-16 rounded-lg object-cover row-span-2"
+                  />
                   <div className="flex-1 min-w-0">
                     <div className="font-display text-base sm:text-xl truncate">{line.name}</div>
-                    {line.notes && <div className="text-xs text-muted-foreground truncate">Notă: {line.notes}</div>}
+                    {line.notes && (
+                      <div className="text-xs text-muted-foreground truncate">
+                        Notă: {line.notes}
+                      </div>
+                    )}
                     <div className="text-sm text-accent font-display">{line.price} lei</div>
                   </div>
                   <button
@@ -152,7 +184,9 @@ function CheckoutPage() {
                         <Plus className="h-3.5 w-3.5" />
                       </button>
                     </div>
-                    <div className="sm:w-20 text-right font-display text-base sm:text-lg">{line.quantity * line.price} lei</div>
+                    <div className="sm:w-20 text-right font-display text-base sm:text-lg">
+                      {line.quantity * line.price} lei
+                    </div>
                   </div>
                 </li>
               ))}
@@ -177,11 +211,17 @@ function CheckoutPage() {
                     }`}
                   >
                     <div className="flex items-center gap-2 font-display text-base sm:text-xl">
-                      {m === "pickup" ? <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" /> : <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />}
+                      {m === "pickup" ? (
+                        <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                      ) : (
+                        <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                      )}
                       <span className="truncate">{m === "pickup" ? "Ridicare" : "Livrare"}</span>
                     </div>
                     <div className="text-[11px] sm:text-xs text-muted-foreground mt-1 leading-snug">
-                      {m === "pickup" ? "Gata în ~15 min · Speranței 1" : "30–45 min · 12 lei în centru"}
+                      {m === "pickup"
+                        ? "Gata în ~15 min · Speranței 1"
+                        : "30–45 min · 12 lei în centru"}
                     </div>
                   </button>
                 ))}
@@ -259,7 +299,10 @@ function CheckoutPage() {
           <div className="rounded-2xl border border-border/60 bg-card/60 p-6 space-y-4">
             <h2 className="font-display text-2xl">Sumar</h2>
             <Row label="Subtotal" value={`${subtotal} lei`} />
-            <Row label={mode === "pickup" ? "Ridicare" : "Taxă livrare"} value={deliveryFee ? `${deliveryFee} lei` : "Gratis"} />
+            <Row
+              label={mode === "pickup" ? "Ridicare" : "Taxă livrare"}
+              value={deliveryFee ? `${deliveryFee} lei` : "Gratis"}
+            />
             <div className="h-px bg-border/60" />
             <div className="flex items-center justify-between">
               <span className="font-display text-xl">Total</span>
@@ -300,7 +343,15 @@ function CheckoutPage() {
   );
 }
 
-function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
+function Field({
+  label,
+  required,
+  children,
+}: {
+  label: string;
+  required?: boolean;
+  children: React.ReactNode;
+}) {
   return (
     <label className="block">
       <span className="text-xs uppercase tracking-widest text-accent block mb-1.5">

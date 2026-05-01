@@ -26,7 +26,9 @@ export function StickyOrder() {
     <Link
       to={hasItems ? "/checkout" : "/menu"}
       className={`md:hidden fixed bottom-4 left-4 right-4 z-50 bg-gradient-meat text-primary-foreground font-display tracking-widest text-lg py-4 rounded-xl shadow-meat flex items-center justify-center gap-3 transition-all duration-300 ${
-        visible ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-6 pointer-events-none"
+        visible
+          ? "opacity-100 translate-y-0 pointer-events-auto"
+          : "opacity-0 translate-y-6 pointer-events-none"
       }`}
     >
       {hasItems ? (

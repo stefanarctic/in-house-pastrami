@@ -24,7 +24,10 @@ const DICT: Dict = {
     ro: "Piept de vită maturat zile întregi. Afumat lent. Feliat la comandă. Fără scurtături, fără compromisuri.",
     en: "Brisket cured for days. Smoked low and slow. Hand-sliced to order. No shortcuts, no compromises.",
   },
-  "hero.reviews": { ro: "1.000+ recenzii pe aplicații de livrare", en: "1.000+ reviews on delivery apps" },
+  "hero.reviews": {
+    ro: "1.000+ recenzii pe aplicații de livrare",
+    en: "1.000+ reviews on delivery apps",
+  },
 
   "menu.tabsAll": { ro: "Toate", en: "All" },
   "menu.heroKicker": { ro: "Meniul Complet", en: "The Full Menu" },
