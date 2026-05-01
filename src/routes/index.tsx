@@ -282,14 +282,12 @@ function Index() {
 
           <GalleryBento
             images={[
-              { src: galReuben, alt: "Sandviș Reuben cu pastramă afumată", caption: "Reuben cu pastramă" },
               { src: galPastramiHouse, alt: "Pastramă feliată la comandă", caption: "Pastrami In House" },
-              { src: galPhilly, alt: "Philly Cheesesteak topit", caption: "Philly Cheesesteak" },
+              { src: galReuben, alt: "Sandviș Reuben cu pastramă afumată", caption: "Reuben cu pastramă" },
               { src: galPoutine, alt: "Pastrami Poutine cu sos brun", caption: "Pastrami Poutine" },
               { src: galBurgerTrufe, alt: "Burger cu sos de trufe", caption: "Burger cu trufe" },
-              { src: galSausages, alt: "Cârnați făcuți în casă", caption: "Cârnați In House" },
-              { src: galPulled, alt: "Pulled beef tras la fum", caption: "Pulled Beef" },
               { src: galSalata, alt: "Salată cu pastramă", caption: "Salată Pastrami" },
+              { src: galSausages, alt: "Cârnați făcuți în casă", caption: "Cârnați In House" },
             ]}
           />
         </div>

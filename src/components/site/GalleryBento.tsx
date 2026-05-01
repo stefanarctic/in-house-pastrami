@@ -10,26 +10,26 @@ export interface GalleryImage {
 export function GalleryBento({ images }: { images: GalleryImage[] }) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
-  // Bento: 6 cols × 4 rows desktop = 24 cells, fully filled.
-  // 0:6, 1:6, 2:2, 3:2, 4:2, 5:2, 6:2, 7:2 = 24
-  // Mobile: 4 cols × 6 rows = 24 cells. 0:8, 1:4, 2:2, 3:2, 4:4, 5:2, 6:2 — adjust below.
+  // Asymmetric bento — desktop 6 cols × 5 rows = 30 cells, fully tiled.
+  // 0: 4×2 landscape | 1: 2×3 portrait (right column, spans top 3 rows)
+  // 2: 2×2 square     | 3: 2×2 square     | 4: 2×2 square (under portrait)
+  // 5: 4×1 wide landscape (bottom)
+  // Mobile (4 cols): natural flow with mixed shapes.
   const layout = [
-    "col-span-4 row-span-2 md:col-span-3 md:row-span-2", // 0 big hero
-    "col-span-2 row-span-2 md:col-span-3 md:row-span-2", // 1
-    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 2
-    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 3
-    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 4
-    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 5
-    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 6
-    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 7
+    "col-span-4 row-span-2 md:col-start-1 md:row-start-1 md:col-span-4 md:row-span-2", // 0 BIG landscape
+    "col-span-2 row-span-3 md:col-start-5 md:row-start-1 md:col-span-2 md:row-span-3", // 1 TALL portrait
+    "col-span-2 row-span-2 md:col-start-1 md:row-start-3 md:col-span-2 md:row-span-2", // 2 square
+    "col-span-2 row-span-2 md:col-start-3 md:row-start-3 md:col-span-2 md:row-span-2", // 3 square
+    "col-span-2 row-span-2 md:col-start-5 md:row-start-4 md:col-span-2 md:row-span-2", // 4 square
+    "col-span-4 row-span-1 md:col-start-1 md:row-start-5 md:col-span-4 md:row-span-1", // 5 wide landscape
   ];
 
   const current = openIdx !== null ? images[openIdx] : null;
 
   return (
     <>
-      <div className="grid grid-cols-4 md:grid-cols-6 auto-rows-[110px] sm:auto-rows-[140px] md:auto-rows-[160px] lg:auto-rows-[180px] gap-2 md:gap-3">
-        {images.slice(0, 8).map((img, i) => (
+      <div className="grid grid-cols-4 md:grid-cols-6 auto-rows-[110px] sm:auto-rows-[140px] md:auto-rows-[150px] lg:auto-rows-[170px] gap-2 md:gap-3">
+        {images.slice(0, 6).map((img, i) => (
           <button
             key={i}
             type="button"
