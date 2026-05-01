@@ -26,6 +26,7 @@ import galPulled from "@/assets/menu-items/pulled beef.jpeg";
 import galSalata from "@/assets/menu-items/SALATA PASTRAMI 350G.jpg";
 import { MENU, type MenuItem } from "@/data/menu";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { GalleryBento } from "@/components/site/GalleryBento";
 
 export const Route = createFileRoute("/")({
   component: Index,
