@@ -10,17 +10,18 @@ export interface GalleryImage {
 export function GalleryBento({ images }: { images: GalleryImage[] }) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
-  // Bento layout: 6 columns × 4 rows on desktop. 8 tiles, fully filling a clean rectangle.
-  // Mobile: 2 cols, mostly square with 2 wide accents.
+  // Bento: 6 cols × 4 rows desktop = 24 cells, fully filled.
+  // 0:6, 1:6, 2:2, 3:2, 4:2, 5:2, 6:2, 7:2 = 24
+  // Mobile: 4 cols × 6 rows = 24 cells. 0:8, 1:4, 2:2, 3:2, 4:4, 5:2, 6:2 — adjust below.
   const layout = [
-    "col-span-2 row-span-2 md:col-span-3 md:row-span-2", // 0 hero left
-    "col-span-2 row-span-1 md:col-span-2 md:row-span-2", // 1
-    "col-span-1 row-span-1 md:col-span-1 md:row-span-1", // 2
-    "col-span-1 row-span-1 md:col-span-1 md:row-span-1", // 3
-    "col-span-2 row-span-1 md:col-span-2 md:row-span-2", // 4
-    "col-span-1 row-span-1 md:col-span-2 md:row-span-1", // 5
-    "col-span-1 row-span-1 md:col-span-1 md:row-span-1", // 6
-    "col-span-2 row-span-1 md:col-span-1 md:row-span-1", // 7
+    "col-span-4 row-span-2 md:col-span-3 md:row-span-2", // 0 big hero
+    "col-span-2 row-span-2 md:col-span-3 md:row-span-2", // 1
+    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 2
+    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 3
+    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 4
+    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 5
+    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 6
+    "col-span-2 row-span-1 md:col-span-2 md:row-span-1", // 7
   ];
 
   const current = openIdx !== null ? images[openIdx] : null;
