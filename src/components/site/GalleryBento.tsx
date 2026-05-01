@@ -10,18 +10,15 @@ export interface GalleryImage {
 export function GalleryBento({ images }: { images: GalleryImage[] }) {
   const [openIdx, setOpenIdx] = useState<number | null>(null);
 
-  // Asymmetric bento — desktop 6 cols × 5 rows = 30 cells, fully tiled.
-  // 0: 4×2 landscape | 1: 2×3 portrait (right column, spans top 3 rows)
-  // 2: 2×2 square     | 3: 2×2 square     | 4: 2×2 square (under portrait)
-  // 5: 4×1 wide landscape (bottom)
-  // Mobile (4 cols): natural flow with mixed shapes.
+  // Asymmetric bento — varied shapes, no forced rectangle. Each tile sized
+  // to fit its image's natural orientation so nothing gets badly clipped.
   const layout = [
     "col-span-4 row-span-2 md:col-start-1 md:row-start-1 md:col-span-4 md:row-span-2", // 0 BIG landscape
     "col-span-2 row-span-3 md:col-start-5 md:row-start-1 md:col-span-2 md:row-span-3", // 1 TALL portrait
     "col-span-2 row-span-2 md:col-start-1 md:row-start-3 md:col-span-2 md:row-span-2", // 2 square
     "col-span-2 row-span-2 md:col-start-3 md:row-start-3 md:col-span-2 md:row-span-2", // 3 square
-    "col-span-2 row-span-2 md:col-start-5 md:row-start-4 md:col-span-2 md:row-span-2", // 4 square
-    "col-span-4 row-span-1 md:col-start-1 md:row-start-5 md:col-span-4 md:row-span-1", // 5 wide landscape
+    "col-span-2 row-span-3 md:col-start-5 md:row-start-4 md:col-span-2 md:row-span-3", // 4 TALL portrait (cârnați)
+    "col-span-4 row-span-2 md:col-start-1 md:row-start-5 md:col-span-4 md:row-span-2", // 5 BIG landscape
   ];
 
   const current = openIdx !== null ? images[openIdx] : null;
