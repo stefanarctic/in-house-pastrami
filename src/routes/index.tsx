@@ -38,7 +38,7 @@ const BOLT = "https://food.bolt.eu/en/325-bucharest/p/88214-in-house-pastrami-mo
 const WOLT = "https://wolt.com/en/rou/bucharest/restaurant/in-house-pastrami-more";
 const INSTAGRAM = "https://www.instagram.com/pastrami.and.more/";
 const SHOWCASE_IDS = [
-  "pastrami-classic",
+  "pastrami-reuben",
   "burger-truffle",
   "philly-cheesesteak",
   "pastrami-poutine",
