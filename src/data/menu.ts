@@ -1,24 +1,33 @@
 import pastramiClassicImg from "@/assets/menu-items/PASTRAMI CLASSIC.jpg";
-import pastramiReubenImg from "@/assets/menu-items/reuben.jpg";
+import pastramiReubenImg from "@/assets/menu-items/pastrami reuben.jpg";
 import pastramiInHouseImg from "@/assets/menu-items/pastrami in house.jpg";
-import pulledBeefImg from "@/assets/menu-items/pulled beef.jpeg";
+import pulledBeefImg from "@/assets/menu-items/pulled beef.jpg";
 import turkeyPastramiClassicImg from "@/assets/menu-items/TURKEY PASTRAMI CLASSIC.jpg";
-import turkeyPastramiInHouseImg from "@/assets/menu-items/turkey in house.jpeg";
+import turkeyPastramiInHouseImg from "@/assets/menu-items/turkey pastrami in house.jpg";
 import homemadeSausagesClassicImg from "@/assets/menu-items/HOMEMADE SAUSAGES CLASSIC 350G.jpg";
 import homemadeSausagesSpicyImg from "@/assets/menu-items/HOMEMADE SAUSAGES SPICY 400G.jpg";
 import homemadeSausagesInHouseImg from "@/assets/menu-items/HOMEMADE SAUSAGES IN HOUSE  420G.jpg";
-import miciTruffleImg from "@/assets/menu-items/sandwich cu mici si sos de trufe.jpg";
-import phillyImg from "@/assets/menu-items/philly.jpg";
-import burgerInHouseImg from "@/assets/menu-items/burger fresh.jpg";
+import miciTruffleImg from "@/assets/menu-items/sandwich mici si sos de trufe.jpg";
+import phillyImg from "@/assets/menu-items/philly platforme.jpg";
+import burgerFreshImg from "@/assets/menu-items/burger fresh.jpg";
 import burgerTruffleImg from "@/assets/menu-items/burger sos trufe.jpg";
+import burgerVeganImg from "@/assets/menu-items/burger vegan platforme.jpg";
 import pljeskavicaImg from "@/assets/menu-items/pljeskavica.jpg";
 import pastramiPoutineImg from "@/assets/menu-items/PASTRAMI POUTINE 300G.jpg";
 import turkeyPastramiPoutineImg from "@/assets/menu-items/TURKEY PASTRAMI POUTINE 300G.jpg";
 import pastramiSaladImg from "@/assets/menu-items/SALATA PASTRAMI 350G.jpg";
-import artichokeSaladImg from "@/assets/menu-items/salata mix de salata cu anghinare.jpg";
-import veganSaladImg from "@/assets/menu-items/salata vegana.jpg";
+import turkeyPastramiSaladImg from "@/assets/menu-items/salata turkey pastrami.jpg";
+import artichokeSaladImg from "@/assets/menu-items/salata anghinare platforme.jpg";
+import veganSaladImg from "@/assets/menu-items/salata vegana platforme.jpg";
+import branzaPicantaImg from "@/assets/menu-items/SOS BRANZA PICANTA 90G.JPG";
+import sosInHouseImg from "@/assets/menu-items/SOS IN HOUSE 60G.JPG";
+import sosRusescImg from "@/assets/menu-items/SOS RUSESC 60G.JPG";
+import cartofiPrajitiImg from "@/assets/menu-items/CARTOFI PRAJITI 150G.jpg";
+import cartofiUsturoiImg from "@/assets/menu-items/cartofi prajiti cu usturoi si patrunjel.jpg";
+import castravetiMuratiImg from "@/assets/menu-items/castraveti murati 150g.jpg";
+import varzaMurataImg from "@/assets/menu-items/varza murata platforme.jpg";
 
-export type Category = "carne" | "burgers" | "poutine" | "salate";
+export type Category = "carne" | "burgers" | "poutine" | "salate" | "garnituri";
 
 export interface MenuItem {
   id: string;
@@ -47,6 +56,11 @@ export const CATEGORIES: { id: Category; label: string; blurb: string }[] = [
     blurb: "Cartofi prăjiți, sos brânzeturi și carne făcută în house.",
   },
   { id: "salate", label: "Salate", blurb: "Boluri fresh cu pastramă, anghinare sau legume." },
+  {
+    id: "garnituri",
+    label: "Garnituri & Sosuri",
+    blurb: "Cartofi prăjiți, murături și sosuri de casă.",
+  },
 ];
 
 export const MENU: MenuItem[] = [
@@ -229,17 +243,40 @@ export const MENU: MenuItem[] = [
 
   // BURGERI
   {
+    id: "burger-fresh",
+    name: "Burger Fresh cu Cartofi Prăjiți",
+    category: "burgers",
+    price: 56,
+    image: burgerFreshImg,
+    shortDesc: "Carne de vită, salată, castraveți, roșii, ceapă și sos.",
+    longDesc:
+      "Burger fresh cu carne de vită, chiflă, salată, castraveți, roșii, ceapă, sos și cartofi prăjiți.",
+    ingredients: [
+      "Carne de vită",
+      "Chiflă",
+      "Salată",
+      "Castraveți",
+      "Roșii",
+      "Ceapă",
+      "Sos",
+      "Cartofi prăjiți",
+    ],
+    allergens: ["Gluten", "Ou"],
+  },
+  {
     id: "burger-in-house",
     name: "Burger In House cu Cartofi Prăjiți",
     category: "burgers",
     price: 58,
-    image: burgerInHouseImg,
-    shortDesc: "Carne de vită, chilli, salată, sos In House, sos roșii și brânzeturi.",
+    image: burgerFreshImg,
+    shortDesc: "Carne de vită, bacon, ceapă, salată și sosuri de casă.",
     longDesc:
-      "Burger cu carne de vită, chilli, salată, sos In House, sos roșii, sos brânzeturi și cartofi prăjiți.",
+      "Burger cu carne de vită, chiflă, ceapă, bacon, salată, sos In House, sos roșii, sos brânzeturi și cartofi prăjiți.",
     ingredients: [
       "Carne de vită",
-      "Chilli",
+      "Chiflă",
+      "Ceapă",
+      "Bacon",
       "Salată",
       "Sos In House",
       "Sos roșii",
@@ -257,9 +294,10 @@ export const MENU: MenuItem[] = [
     image: burgerTruffleImg,
     shortDesc: "Carne de vită, bacon, brânză cu mucegai, salată și sos de trufe.",
     longDesc:
-      "Burger cu carne de vită, bacon, brânză cu mucegai, salată, roșii, sos de trufe și cartofi prăjiți.",
+      "Burger cu carne de vită, chiflă, bacon, brânză cu mucegai, salată, roșii, sos de trufe și cartofi prăjiți.",
     ingredients: [
       "Carne de vită",
+      "Chiflă",
       "Bacon",
       "Brânză cu mucegai",
       "Salată",
@@ -271,17 +309,17 @@ export const MENU: MenuItem[] = [
     tag: "Showcase",
   },
   {
-    id: "burger-fresh",
-    name: "Burger Fresh cu Cartofi Prăjiți",
+    id: "burger-vegan",
+    name: "Burger Vegan cu Cartofi Prăjiți",
     category: "burgers",
-    price: 56,
-    image: burgerInHouseImg,
-    shortDesc: "Carne de vită, chilli, salată, castraveți, roșii, ceapă și sos.",
+    price: 62,
+    image: burgerVeganImg,
+    shortDesc: "Burger vegan, salată, castraveți, roșii, ceapă și sos.",
     longDesc:
-      "Burger fresh cu carne de vită, chilli, salată, castraveți, roșii, ceapă, sos, cartofi prăjiți și salată.",
+      "Burger vegan cu chiflă, salată, castraveți, roșii, ceapă, sos și cartofi prăjiți.",
     ingredients: [
-      "Carne de vită",
-      "Chilli",
+      "Burger vegan",
+      "Chiflă",
       "Salată",
       "Castraveți",
       "Roșii",
@@ -289,7 +327,8 @@ export const MENU: MenuItem[] = [
       "Sos",
       "Cartofi prăjiți",
     ],
-    allergens: ["Gluten", "Ou"],
+    allergens: ["Gluten"],
+    tag: "Vegan",
   },
   {
     id: "pljeskavica",
@@ -297,9 +336,9 @@ export const MENU: MenuItem[] = [
     category: "burgers",
     price: 52,
     image: pljeskavicaImg,
-    shortDesc: "Carne de vită, sos In House, varză albă și chilli.",
-    longDesc: "Pljeskavica cu carne de vită, sos In House, varză albă și chilli.",
-    ingredients: ["Carne de vită", "Sos In House", "Varză albă", "Chilli"],
+    shortDesc: "Carne de vită, sos In House, varză albă și chiflă.",
+    longDesc: "Pljeskavica cu carne de vită, sos In House, varză albă și chiflă.",
+    ingredients: ["Carne de vită", "Sos In House", "Varză albă", "Chiflă"],
     allergens: ["Gluten", "Ou"],
   },
 
@@ -362,6 +401,24 @@ export const MENU: MenuItem[] = [
     ],
   },
   {
+    id: "salata-turkey-pastrami",
+    name: "Salată Turkey Pastrami",
+    category: "salate",
+    price: 40,
+    image: turkeyPastramiSaladImg,
+    shortDesc: "Salată iceberg, castraveți, roșii cherry, pătrunjel și pastramă de curcan.",
+    longDesc:
+      "Salată cu iceberg, castraveți, roșii cherry, pătrunjel, pastramă de curcan și dressing.",
+    ingredients: [
+      "Salată iceberg",
+      "Castraveți",
+      "Roșii cherry",
+      "Pătrunjel",
+      "Pastramă de curcan",
+      "Dressing",
+    ],
+  },
+  {
     id: "mix-salata-anghinare",
     name: "Mix de Salată cu Anghinare",
     category: "salate",
@@ -390,6 +447,83 @@ export const MENU: MenuItem[] = [
       "Dressing",
     ],
     allergens: ["Nuci"],
+  },
+
+  // GARNITURI & SOSURI
+  {
+    id: "cartofi-prajiti",
+    name: "Cartofi Prăjiți",
+    category: "garnituri",
+    price: 17,
+    image: cartofiPrajitiImg,
+    shortDesc: "Cartofi proaspeți prăjiți, porție 150g.",
+    longDesc: "Cartofi proaspeți prăjiți, crocanți la exterior și moi la interior.",
+    ingredients: ["Cartofi proaspeți"],
+  },
+  {
+    id: "cartofi-usturoi-patrunjel",
+    name: "Cartofi cu Usturoi și Pătrunjel",
+    category: "garnituri",
+    price: 19,
+    image: cartofiUsturoiImg,
+    shortDesc: "Cartofi prăjiți cu usturoi și pătrunjel, porție 160g.",
+    longDesc: "Cartofi proaspeți prăjiți, condimentați cu usturoi și pătrunjel proaspăt.",
+    ingredients: ["Cartofi proaspeți", "Usturoi", "Pătrunjel"],
+  },
+  {
+    id: "varza-murata",
+    name: "Varză Murată",
+    category: "garnituri",
+    price: 11,
+    image: varzaMurataImg,
+    shortDesc: "Varză murată de casă, porție 150g.",
+    longDesc: "Varză murată preparată în house, porție 150g.",
+    ingredients: ["Varză murată"],
+  },
+  {
+    id: "castraveti-murati",
+    name: "Castraveți Murați",
+    category: "garnituri",
+    price: 7,
+    image: castravetiMuratiImg,
+    shortDesc: "Castraveți murați de casă, porție 150g.",
+    longDesc: "Castraveți murați preparați în house, porție 150g.",
+    ingredients: ["Castraveți murați"],
+  },
+  {
+    id: "sos-in-house",
+    name: "Sos In House",
+    category: "garnituri",
+    price: 7,
+    image: sosInHouseImg,
+    shortDesc: "Sos In House de casă, porție 60g.",
+    longDesc: "Sosul signature In House, preparat în bucătărie.",
+    ingredients: ["Sos In House"],
+    allergens: ["Ou"],
+    tag: "In house",
+  },
+  {
+    id: "sos-rusesc",
+    name: "Sos Rusesc",
+    category: "garnituri",
+    price: 7,
+    image: sosRusescImg,
+    shortDesc: "Sos rusesc de casă, porție 60g.",
+    longDesc: "Sos rusesc preparat în house, porție 60g.",
+    ingredients: ["Sos rusesc"],
+    allergens: ["Ou"],
+  },
+  {
+    id: "branza-picanta",
+    name: "Brânză Picantă",
+    category: "garnituri",
+    price: 12,
+    image: branzaPicantaImg,
+    shortDesc: "Brânză picantă de casă, porție 90g.",
+    longDesc: "Brânză picantă preparată în house, porție 90g.",
+    ingredients: ["Brânză picantă"],
+    allergens: ["Lactate"],
+    tag: "Picant",
   },
 ];
 

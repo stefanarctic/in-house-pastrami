@@ -45,6 +45,7 @@ function MenuPage() {
       burgers: [],
       poutine: [],
       salate: [],
+      garnituri: [],
     };
     visible.forEach((m) => groups[m.category].push(m));
     return groups;
