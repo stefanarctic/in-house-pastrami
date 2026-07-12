@@ -38,7 +38,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1.",
+          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă cu ridicare din Dorobanți sau Piața Rosetti.",
       },
       { name: "author", content: "In House Pastrami & More" },
       {
@@ -53,7 +53,7 @@ export const Route = createRootRoute({
       {
         property: "og:description",
         content:
-          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1.",
+          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă cu ridicare din Dorobanți sau Piața Rosetti.",
       },
       { property: "og:type", content: "restaurant" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -64,7 +64,7 @@ export const Route = createRootRoute({
       {
         name: "twitter:description",
         content:
-          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă direct din Strada Speranței 1.",
+          "Pastramă de vită afumată în casă, sandvișuri Reuben, burgeri și poutine în București. Comandă cu ridicare din Dorobanți sau Piața Rosetti.",
       },
       {
         property: "og:image",

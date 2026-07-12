@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { MenuItem } from "@/data/menu";
+import { getItem } from "@/data/menu";
 
 export interface CartLine {
   id: string;
@@ -63,6 +64,28 @@ export const useCart = create<CartState>()(
       totalItems: () => get().lines.reduce((s, l) => s + l.quantity, 0),
       subtotal: () => get().lines.reduce((s, l) => s + l.quantity * l.price, 0),
     }),
-    { name: "ihp-cart" },
+    { name: "ihp-cart", version: 1,
+      migrate: (persisted) => {
+        const state = persisted as { lines?: CartLine[] };
+        if (!state.lines) return persisted;
+        return {
+          lines: state.lines.map((line) => {
+            const item = getItem(line.id);
+            return item
+              ? { ...line, image: item.image, name: item.name, price: item.price }
+              : line;
+          }),
+        };
+      },
+      onRehydrateStorage: () => (state) => {
+        if (!state) return;
+        state.lines = state.lines.map((line) => {
+          const item = getItem(line.id);
+          return item
+            ? { ...line, image: item.image, name: item.name, price: item.price }
+            : line;
+        });
+      },
+    },
   ),
 );

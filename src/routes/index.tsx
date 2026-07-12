@@ -25,6 +25,7 @@ import galSausages from "@/assets/menu-items/HOMEMADE SAUSAGES IN HOUSE  420G.we
 import galPulled from "@/assets/menu-items/pulled beef.webp";
 import galSalata from "@/assets/menu-items/SALATA PASTRAMI 350G.webp";
 import { MENU, type MenuItem } from "@/data/menu";
+import { LOCATIONS, mapsEmbedUrl } from "@/data/locations";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { GalleryBento } from "@/components/site/GalleryBento";
 
@@ -122,7 +123,7 @@ function Index() {
               <span className="text-primary">●</span>
               <span>★ 5.0 PE WOLT</span>
               <span className="text-primary">●</span>
-              <span>STRADA SPERANȚEI 1</span>
+              <span>DOROBANȚI &amp; PIAȚA ROSETTI</span>
               <span className="text-primary">●</span>
             </div>
           ))}
@@ -401,36 +402,45 @@ function Index() {
 
       {/* VISIT */}
       <section id="visit" className="py-24">
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-          <div>
-            <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">Vino să mănânci</p>
-            <h2 className="font-display text-5xl md:text-6xl leading-none mb-8">Găsește-ne.</h2>
-            <ul className="space-y-5 text-lg">
-              <li className="flex gap-4">
-                <MapPin className="h-6 w-6 text-primary shrink-0" /> Strada Speranței 1, București
-              </li>
-              <li className="flex gap-4">
-                <Clock className="h-6 w-6 text-primary shrink-0" /> Lun–Dum · 12:00 – 22:00
-              </li>
-              <li className="flex gap-4">
-                <Phone className="h-6 w-6 text-primary shrink-0" /> Sună înainte pentru ridicare
-              </li>
-              <li className="flex gap-4">
-                <Instagram className="h-6 w-6 text-primary shrink-0" />
-                <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="hover:text-primary">
-                  @pastrami.and.more
-                </a>
-              </li>
-            </ul>
+        <div className="container mx-auto px-4">
+          <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">Vino să mănânci</p>
+          <h2 className="font-display text-5xl md:text-6xl leading-none mb-12">Găsește-ne.</h2>
+          <div className="grid md:grid-cols-2 gap-10">
+            {LOCATIONS.map((loc) => (
+              <div key={loc.id} className="space-y-6">
+                <div>
+                  <h3 className="font-display text-3xl mb-4">{loc.name}</h3>
+                  <ul className="space-y-4 text-lg">
+                    <li className="flex gap-4">
+                      <MapPin className="h-6 w-6 text-primary shrink-0" /> {loc.address}
+                    </li>
+                    <li className="flex gap-4">
+                      <Clock className="h-6 w-6 text-primary shrink-0" /> {loc.hours}
+                    </li>
+                  </ul>
+                </div>
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 shadow-deep">
+                  <iframe
+                    title={`In House Pastrami & More — ${loc.address}`}
+                    src={mapsEmbedUrl(loc.mapsQuery)}
+                    className="w-full h-full"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            ))}
           </div>
-          <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-border/60 shadow-deep">
-            <iframe
-              title="In House Pastrami & More — Strada Speranței 1, București"
-              src="https://www.google.com/maps?q=Strada+Speran%C8%9Bei+1,+Bucure%C8%99ti&output=embed"
-              className="w-full h-full"
-              loading="lazy"
-            />
-          </div>
+          <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-4 text-lg">
+            <li className="flex gap-4">
+              <Phone className="h-6 w-6 text-primary shrink-0" /> Sună înainte pentru ridicare
+            </li>
+            <li className="flex gap-4">
+              <Instagram className="h-6 w-6 text-primary shrink-0" />
+              <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="hover:text-primary">
+                @pastrami.and.more
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
     </main>

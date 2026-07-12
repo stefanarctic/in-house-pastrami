@@ -8,11 +8,12 @@ import {
   ArrowLeft,
   MapPin,
   Phone,
-  Clock,
   ShoppingBag,
   CheckCircle2,
 } from "lucide-react";
 import { useCart } from "@/store/cart";
+import { LOCATIONS, getLocation } from "@/data/locations";
+import { getItem } from "@/data/menu";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/checkout")({
@@ -21,7 +22,7 @@ export const Route = createFileRoute("/checkout")({
       { title: "Finalizare comandă — In House Pastrami & More" },
       {
         name: "description",
-        content: "Verifică comanda și finalizează pentru ridicare sau livrare în București.",
+        content: "Verifică comanda și finalizează pentru ridicare din Dorobanți sau Piața Rosetti.",
       },
       { property: "og:title", content: "Finalizare comandă — In House Pastrami & More" },
       { property: "og:description", content: "Comandă direct. Sari peste platforme." },
@@ -29,8 +30,6 @@ export const Route = createFileRoute("/checkout")({
   }),
   component: CheckoutPage,
 });
-
-type Mode = "pickup" | "delivery";
 
 function CheckoutPage() {
   const navigate = useNavigate();
@@ -40,18 +39,17 @@ function CheckoutPage() {
   const clear = useCart((s) => s.clear);
   const subtotal = useCart((s) => s.subtotal());
 
-  const [mode, setMode] = useState<Mode>("pickup");
+  const [locationId, setLocationId] = useState(LOCATIONS[0].id);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    address: "",
     time: "asap",
     notes: "",
   });
 
-  const deliveryFee = mode === "delivery" ? 12 : 0;
-  const total = subtotal + deliveryFee;
+  const location = getLocation(locationId)!;
+  const total = subtotal;
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,10 +59,6 @@ function CheckoutPage() {
     }
     if (!form.name || !form.phone) {
       toast.error("Avem nevoie de numele și numărul tău de telefon.");
-      return;
-    }
-    if (mode === "delivery" && !form.address) {
-      toast.error("Te rugăm adaugă o adresă de livrare.");
       return;
     }
     setSubmitted(true);
@@ -81,8 +75,9 @@ function CheckoutPage() {
         <h1 className="font-display text-5xl">Comandă primită.</h1>
         <p className="text-muted-foreground mt-4">
           Te sunăm la <span className="text-foreground font-semibold">{form.phone}</span> într-un
-          minut ca să confirmăm
-          {mode === "pickup" ? " ridicarea" : " livrarea"}. Mulțumim că ai comandat direct.
+          minut ca să confirmăm ridicarea de la{" "}
+          <span className="text-foreground font-semibold">{location.name}</span> (
+          {location.address}). Mulțumim că ai comandat direct.
         </p>
         <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
           <Button asChild size="lg" className="bg-gradient-meat shadow-meat">
@@ -140,13 +135,15 @@ function CheckoutPage() {
           <section>
             <h2 className="font-display text-2xl mb-4">Comanda ta</h2>
             <ul className="rounded-2xl border border-border/60 bg-card/40 divide-y divide-border/60 overflow-hidden">
-              {lines.map((line) => (
+              {lines.map((line) => {
+                const image = getItem(line.id)?.image ?? line.image;
+                return (
                 <li
                   key={line.id}
                   className="p-3 sm:p-4 grid grid-cols-[auto_1fr_auto] sm:flex gap-3 sm:gap-4 sm:items-center"
                 >
                   <img
-                    src={line.image}
+                    src={image}
                     alt={line.name}
                     className="h-14 w-14 sm:h-16 sm:w-16 rounded-lg object-cover row-span-2"
                   />
@@ -189,39 +186,37 @@ function CheckoutPage() {
                     </div>
                   </div>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </section>
 
           {/* FORM */}
           <form onSubmit={onSubmit} className="space-y-6">
-            {/* Mode toggle */}
+            {/* Location picker */}
             <div>
-              <h2 className="font-display text-2xl mb-4">Cum o vrei?</h2>
-              <div className="grid grid-cols-2 gap-3">
-                {(["pickup", "delivery"] as Mode[]).map((m) => (
+              <h2 className="font-display text-2xl mb-1">De unde ridici?</h2>
+              <p className="text-sm text-muted-foreground mb-4">
+                Comenzile de pe site sunt doar cu ridicare.
+              </p>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {LOCATIONS.map((loc) => (
                   <button
                     type="button"
-                    key={m}
-                    onClick={() => setMode(m)}
+                    key={loc.id}
+                    onClick={() => setLocationId(loc.id)}
                     className={`p-3 sm:p-5 rounded-xl border text-left transition-colors min-w-0 ${
-                      mode === m
+                      locationId === loc.id
                         ? "border-primary bg-primary/10 shadow-meat"
                         : "border-border/60 bg-card/40 hover:border-border"
                     }`}
                   >
                     <div className="flex items-center gap-2 font-display text-base sm:text-xl">
-                      {m === "pickup" ? (
-                        <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-                      ) : (
-                        <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
-                      )}
-                      <span className="truncate">{m === "pickup" ? "Ridicare" : "Livrare"}</span>
+                      <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary shrink-0" />
+                      <span className="truncate">{loc.name}</span>
                     </div>
                     <div className="text-[11px] sm:text-xs text-muted-foreground mt-1 leading-snug">
-                      {m === "pickup"
-                        ? "Gata în ~15 min · Speranței 1"
-                        : "30–45 min · 12 lei în centru"}
+                      Gata în {loc.pickupEta} · {loc.address}
                     </div>
                   </button>
                 ))}
@@ -250,16 +245,6 @@ function CheckoutPage() {
                   />
                 </Field>
               </div>
-              {mode === "delivery" && (
-                <Field label="Adresă de livrare" required>
-                  <input
-                    value={form.address}
-                    onChange={(e) => setForm({ ...form, address: e.target.value })}
-                    className="input"
-                    placeholder="Stradă, număr, apartament, cod interfon…"
-                  />
-                </Field>
-              )}
               <Field label="Când">
                 <select
                   value={form.time}
@@ -278,7 +263,7 @@ function CheckoutPage() {
                   value={form.notes}
                   onChange={(e) => setForm({ ...form, notes: e.target.value })}
                   className="input resize-none"
-                  placeholder="Alergii, sună de două ori, lasă la ușă…"
+                  placeholder="Alergii, sună de două ori…"
                 />
               </Field>
             </div>
@@ -299,10 +284,16 @@ function CheckoutPage() {
           <div className="rounded-2xl border border-border/60 bg-card/60 p-6 space-y-4">
             <h2 className="font-display text-2xl">Sumar</h2>
             <Row label="Subtotal" value={`${subtotal} lei`} />
-            <Row
-              label={mode === "pickup" ? "Ridicare" : "Taxă livrare"}
-              value={deliveryFee ? `${deliveryFee} lei` : "Gratis"}
-            />
+            <Row label="Ridicare" value="Gratis" />
+            <div className="rounded-lg bg-muted/40 px-3 py-2.5 text-sm">
+              <div className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                <div>
+                  <div className="font-semibold">{location.name}</div>
+                  <div className="text-muted-foreground text-xs">{location.address}</div>
+                </div>
+              </div>
+            </div>
             <div className="h-px bg-border/60" />
             <div className="flex items-center justify-between">
               <span className="font-display text-xl">Total</span>
