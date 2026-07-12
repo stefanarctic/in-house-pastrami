@@ -12,18 +12,18 @@ import {
   Instagram,
   ShoppingBag,
 } from "lucide-react";
-import heroImg from "@/assets/hero-pastrami.jpg";
-import seasoningImg from "@/assets/seasoning.jpg";
-import smokingImg from "@/assets/smoking.jpg";
-import slicingImg from "@/assets/slicing.jpg";
-import galReuben from "@/assets/menu-items/pastrami reuben.jpg";
-import galPhilly from "@/assets/menu-items/philly platforme.jpg";
-import galPastramiHouse from "@/assets/menu-items/pastrami in house.jpg";
-import galPoutine from "@/assets/menu-items/PASTRAMI POUTINE 300G.jpg";
-import galBurgerTrufe from "@/assets/menu-items/burger sos trufe.jpg";
-import galSausages from "@/assets/menu-items/HOMEMADE SAUSAGES IN HOUSE  420G.jpg";
-import galPulled from "@/assets/menu-items/pulled beef.jpg";
-import galSalata from "@/assets/menu-items/SALATA PASTRAMI 350G.jpg";
+import heroImg from "@/assets/hero-pastrami.webp";
+import seasoningImg from "@/assets/seasoning.webp";
+import smokingImg from "@/assets/smoking.webp";
+import slicingImg from "@/assets/slicing.webp";
+import galReuben from "@/assets/menu-items/pastrami reuben.webp";
+import galPhilly from "@/assets/menu-items/philly platforme.webp";
+import galPastramiHouse from "@/assets/menu-items/pastrami in house.webp";
+import galPoutine from "@/assets/menu-items/PASTRAMI POUTINE 300G.webp";
+import galBurgerTrufe from "@/assets/menu-items/burger sos trufe.webp";
+import galSausages from "@/assets/menu-items/HOMEMADE SAUSAGES IN HOUSE  420G.webp";
+import galPulled from "@/assets/menu-items/pulled beef.webp";
+import galSalata from "@/assets/menu-items/SALATA PASTRAMI 350G.webp";
 import { MENU, type MenuItem } from "@/data/menu";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { GalleryBento } from "@/components/site/GalleryBento";

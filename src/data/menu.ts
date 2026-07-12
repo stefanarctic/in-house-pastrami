@@ -1,31 +1,36 @@
-import pastramiClassicImg from "@/assets/menu-items/PASTRAMI CLASSIC.jpg";
-import pastramiReubenImg from "@/assets/menu-items/pastrami reuben.jpg";
-import pastramiInHouseImg from "@/assets/menu-items/pastrami in house.jpg";
-import pulledBeefImg from "@/assets/menu-items/pulled beef.jpg";
-import turkeyPastramiClassicImg from "@/assets/menu-items/TURKEY PASTRAMI CLASSIC.jpg";
-import turkeyPastramiInHouseImg from "@/assets/menu-items/turkey pastrami in house.jpg";
-import homemadeSausagesClassicImg from "@/assets/menu-items/HOMEMADE SAUSAGES CLASSIC 350G.jpg";
-import homemadeSausagesSpicyImg from "@/assets/menu-items/HOMEMADE SAUSAGES SPICY 400G.jpg";
-import homemadeSausagesInHouseImg from "@/assets/menu-items/HOMEMADE SAUSAGES IN HOUSE  420G.jpg";
-import miciTruffleImg from "@/assets/menu-items/sandwich mici si sos de trufe.jpg";
-import phillyImg from "@/assets/menu-items/philly platforme.jpg";
-import burgerFreshImg from "@/assets/menu-items/burger fresh.jpg";
-import burgerTruffleImg from "@/assets/menu-items/burger sos trufe.jpg";
-import burgerVeganImg from "@/assets/menu-items/burger vegan platforme.jpg";
-import pljeskavicaImg from "@/assets/menu-items/pljeskavica.jpg";
-import pastramiPoutineImg from "@/assets/menu-items/PASTRAMI POUTINE 300G.jpg";
-import turkeyPastramiPoutineImg from "@/assets/menu-items/TURKEY PASTRAMI POUTINE 300G.jpg";
-import pastramiSaladImg from "@/assets/menu-items/SALATA PASTRAMI 350G.jpg";
-import turkeyPastramiSaladImg from "@/assets/menu-items/salata turkey pastrami.jpg";
-import artichokeSaladImg from "@/assets/menu-items/salata anghinare platforme.jpg";
-import veganSaladImg from "@/assets/menu-items/salata vegana platforme.jpg";
-import branzaPicantaImg from "@/assets/menu-items/SOS BRANZA PICANTA 90G.JPG";
-import sosInHouseImg from "@/assets/menu-items/SOS IN HOUSE 60G.JPG";
-import sosRusescImg from "@/assets/menu-items/SOS RUSESC 60G.JPG";
-import cartofiPrajitiImg from "@/assets/menu-items/CARTOFI PRAJITI 150G.jpg";
-import cartofiUsturoiImg from "@/assets/menu-items/cartofi prajiti cu usturoi si patrunjel.jpg";
-import castravetiMuratiImg from "@/assets/menu-items/castraveti murati 150g.jpg";
-import varzaMurataImg from "@/assets/menu-items/varza murata platforme.jpg";
+import pastramiClassicImg from "@/assets/menu-items/PASTRAMI CLASSIC.webp";
+import pastramiReubenImg from "@/assets/menu-items/pastrami reuben.webp";
+import pastramiInHouseImg from "@/assets/menu-items/pastrami in house.webp";
+import pulledBeefImg from "@/assets/menu-items/pulled beef.webp";
+import turkeyPastramiClassicImg from "@/assets/menu-items/TURKEY PASTRAMI CLASSIC.webp";
+import turkeyPastramiInHouseImg from "@/assets/menu-items/turkey pastrami in house.webp";
+import homemadeSausagesClassicImg from "@/assets/menu-items/HOMEMADE SAUSAGES CLASSIC 350G.webp";
+import homemadeSausagesSpicyImg from "@/assets/menu-items/HOMEMADE SAUSAGES SPICY 400G.webp";
+import homemadeSausagesInHouseImg from "@/assets/menu-items/HOMEMADE SAUSAGES IN HOUSE  420G.webp";
+import miciTruffleImg from "@/assets/menu-items/sandwich mici si sos de trufe.webp";
+import phillyImg from "@/assets/menu-items/philly platforme.webp";
+import burgerFreshImg from "@/assets/menu-items/burger fresh.webp";
+import burgerInHouseImg from "@/assets/menu-items/burger-in-house.webp";
+import burgerTruffleImg from "@/assets/menu-items/burger sos trufe.webp";
+import burgerVeganImg from "@/assets/menu-items/burger-vegan-platforme.webp";
+import pljeskavicaImg from "@/assets/menu-items/pljeskavica-fixed.webp";
+import pastramiPoutineImg from "@/assets/menu-items/PASTRAMI POUTINE 300G.webp";
+import turkeyPastramiPoutineImg from "@/assets/menu-items/TURKEY PASTRAMI POUTINE 300G.webp";
+import pastramiSaladImg from "@/assets/menu-items/SALATA PASTRAMI 350G.webp";
+import turkeyPastramiSaladImg from "@/assets/menu-items/salata turkey pastrami.webp";
+import artichokeSaladImg from "@/assets/menu-items/salata anghinare platforme.webp";
+import veganSaladImg from "@/assets/menu-items/salata vegana platforme.webp";
+import branzaPicantaImg from "@/assets/menu-items/SOS BRANZA PICANTA 90G.webp";
+import sosInHouseImg from "@/assets/menu-items/SOS IN HOUSE 60G.webp";
+import sosRusescImg from "@/assets/menu-items/SOS RUSESC 60G.webp";
+import cartofiPrajitiImg from "@/assets/menu-items/CARTOFI PRAJITI 150G.webp";
+import cartofiUsturoiImg from "@/assets/menu-items/cartofi prajiti cu usturoi si patrunjel.webp";
+import castravetiMuratiImg from "@/assets/menu-items/castraveti murati 150g.webp";
+import varzaMurataImg from "@/assets/menu-items/varza murata platforme.webp";
+import cartofiParmezanImg from "@/assets/menu-items/cartofi-cu-parmezan.webp";
+import salataColeslawImg from "@/assets/menu-items/salata-coleslaw.webp";
+import salataSfeclaRosieImg from "@/assets/menu-items/salata-sfecla-rosie.webp";
+import sosTrufeImg from "@/assets/menu-items/sos-trufe.webp";
 
 export type Category = "carne" | "burgers" | "poutine" | "salate" | "garnituri";
 
@@ -268,7 +273,7 @@ export const MENU: MenuItem[] = [
     name: "Burger In House cu Cartofi Prăjiți",
     category: "burgers",
     price: 58,
-    image: burgerFreshImg,
+    image: burgerInHouseImg,
     shortDesc: "Carne de vită, bacon, ceapă, salată și sosuri de casă.",
     longDesc:
       "Burger cu carne de vită, chiflă, ceapă, bacon, salată, sos In House, sos roșii, sos brânzeturi și cartofi prăjiți.",
@@ -448,6 +453,17 @@ export const MENU: MenuItem[] = [
     ],
     allergens: ["Nuci"],
   },
+  {
+    id: "salata-coleslaw",
+    name: "Salată Coleslaw",
+    category: "salate",
+    price: 18,
+    image: salataColeslawImg,
+    shortDesc: "Varză albă, morcov, dressing și condimente.",
+    longDesc: "Salată coleslaw proaspătă, cu varză albă, morcov și dressing de casă.",
+    ingredients: ["Varză albă", "Morcov", "Dressing"],
+    allergens: ["Ou"],
+  },
 
   // GARNITURI & SOSURI
   {
@@ -471,6 +487,17 @@ export const MENU: MenuItem[] = [
     ingredients: ["Cartofi proaspeți", "Usturoi", "Pătrunjel"],
   },
   {
+    id: "cartofi-parmezan",
+    name: "Cartofi cu Parmezan",
+    category: "garnituri",
+    price: 21,
+    image: cartofiParmezanImg,
+    shortDesc: "Cartofi prăjiți cu parmezan, porție generoasă.",
+    longDesc: "Cartofi proaspeți prăjiți, presărați cu parmezan ras.",
+    ingredients: ["Cartofi proaspeți", "Parmezan"],
+    allergens: ["Lactate"],
+  },
+  {
     id: "varza-murata",
     name: "Varză Murată",
     category: "garnituri",
@@ -489,6 +516,16 @@ export const MENU: MenuItem[] = [
     shortDesc: "Castraveți murați de casă, porție 150g.",
     longDesc: "Castraveți murați preparați în house, porție 150g.",
     ingredients: ["Castraveți murați"],
+  },
+  {
+    id: "salata-sfecla-rosie",
+    name: "Salată Sfeclă Roșie",
+    category: "garnituri",
+    price: 11,
+    image: salataSfeclaRosieImg,
+    shortDesc: "Salată de sfeclă roșie de casă, porție 150g.",
+    longDesc: "Salată de sfeclă roșie preparată în house, porție 150g.",
+    ingredients: ["Sfeclă roșie"],
   },
   {
     id: "sos-in-house",
@@ -512,6 +549,18 @@ export const MENU: MenuItem[] = [
     longDesc: "Sos rusesc preparat în house, porție 60g.",
     ingredients: ["Sos rusesc"],
     allergens: ["Ou"],
+  },
+  {
+    id: "sos-trufe",
+    name: "Sos Trufe",
+    category: "garnituri",
+    price: 12,
+    image: sosTrufeImg,
+    shortDesc: "Sos de trufe de casă, porție 60g.",
+    longDesc: "Sos de trufe preparat în house, porție 60g.",
+    ingredients: ["Sos trufe"],
+    allergens: ["Ou"],
+    tag: "Premium",
   },
   {
     id: "branza-picanta",
