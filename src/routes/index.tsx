@@ -142,7 +142,7 @@ function Index() {
               <span className="text-gradient-meat">O singură îmbucătură perfectă.</span>
             </h2>
             <p className="mt-6 text-muted-foreground text-lg">
-              Pastrama adevărată nu e fast food. E un meșteșug. Maturăm piepturi întregi de vită
+              Pastramă adevărată, nu e fast food. E un meșteșug. Maturăm piepturi întregi de vită
               zile întregi, le ungem cu piper negru spart și coriandru, apoi le afumăm până când
               crusta e închisă la culoare și carnea se topește.
             </p>
