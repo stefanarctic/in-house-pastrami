@@ -1,5 +1,3 @@
-export const SITE_PHONE = "+40771770128";
-export const SITE_PHONE_DISPLAY = "0771 770 128";
 export const INSTAGRAM = "https://www.instagram.com/pastrami.and.more/";
 export const INSTAGRAM_HANDLE = "@pastrami.and.more";
 
@@ -19,5 +17,8 @@ export const DELIVERY_PLATFORMS = [
 ] as const;
 
 export function googleMapsUrl(query: string): string {
-  return `https://www.google.com/maps?q=${query}`;
+  if (query.startsWith("cid:")) {
+    return `https://www.google.com/maps?cid=${query.slice(4)}&hl=ro`;
+  }
+  return `https://www.google.com/maps?q=${query}&hl=ro&z=17`;
 }

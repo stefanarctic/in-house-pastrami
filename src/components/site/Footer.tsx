@@ -1,12 +1,10 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Clock, Instagram, Phone, Settings } from "lucide-react";
+import { MapPin, Clock, Instagram, Phone } from "lucide-react";
 import { LOCATIONS } from "@/data/locations";
 import {
   DELIVERY_PLATFORMS,
   INSTAGRAM,
   INSTAGRAM_HANDLE,
-  SITE_PHONE,
-  SITE_PHONE_DISPLAY,
   googleMapsUrl,
 } from "@/data/site";
 
@@ -54,10 +52,17 @@ export function Footer() {
                     <MapPin className="h-3.5 w-3.5 shrink-0 mt-0.5" />
                     {loc.address}
                   </a>
-                  <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
-                    <Clock className="h-3.5 w-3.5 shrink-0" />
-                    {loc.hours}
+                  <div className="mt-1 flex items-start gap-2 text-xs text-muted-foreground">
+                    <Clock className="h-3.5 w-3.5 shrink-0 mt-0.5" />
+                    <span className="whitespace-pre-line">{loc.hours}</span>
                   </div>
+                  <a
+                    href={`tel:${loc.phone}`}
+                    className="mt-1.5 inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
+                  >
+                    <Phone className="h-3.5 w-3.5 shrink-0" />
+                    {loc.phoneDisplay}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -97,13 +102,20 @@ export function Footer() {
             <h3 className="text-xs uppercase tracking-[0.25em] text-accent font-semibold mb-4">
               Comandă
             </h3>
-            <a
-              href={`tel:${SITE_PHONE}`}
-              className="inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors font-medium"
-            >
-              <Phone className="h-4 w-4" />
-              {SITE_PHONE_DISPLAY}
-            </a>
+            <ul className="space-y-3">
+              {LOCATIONS.map((loc) => (
+                <li key={loc.id}>
+                  <div className="text-xs text-muted-foreground mb-0.5">{loc.shortName}</div>
+                  <a
+                    href={`tel:${loc.phone}`}
+                    className="inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors font-medium"
+                  >
+                    <Phone className="h-4 w-4" />
+                    {loc.phoneDisplay}
+                  </a>
+                </li>
+              ))}
+            </ul>
             <p className="mt-4 text-xs text-muted-foreground leading-relaxed">
               Livrare prin platforme:
             </p>
@@ -124,18 +136,9 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="mt-12 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <span>© {new Date().getFullYear()} In House Pastrami &amp; More</span>
-          <Link
-            to="/admin"
-            className="inline-flex items-center gap-2 rounded-md border border-foreground/35 px-3.5 py-2 text-sm text-foreground/90 hover:border-primary hover:text-primary transition-colors"
-          >
-            <Settings className="h-4 w-4" />
-            Panou Administrare
-          </Link>
-          <span className="font-display tracking-wider text-foreground/60 hidden sm:inline">
-            Afumat cu răbdare.
-          </span>
+          <span className="font-display tracking-wider text-foreground/60">Afumat cu răbdare.</span>
         </div>
       </div>
     </footer>

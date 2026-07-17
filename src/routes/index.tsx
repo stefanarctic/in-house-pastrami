@@ -34,7 +34,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const PHONE = "tel:+40000000000";
 const GLOVO = "https://glovoapp.com/ro/ro/bucharest/stores/in-house-pastrami-and-morebuc/";
 const BOLT = "https://food.bolt.eu/en/325-bucharest/p/88214-in-house-pastrami-more-dorobanti/";
 const WOLT = "https://wolt.com/en/rou/bucharest/restaurant/in-house-pastrami-more";
@@ -356,7 +355,7 @@ function Index() {
             Ridicare mai rapidă. Fără întârzieri de platformă. Aceeași pastramă, mai proaspătă în
             mâinile tale.
           </p>
-          <div className="mt-9 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="mt-9 flex flex-col items-center gap-3">
             <Button
               asChild
               size="lg"
@@ -366,16 +365,22 @@ function Index() {
                 <ShoppingBag className="mr-2 h-5 w-5" /> Începe comanda
               </Link>
             </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="h-14 px-8 text-base border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
-            >
-              <a href={PHONE}>
-                <Phone className="mr-2 h-5 w-5" /> Sună pentru comandă
-              </a>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center">
+              {LOCATIONS.map((loc) => (
+                <Button
+                  key={loc.id}
+                  asChild
+                  size="lg"
+                  variant="outline"
+                  className="h-14 px-6 text-base border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
+                >
+                  <a href={`tel:${loc.phone}`}>
+                    <Phone className="mr-2 h-5 w-5" />
+                    {loc.shortName}: {loc.phoneDisplay}
+                  </a>
+                </Button>
+              ))}
+            </div>
           </div>
 
           <div className="mt-12 pt-8 border-t border-primary-foreground/20">
@@ -418,7 +423,14 @@ function Index() {
                       <MapPin className="h-6 w-6 text-primary shrink-0" /> {loc.address}
                     </li>
                     <li className="flex gap-4">
-                      <Clock className="h-6 w-6 text-primary shrink-0" /> {loc.hours}
+                      <Clock className="h-6 w-6 text-primary shrink-0" />
+                      <span className="whitespace-pre-line">{loc.hours}</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <Phone className="h-6 w-6 text-primary shrink-0" />
+                      <a href={`tel:${loc.phone}`} className="hover:text-primary">
+                        {loc.phoneDisplay}
+                      </a>
                     </li>
                   </ul>
                 </div>
@@ -434,9 +446,6 @@ function Index() {
             ))}
           </div>
           <ul className="mt-10 flex flex-wrap gap-x-8 gap-y-4 text-lg">
-            <li className="flex gap-4">
-              <Phone className="h-6 w-6 text-primary shrink-0" /> Sună înainte pentru ridicare
-            </li>
             <li className="flex gap-4">
               <Instagram className="h-6 w-6 text-primary shrink-0" />
               <a href={INSTAGRAM} target="_blank" rel="noreferrer" className="hover:text-primary">

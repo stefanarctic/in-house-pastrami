@@ -7,6 +7,7 @@ import {
   Trash2,
   ArrowLeft,
   MapPin,
+  Phone,
   CreditCard,
   ShoppingBag,
   Loader2,
@@ -233,6 +234,10 @@ function CheckoutPage() {
                     </div>
                     <div className="text-[11px] sm:text-xs text-muted-foreground mt-1 leading-snug">
                       Gata în {loc.pickupEta} · {loc.address}
+                    </div>
+                    <div className="mt-2 flex items-center gap-1.5 text-xs sm:text-sm text-foreground/80">
+                      <Phone className="h-3.5 w-3.5 text-primary shrink-0" />
+                      {loc.phoneDisplay}
                     </div>
                   </button>
                 ))}
