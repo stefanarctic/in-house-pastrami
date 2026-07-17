@@ -12,6 +12,12 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CheckoutSuccessRouteImport } from './routes/checkout.success'
+import { Route as ApiCheckoutRouteImport } from './routes/api/checkout'
+import { Route as ApiWebhooksStripeRouteImport } from './routes/api/webhooks/stripe'
+import { Route as ApiCheckoutSessionRouteImport } from './routes/api/checkout/session'
+import { Route as ApiCheckoutOrderStatusRouteImport } from './routes/api/checkout/order-status'
+import { Route as ApiCheckoutFulfillRouteImport } from './routes/api/checkout/fulfill'
 
 const MenuRoute = MenuRouteImport.update({
   id: '/menu',
@@ -28,35 +34,113 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CheckoutSuccessRoute = CheckoutSuccessRouteImport.update({
+  id: '/success',
+  path: '/success',
+  getParentRoute: () => CheckoutRoute,
+} as any)
+const ApiCheckoutRoute = ApiCheckoutRouteImport.update({
+  id: '/api/checkout',
+  path: '/api/checkout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiWebhooksStripeRoute = ApiWebhooksStripeRouteImport.update({
+  id: '/api/webhooks/stripe',
+  path: '/api/webhooks/stripe',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCheckoutSessionRoute = ApiCheckoutSessionRouteImport.update({
+  id: '/session',
+  path: '/session',
+  getParentRoute: () => ApiCheckoutRoute,
+} as any)
+const ApiCheckoutOrderStatusRoute = ApiCheckoutOrderStatusRouteImport.update({
+  id: '/order-status',
+  path: '/order-status',
+  getParentRoute: () => ApiCheckoutRoute,
+} as any)
+const ApiCheckoutFulfillRoute = ApiCheckoutFulfillRouteImport.update({
+  id: '/fulfill',
+  path: '/fulfill',
+  getParentRoute: () => ApiCheckoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/checkout': typeof CheckoutRoute
+  '/checkout': typeof CheckoutRouteWithChildren
   '/menu': typeof MenuRoute
+  '/api/checkout': typeof ApiCheckoutRouteWithChildren
+  '/checkout/success': typeof CheckoutSuccessRoute
+  '/api/checkout/fulfill': typeof ApiCheckoutFulfillRoute
+  '/api/checkout/order-status': typeof ApiCheckoutOrderStatusRoute
+  '/api/checkout/session': typeof ApiCheckoutSessionRoute
+  '/api/webhooks/stripe': typeof ApiWebhooksStripeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/checkout': typeof CheckoutRoute
+  '/checkout': typeof CheckoutRouteWithChildren
   '/menu': typeof MenuRoute
+  '/api/checkout': typeof ApiCheckoutRouteWithChildren
+  '/checkout/success': typeof CheckoutSuccessRoute
+  '/api/checkout/fulfill': typeof ApiCheckoutFulfillRoute
+  '/api/checkout/order-status': typeof ApiCheckoutOrderStatusRoute
+  '/api/checkout/session': typeof ApiCheckoutSessionRoute
+  '/api/webhooks/stripe': typeof ApiWebhooksStripeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/checkout': typeof CheckoutRoute
+  '/checkout': typeof CheckoutRouteWithChildren
   '/menu': typeof MenuRoute
+  '/api/checkout': typeof ApiCheckoutRouteWithChildren
+  '/checkout/success': typeof CheckoutSuccessRoute
+  '/api/checkout/fulfill': typeof ApiCheckoutFulfillRoute
+  '/api/checkout/order-status': typeof ApiCheckoutOrderStatusRoute
+  '/api/checkout/session': typeof ApiCheckoutSessionRoute
+  '/api/webhooks/stripe': typeof ApiWebhooksStripeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/checkout' | '/menu'
+  fullPaths:
+    | '/'
+    | '/checkout'
+    | '/menu'
+    | '/api/checkout'
+    | '/checkout/success'
+    | '/api/checkout/fulfill'
+    | '/api/checkout/order-status'
+    | '/api/checkout/session'
+    | '/api/webhooks/stripe'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/checkout' | '/menu'
-  id: '__root__' | '/' | '/checkout' | '/menu'
+  to:
+    | '/'
+    | '/checkout'
+    | '/menu'
+    | '/api/checkout'
+    | '/checkout/success'
+    | '/api/checkout/fulfill'
+    | '/api/checkout/order-status'
+    | '/api/checkout/session'
+    | '/api/webhooks/stripe'
+  id:
+    | '__root__'
+    | '/'
+    | '/checkout'
+    | '/menu'
+    | '/api/checkout'
+    | '/checkout/success'
+    | '/api/checkout/fulfill'
+    | '/api/checkout/order-status'
+    | '/api/checkout/session'
+    | '/api/webhooks/stripe'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CheckoutRoute: typeof CheckoutRoute
+  CheckoutRoute: typeof CheckoutRouteWithChildren
   MenuRoute: typeof MenuRoute
+  ApiCheckoutRoute: typeof ApiCheckoutRouteWithChildren
+  ApiWebhooksStripeRoute: typeof ApiWebhooksStripeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,13 +166,85 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/checkout/success': {
+      id: '/checkout/success'
+      path: '/success'
+      fullPath: '/checkout/success'
+      preLoaderRoute: typeof CheckoutSuccessRouteImport
+      parentRoute: typeof CheckoutRoute
+    }
+    '/api/checkout': {
+      id: '/api/checkout'
+      path: '/api/checkout'
+      fullPath: '/api/checkout'
+      preLoaderRoute: typeof ApiCheckoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/webhooks/stripe': {
+      id: '/api/webhooks/stripe'
+      path: '/api/webhooks/stripe'
+      fullPath: '/api/webhooks/stripe'
+      preLoaderRoute: typeof ApiWebhooksStripeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/checkout/session': {
+      id: '/api/checkout/session'
+      path: '/session'
+      fullPath: '/api/checkout/session'
+      preLoaderRoute: typeof ApiCheckoutSessionRouteImport
+      parentRoute: typeof ApiCheckoutRoute
+    }
+    '/api/checkout/order-status': {
+      id: '/api/checkout/order-status'
+      path: '/order-status'
+      fullPath: '/api/checkout/order-status'
+      preLoaderRoute: typeof ApiCheckoutOrderStatusRouteImport
+      parentRoute: typeof ApiCheckoutRoute
+    }
+    '/api/checkout/fulfill': {
+      id: '/api/checkout/fulfill'
+      path: '/fulfill'
+      fullPath: '/api/checkout/fulfill'
+      preLoaderRoute: typeof ApiCheckoutFulfillRouteImport
+      parentRoute: typeof ApiCheckoutRoute
+    }
   }
 }
 
+interface CheckoutRouteChildren {
+  CheckoutSuccessRoute: typeof CheckoutSuccessRoute
+}
+
+const CheckoutRouteChildren: CheckoutRouteChildren = {
+  CheckoutSuccessRoute: CheckoutSuccessRoute,
+}
+
+const CheckoutRouteWithChildren = CheckoutRoute._addFileChildren(
+  CheckoutRouteChildren,
+)
+
+interface ApiCheckoutRouteChildren {
+  ApiCheckoutFulfillRoute: typeof ApiCheckoutFulfillRoute
+  ApiCheckoutOrderStatusRoute: typeof ApiCheckoutOrderStatusRoute
+  ApiCheckoutSessionRoute: typeof ApiCheckoutSessionRoute
+}
+
+const ApiCheckoutRouteChildren: ApiCheckoutRouteChildren = {
+  ApiCheckoutFulfillRoute: ApiCheckoutFulfillRoute,
+  ApiCheckoutOrderStatusRoute: ApiCheckoutOrderStatusRoute,
+  ApiCheckoutSessionRoute: ApiCheckoutSessionRoute,
+}
+
+const ApiCheckoutRouteWithChildren = ApiCheckoutRoute._addFileChildren(
+  ApiCheckoutRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CheckoutRoute: CheckoutRoute,
+  CheckoutRoute: CheckoutRouteWithChildren,
   MenuRoute: MenuRoute,
+  ApiCheckoutRoute: ApiCheckoutRouteWithChildren,
+  ApiWebhooksStripeRoute: ApiWebhooksStripeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

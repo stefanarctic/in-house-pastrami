@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -7,11 +7,11 @@ import {
   Trash2,
   ArrowLeft,
   MapPin,
-  Phone,
+  CreditCard,
   ShoppingBag,
-  CheckCircle2,
+  Loader2,
 } from "lucide-react";
-import { useCart } from "@/store/cart";
+import { lineKey, useCart } from "@/store/cart";
 import { LOCATIONS, getLocation } from "@/data/locations";
 import { getItem } from "@/data/menu";
 import { toast } from "sonner";
@@ -22,25 +22,32 @@ export const Route = createFileRoute("/checkout")({
       { title: "Finalizare comandă — In House Pastrami & More" },
       {
         name: "description",
-        content: "Verifică comanda și finalizează pentru ridicare din Dorobanți sau Piața Rosetti.",
+        content: "Verifică comanda și plătește online pentru ridicare din Dorobanți sau Piața Rosetti.",
       },
       { property: "og:title", content: "Finalizare comandă — In House Pastrami & More" },
       { property: "og:description", content: "Comandă direct. Sari peste platforme." },
     ],
   }),
-  component: CheckoutPage,
+  component: CheckoutLayout,
 });
+
+function CheckoutLayout() {
+  const isSuccess = useRouterState({
+    select: (s) => s.location.pathname === "/checkout/success",
+  });
+  if (isSuccess) return <Outlet />;
+  return <CheckoutPage />;
+}
 
 function CheckoutPage() {
   const navigate = useNavigate();
   const lines = useCart((s) => s.lines);
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
-  const clear = useCart((s) => s.clear);
   const subtotal = useCart((s) => s.subtotal());
 
   const [locationId, setLocationId] = useState(LOCATIONS[0].id);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -51,7 +58,7 @@ function CheckoutPage() {
   const location = getLocation(locationId)!;
   const total = subtotal;
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!lines.length) {
       toast.error("Coșul tău e gol.");
@@ -61,35 +68,40 @@ function CheckoutPage() {
       toast.error("Avem nevoie de numele și numărul tău de telefon.");
       return;
     }
-    setSubmitted(true);
-    clear();
-    toast.success("Comandă plasată!", { description: "Te sunăm să confirmăm." });
-  };
 
-  if (submitted) {
-    return (
-      <main className="container mx-auto px-4 py-24 max-w-xl text-center">
-        <div className="mx-auto h-16 w-16 grid place-items-center rounded-full bg-primary/15 text-primary mb-6">
-          <CheckCircle2 className="h-8 w-8" />
-        </div>
-        <h1 className="font-display text-5xl">Comandă primită.</h1>
-        <p className="text-muted-foreground mt-4">
-          Te sunăm la <span className="text-foreground font-semibold">{form.phone}</span> într-un
-          minut ca să confirmăm ridicarea de la{" "}
-          <span className="text-foreground font-semibold">{location.name}</span> (
-          {location.address}). Mulțumim că ai comandat direct.
-        </p>
-        <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
-          <Button asChild size="lg" className="bg-gradient-meat shadow-meat">
-            <Link to="/menu">Mai comandă</Link>
-          </Button>
-          <Button asChild size="lg" variant="outline">
-            <Link to="/">Înapoi acasă</Link>
-          </Button>
-        </div>
-      </main>
-    );
-  }
+    setSubmitting(true);
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          lines: lines.map((line) => ({
+            id: line.id,
+            quantity: line.quantity,
+            notes: line.notes,
+          })),
+          locationId,
+          customer: {
+            name: form.name,
+            phone: form.phone,
+            pickupTime: form.time,
+            notes: form.notes || undefined,
+          },
+        }),
+      });
+
+      const data = (await response.json()) as { url?: string; error?: string };
+      if (!response.ok || !data.url) {
+        throw new Error(data.error ?? "Nu am putut iniția plata.");
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Eroare la plată.";
+      toast.error(message);
+      setSubmitting(false);
+    }
+  };
 
   if (!lines.length) {
     return (
@@ -129,71 +141,68 @@ function CheckoutPage() {
       </p>
 
       <div className="grid lg:grid-cols-[1fr_400px] gap-10">
-        {/* LEFT — Cart + Form */}
         <div className="space-y-8">
-          {/* CART */}
           <section>
             <h2 className="font-display text-2xl mb-4">Comanda ta</h2>
             <ul className="rounded-2xl border border-border/60 bg-card/40 divide-y divide-border/60 overflow-hidden">
               {lines.map((line) => {
+                const key = lineKey(line);
                 const image = getItem(line.id)?.image ?? line.image;
                 return (
-                <li
-                  key={line.id}
-                  className="p-3 sm:p-4 grid grid-cols-[auto_1fr_auto] sm:flex gap-3 sm:gap-4 sm:items-center"
-                >
-                  <img
-                    src={image}
-                    alt={line.name}
-                    className="h-14 w-14 sm:h-16 sm:w-16 rounded-lg object-cover row-span-2"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <div className="font-display text-base sm:text-xl truncate">{line.name}</div>
-                    {line.notes && (
-                      <div className="text-xs text-muted-foreground truncate">
-                        Notă: {line.notes}
-                      </div>
-                    )}
-                    <div className="text-sm text-accent font-display">{line.price} lei</div>
-                  </div>
-                  <button
-                    onClick={() => remove(line.id)}
-                    className="text-muted-foreground hover:text-destructive transition-colors self-start sm:order-last p-1"
-                    aria-label="Șterge"
+                  <li
+                    key={key}
+                    className="p-3 sm:p-4 grid grid-cols-[auto_1fr_auto] sm:flex gap-3 sm:gap-4 sm:items-center"
                   >
-                    <Trash2 className="h-4 w-4" />
-                  </button>
-                  <div className="col-span-2 flex items-center justify-between gap-3 sm:col-span-1 sm:contents">
-                    <div className="flex items-center border border-border rounded-md">
-                      <button
-                        onClick={() => setQuantity(line.id, line.quantity - 1)}
-                        className="h-8 w-8 grid place-items-center hover:bg-muted"
-                        aria-label="Scade"
-                      >
-                        <Minus className="h-3.5 w-3.5" />
-                      </button>
-                      <span className="w-8 text-center text-sm font-semibold">{line.quantity}</span>
-                      <button
-                        onClick={() => setQuantity(line.id, line.quantity + 1)}
-                        className="h-8 w-8 grid place-items-center hover:bg-muted"
-                        aria-label="Crește"
-                      >
-                        <Plus className="h-3.5 w-3.5" />
-                      </button>
+                    <img
+                      src={image}
+                      alt={line.name}
+                      className="h-14 w-14 sm:h-16 sm:w-16 rounded-lg object-cover row-span-2"
+                    />
+                    <div className="flex-1 min-w-0">
+                      <div className="font-display text-base sm:text-xl truncate">{line.name}</div>
+                      {line.notes && (
+                        <div className="text-xs text-muted-foreground truncate">
+                          Notă: {line.notes}
+                        </div>
+                      )}
+                      <div className="text-sm text-accent font-display">{line.price} lei</div>
                     </div>
-                    <div className="sm:w-20 text-right font-display text-base sm:text-lg">
-                      {line.quantity * line.price} lei
+                    <button
+                      onClick={() => remove(key)}
+                      className="text-muted-foreground hover:text-destructive transition-colors self-start sm:order-last p-1"
+                      aria-label="Șterge"
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </button>
+                    <div className="col-span-2 flex items-center justify-between gap-3 sm:col-span-1 sm:contents">
+                      <div className="flex items-center border border-border rounded-md">
+                        <button
+                          onClick={() => setQuantity(key, line.quantity - 1)}
+                          className="h-8 w-8 grid place-items-center hover:bg-muted"
+                          aria-label="Scade"
+                        >
+                          <Minus className="h-3.5 w-3.5" />
+                        </button>
+                        <span className="w-8 text-center text-sm font-semibold">{line.quantity}</span>
+                        <button
+                          onClick={() => setQuantity(key, line.quantity + 1)}
+                          className="h-8 w-8 grid place-items-center hover:bg-muted"
+                          aria-label="Crește"
+                        >
+                          <Plus className="h-3.5 w-3.5" />
+                        </button>
+                      </div>
+                      <div className="sm:w-20 text-right font-display text-base sm:text-lg">
+                        {line.quantity * line.price} lei
+                      </div>
                     </div>
-                  </div>
-                </li>
+                  </li>
                 );
               })}
             </ul>
           </section>
 
-          {/* FORM */}
           <form onSubmit={onSubmit} className="space-y-6">
-            {/* Location picker */}
             <div>
               <h2 className="font-display text-2xl mb-1">De unde ridici?</h2>
               <p className="text-sm text-muted-foreground mb-4">
@@ -223,7 +232,6 @@ function CheckoutPage() {
               </div>
             </div>
 
-            {/* Contact */}
             <div className="space-y-4">
               <h2 className="font-display text-2xl">Datele tale</h2>
               <div className="grid sm:grid-cols-2 gap-4">
@@ -233,6 +241,7 @@ function CheckoutPage() {
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="input"
                     placeholder="Numele tău"
+                    disabled={submitting}
                   />
                 </Field>
                 <Field label="Telefon" required>
@@ -242,6 +251,7 @@ function CheckoutPage() {
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     className="input"
                     placeholder="07xx xxx xxx"
+                    disabled={submitting}
                   />
                 </Field>
               </div>
@@ -250,6 +260,7 @@ function CheckoutPage() {
                   value={form.time}
                   onChange={(e) => setForm({ ...form, time: e.target.value })}
                   className="input"
+                  disabled={submitting}
                 >
                   <option value="asap">Cât mai repede</option>
                   <option value="30">În 30 de minute</option>
@@ -264,22 +275,28 @@ function CheckoutPage() {
                   onChange={(e) => setForm({ ...form, notes: e.target.value })}
                   className="input resize-none"
                   placeholder="Alergii, sună de două ori…"
+                  disabled={submitting}
                 />
               </Field>
             </div>
 
-            {/* Submit (mobile shows in summary card) */}
             <Button
               type="submit"
               size="lg"
+              disabled={submitting}
               className="w-full lg:hidden bg-gradient-meat shadow-meat h-14 text-base"
             >
-              Plasează comanda · {total} lei
+              {submitting ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" /> Se redirecționează…
+                </>
+              ) : (
+                <>Plătește · {total} lei</>
+              )}
             </Button>
           </form>
         </div>
 
-        {/* RIGHT — Summary */}
         <aside className="lg:sticky lg:top-24 h-fit">
           <div className="rounded-2xl border border-border/60 bg-card/60 p-6 space-y-4">
             <h2 className="font-display text-2xl">Sumar</h2>
@@ -302,13 +319,20 @@ function CheckoutPage() {
             <Button
               type="submit"
               size="lg"
+              disabled={submitting}
               onClick={onSubmit}
               className="hidden lg:flex w-full bg-gradient-meat shadow-meat h-14 text-base"
             >
-              Plasează comanda
+              {submitting ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" /> Se redirecționează…
+                </>
+              ) : (
+                <>Plătește · {total} lei</>
+              )}
             </Button>
             <p className="text-xs text-muted-foreground flex items-center gap-2 pt-2">
-              <Phone className="h-3.5 w-3.5" /> Te sunăm să confirmăm înainte să pregătim comanda.
+              <CreditCard className="h-3.5 w-3.5" /> Plătești securizat cu cardul. Comanda merge direct în bucătărie.
             </p>
           </div>
         </aside>
@@ -328,6 +352,10 @@ function CheckoutPage() {
           outline: none;
           border-color: var(--color-ring);
           box-shadow: 0 0 0 1px var(--color-ring);
+        }
+        .input:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
         }
       `}</style>
     </main>

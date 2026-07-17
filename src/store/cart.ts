@@ -12,11 +12,15 @@ export interface CartLine {
   notes?: string;
 }
 
+export function lineKey(line: Pick<CartLine, "id" | "notes">): string {
+  return `${line.id}::${line.notes ?? ""}`;
+}
+
 interface CartState {
   lines: CartLine[];
   add: (item: MenuItem, quantity?: number, notes?: string) => void;
-  remove: (id: string) => void;
-  setQuantity: (id: string, quantity: number) => void;
+  remove: (key: string) => void;
+  setQuantity: (key: string, quantity: number) => void;
   clear: () => void;
   totalItems: () => number;
   subtotal: () => number;
@@ -28,13 +32,12 @@ export const useCart = create<CartState>()(
       lines: [],
       add: (item, quantity = 1, notes) =>
         set((state) => {
-          const existing = state.lines.find(
-            (l) => l.id === item.id && (l.notes ?? "") === (notes ?? ""),
-          );
+          const key = lineKey({ id: item.id, notes });
+          const existing = state.lines.find((l) => lineKey(l) === key);
           if (existing) {
             return {
               lines: state.lines.map((l) =>
-                l === existing ? { ...l, quantity: l.quantity + quantity } : l,
+                lineKey(l) === key ? { ...l, quantity: l.quantity + quantity } : l,
               ),
             };
           }
@@ -52,19 +55,22 @@ export const useCart = create<CartState>()(
             ],
           };
         }),
-      remove: (id) => set((state) => ({ lines: state.lines.filter((l) => l.id !== id) })),
-      setQuantity: (id, quantity) =>
+      remove: (key) =>
+        set((state) => ({ lines: state.lines.filter((l) => lineKey(l) !== key) })),
+      setQuantity: (key, quantity) =>
         set((state) => ({
           lines:
             quantity <= 0
-              ? state.lines.filter((l) => l.id !== id)
-              : state.lines.map((l) => (l.id === id ? { ...l, quantity } : l)),
+              ? state.lines.filter((l) => lineKey(l) !== key)
+              : state.lines.map((l) => (lineKey(l) === key ? { ...l, quantity } : l)),
         })),
       clear: () => set({ lines: [] }),
       totalItems: () => get().lines.reduce((s, l) => s + l.quantity, 0),
       subtotal: () => get().lines.reduce((s, l) => s + l.quantity * l.price, 0),
     }),
-    { name: "ihp-cart", version: 1,
+    {
+      name: "ihp-cart",
+      version: 2,
       migrate: (persisted) => {
         const state = persisted as { lines?: CartLine[] };
         if (!state.lines) return persisted;

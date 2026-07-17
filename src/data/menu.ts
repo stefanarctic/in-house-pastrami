@@ -38,6 +38,8 @@ export interface MenuItem {
   id: string;
   name: string;
   category: Category;
+  /** DineHub POS SKU; falls back to `id` when omitted */
+  sku?: string;
   price: number; // in lei
   image: string;
   shortDesc: string;
