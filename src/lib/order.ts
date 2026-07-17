@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type Stripe from "stripe";
-import { getItem } from "@/data/menu";
 import { getLocation } from "@/data/locations";
+import { getMenuItemDocById } from "@/lib/menu.server";
 
 export const checkoutLineSchema = z.object({
   id: z.string().min(1),
@@ -52,26 +52,30 @@ export function pickupTimeLabel(value: string): string {
   return PICKUP_TIME_LABELS[value] ?? value;
 }
 
-export function validateCheckoutRequest(body: CheckoutRequest): ValidatedOrder {
+export async function validateCheckoutRequest(body: CheckoutRequest): Promise<ValidatedOrder> {
   const location = getLocation(body.locationId);
   if (!location) {
     throw new Error("Locația selectată nu este validă.");
   }
 
-  const lines: ValidatedOrderLine[] = body.lines.map((line) => {
-    const item = getItem(line.id);
+  const lines: ValidatedOrderLine[] = [];
+  for (const line of body.lines) {
+    const item = await getMenuItemDocById(line.id);
     if (!item) {
       throw new Error(`Produs necunoscut: ${line.id}`);
     }
-    return {
+    if (!item.available) {
+      throw new Error(`Produs indisponibil: ${item.name}`);
+    }
+    lines.push({
       menuItemId: item.id,
       sku: item.sku ?? item.id,
       name: item.name,
       quantity: line.quantity,
       unitPriceRon: item.price,
       notes: line.notes?.trim() || undefined,
-    };
-  });
+    });
+  }
 
   const subtotalRon = lines.reduce((sum, line) => sum + line.quantity * line.unitPriceRon, 0);
 
@@ -140,6 +144,7 @@ export function buildStripeLineItems(
         description: line.notes ? `Notă: ${line.notes}` : undefined,
         metadata: {
           menuItemId: line.menuItemId,
+          sku: line.sku,
           lineNotes: line.notes ?? "",
         },
       },
@@ -165,7 +170,6 @@ export function orderFromStripeSession(
         ? (product.metadata ?? {})
         : {};
     const menuItemId = productMeta.menuItemId ?? "unknown";
-    const menuItem = getItem(menuItemId);
     const unitPriceRon = (item.price?.unit_amount ?? 0) / 100;
     const lineNotesFromMeta = productMeta.lineNotes || undefined;
     const productDescription =
@@ -179,11 +183,15 @@ export function orderFromStripeSession(
     const name =
       product && typeof product !== "string" && !product.deleted
         ? product.name
-        : (menuItem?.name ?? "Item");
+        : "Item";
+    const skuFromMeta =
+      product && typeof product !== "string" && !product.deleted
+        ? product.metadata?.sku
+        : undefined;
 
     return {
       menuItemId,
-      sku: menuItem?.sku ?? menuItemId,
+      sku: skuFromMeta || menuItemId,
       name,
       quantity: item.quantity ?? 1,
       unitPriceRon,

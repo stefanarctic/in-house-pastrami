@@ -210,6 +210,31 @@
     to { transform: translateX(-50%); }
   }
   .animate-marquee { animation: marquee 30s linear infinite; }
+
+  .scrollbar-dark {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, var(--primary) 55%, transparent) color-mix(in oklab, var(--muted) 40%, transparent);
+  }
+  .scrollbar-dark::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-dark::-webkit-scrollbar-track {
+    background: color-mix(in oklab, var(--muted) 35%, transparent);
+    border-radius: 999px;
+  }
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background: color-mix(in oklab, var(--primary) 50%, var(--muted));
+    border-radius: 999px;
+  }
+  .scrollbar-dark::-webkit-scrollbar-thumb:hover {
+    background: color-mix(in oklab, var(--primary) 70%, var(--muted));
+  }
+  .scrollbar-dark::-webkit-scrollbar-button {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
 
 @layer base {

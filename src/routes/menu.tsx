@@ -1,12 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Plus, ArrowRight } from "lucide-react";
-import { MENU, CATEGORIES, type MenuItem, type Category } from "@/data/menu";
+import { Plus, ArrowRight, Loader2 } from "lucide-react";
+import { CATEGORIES, type MenuItem, type Category } from "@/data/menu";
 import { MenuItemDialog } from "@/components/site/MenuItemDialog";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { useMenuItems } from "@/hooks/useMenuItems";
+import { isFirebaseClientConfigured } from "@/lib/firebase-web";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -20,7 +22,8 @@ export const Route = createFileRoute("/menu")({
       { property: "og:title", content: "Meniu — In House Pastrami & More" },
       {
         property: "og:description",
-        content: "Pastrami Classic, Reuben, burgeri cu sos de trufe, poutine cu pastramă și multe altele. Comandă direct.",
+        content:
+          "Pastrami Classic, Reuben, burgeri cu sos de trufe, poutine cu pastramă și multe altele. Comandă direct.",
       },
     ],
   }),
@@ -32,11 +35,17 @@ function MenuPage() {
   const [selected, setSelected] = useState<MenuItem | null>(null);
   const [open, setOpen] = useState(false);
   const add = useCart((s) => s.add);
+  const syncFromMenu = useCart((s) => s.syncFromMenu);
   const { t } = useLanguage();
+  const { data: menu = [], isLoading, isError, error } = useMenuItems({ availableOnly: true });
+
+  useEffect(() => {
+    if (menu.length) syncFromMenu(menu);
+  }, [menu, syncFromMenu]);
 
   const visible = useMemo(
-    () => (active === "all" ? MENU : MENU.filter((m) => m.category === active)),
-    [active],
+    () => (active === "all" ? menu : menu.filter((m) => m.category === active)),
+    [active, menu],
   );
 
   const grouped = useMemo(() => {
@@ -64,44 +73,63 @@ function MenuPage() {
 
   return (
     <main className="overflow-x-hidden">
-      {/* HERO */}
       <section className="relative pt-16 pb-10 md:pt-24 md:pb-14 border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-ember pointer-events-none" />
         <div className="container mx-auto px-4 relative">
           <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">{t("menu.heroKicker")}</p>
           <h1 className="font-display text-5xl md:text-7xl leading-none">
-            {t("menu.heroTitle1")} <span className="text-gradient-meat">{t("menu.heroTitleAccent")}</span>
+            {t("menu.heroTitle1")}{" "}
+            <span className="text-gradient-meat">{t("menu.heroTitleAccent")}</span>
           </h1>
-          <p className="mt-5 text-muted-foreground max-w-xl text-lg">
-            {t("menu.heroSub")}
-          </p>
+          <p className="mt-5 text-muted-foreground max-w-xl text-lg">{t("menu.heroSub")}</p>
         </div>
       </section>
 
-      {/* TABS */}
       <section className="sticky top-[57px] z-30 bg-background/85 backdrop-blur-md border-b border-border/40">
         <div className="container mx-auto px-4 py-3 flex gap-2 overflow-x-auto">
-          {[{ id: "all" as const, label: t("menu.tabsAll") }, ...CATEGORIES.map((c) => ({ id: c.id, label: c.label }))].map(
-            (t) => (
-              <button
-                key={t.id}
-                onClick={() => setActive(t.id)}
-                className={`shrink-0 px-4 py-2 rounded-full text-xs uppercase tracking-widest border transition-colors ${
-                  active === t.id
-                    ? "bg-primary text-primary-foreground border-primary shadow-meat"
-                    : "bg-transparent border-border/60 text-muted-foreground hover:text-foreground hover:border-border"
-                }`}
-              >
-                {t.label}
-              </button>
-            ),
-          )}
+          {[
+            { id: "all" as const, label: t("menu.tabsAll") },
+            ...CATEGORIES.map((c) => ({ id: c.id, label: c.label })),
+          ].map((tab) => (
+            <button
+              key={tab.id}
+              onClick={() => setActive(tab.id)}
+              className={`shrink-0 px-4 py-2 rounded-full text-xs uppercase tracking-widest border transition-colors ${
+                active === tab.id
+                  ? "bg-primary text-primary-foreground border-primary shadow-meat"
+                  : "bg-transparent border-border/60 text-muted-foreground hover:text-foreground hover:border-border"
+              }`}
+            >
+              {tab.label}
+            </button>
+          ))}
         </div>
       </section>
 
-      {/* CATEGORIES */}
       <section className="py-12 md:py-16">
         <div className="container mx-auto px-4 space-y-16">
+          {!isFirebaseClientConfigured() && (
+            <p className="text-destructive text-sm">
+              Firebase nu este configurat. Adaugă variabilele VITE_FIREBASE_* în .env.
+            </p>
+          )}
+          {isLoading && (
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <Loader2 className="h-4 w-4 animate-spin" /> Se încarcă meniul…
+            </div>
+          )}
+          {isError && (
+            <p className="text-destructive text-sm">
+              Nu am putut încărca meniul
+              {error instanceof Error ? `: ${error.message}` : "."}
+            </p>
+          )}
+          {!isLoading && !isError && menu.length === 0 && isFirebaseClientConfigured() && (
+            <p className="text-muted-foreground text-sm">
+              Meniul este gol. Rulează <code className="text-foreground">npm run seed:menu</code>{" "}
+              după ce configurezi Firebase.
+            </p>
+          )}
           {CATEGORIES.map((cat) => {
             const items = grouped[cat.id];
             if (!items.length) return null;
@@ -164,7 +192,6 @@ function MenuPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="py-16 border-t border-border/40 bg-card/30">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
           <div>

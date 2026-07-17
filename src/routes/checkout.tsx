@@ -1,5 +1,5 @@
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Minus,
@@ -13,8 +13,9 @@ import {
 } from "lucide-react";
 import { lineKey, useCart } from "@/store/cart";
 import { LOCATIONS, getLocation } from "@/data/locations";
-import { getItem } from "@/data/menu";
+import { resolveMenuImage } from "@/data/menu";
 import { toast } from "sonner";
+import { useMenuItems } from "@/hooks/useMenuItems";
 
 export const Route = createFileRoute("/checkout")({
   head: () => ({
@@ -45,6 +46,12 @@ function CheckoutPage() {
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
   const subtotal = useCart((s) => s.subtotal());
+  const syncFromMenu = useCart((s) => s.syncFromMenu);
+  const { data: menu = [] } = useMenuItems({ availableOnly: true });
+
+  useEffect(() => {
+    if (menu.length) syncFromMenu(menu);
+  }, [menu, syncFromMenu]);
 
   const [locationId, setLocationId] = useState(LOCATIONS[0].id);
   const [submitting, setSubmitting] = useState(false);
@@ -147,7 +154,7 @@ function CheckoutPage() {
             <ul className="rounded-2xl border border-border/60 bg-card/40 divide-y divide-border/60 overflow-hidden">
               {lines.map((line) => {
                 const key = lineKey(line);
-                const image = getItem(line.id)?.image ?? line.image;
+                const image = line.image || resolveMenuImage(undefined, line.id);
                 return (
                   <li
                     key={key}

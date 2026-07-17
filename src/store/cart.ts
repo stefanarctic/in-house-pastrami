@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { MenuItem } from "@/data/menu";
-import { getItem } from "@/data/menu";
+import { resolveMenuImage } from "@/data/menu";
 
 export interface CartLine {
   id: string;
@@ -22,6 +22,7 @@ interface CartState {
   remove: (key: string) => void;
   setQuantity: (key: string, quantity: number) => void;
   clear: () => void;
+  syncFromMenu: (items: MenuItem[]) => void;
   totalItems: () => number;
   subtotal: () => number;
 }
@@ -48,7 +49,7 @@ export const useCart = create<CartState>()(
                 id: item.id,
                 name: item.name,
                 price: item.price,
-                image: item.image,
+                image: item.image || resolveMenuImage(item.imageKey, item.id),
                 quantity,
                 notes,
               },
@@ -65,32 +66,47 @@ export const useCart = create<CartState>()(
               : state.lines.map((l) => (lineKey(l) === key ? { ...l, quantity } : l)),
         })),
       clear: () => set({ lines: [] }),
+      syncFromMenu: (items) =>
+        set((state) => {
+          const byId = new Map(items.map((item) => [item.id, item]));
+          return {
+            lines: state.lines.flatMap((line) => {
+              const item = byId.get(line.id);
+              if (!item) return [line];
+              if (item.available === false) return [];
+              return [
+                {
+                  ...line,
+                  name: item.name,
+                  price: item.price,
+                  image: item.image || resolveMenuImage(item.imageKey, item.id),
+                },
+              ];
+            }),
+          };
+        }),
       totalItems: () => get().lines.reduce((s, l) => s + l.quantity, 0),
       subtotal: () => get().lines.reduce((s, l) => s + l.quantity * l.price, 0),
     }),
     {
       name: "ihp-cart",
-      version: 2,
+      version: 3,
       migrate: (persisted) => {
         const state = persisted as { lines?: CartLine[] };
         if (!state.lines) return persisted;
         return {
-          lines: state.lines.map((line) => {
-            const item = getItem(line.id);
-            return item
-              ? { ...line, image: item.image, name: item.name, price: item.price }
-              : line;
-          }),
+          lines: state.lines.map((line) => ({
+            ...line,
+            image: line.image || resolveMenuImage(undefined, line.id),
+          })),
         };
       },
       onRehydrateStorage: () => (state) => {
         if (!state) return;
-        state.lines = state.lines.map((line) => {
-          const item = getItem(line.id);
-          return item
-            ? { ...line, image: item.image, name: item.name, price: item.price }
-            : line;
-        });
+        state.lines = state.lines.map((line) => ({
+          ...line,
+          image: line.image || resolveMenuImage(undefined, line.id),
+        }));
       },
     },
   ),

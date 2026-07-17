@@ -24,10 +24,11 @@ import galBurgerTrufe from "@/assets/menu-items/burger sos trufe.webp";
 import galSausages from "@/assets/menu-items/HOMEMADE SAUSAGES IN HOUSE  420G.webp";
 import galPulled from "@/assets/menu-items/pulled beef.webp";
 import galSalata from "@/assets/menu-items/SALATA PASTRAMI 350G.webp";
-import { MENU, type MenuItem } from "@/data/menu";
+import { type MenuItem } from "@/data/menu";
 import { LOCATIONS, mapsEmbedUrl } from "@/data/locations";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { GalleryBento } from "@/components/site/GalleryBento";
+import { useMenuItems } from "@/hooks/useMenuItems";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -44,12 +45,14 @@ const SHOWCASE_IDS = [
   "philly-cheesesteak",
   "pastrami-poutine",
 ];
-const SHOWCASE_ITEMS = SHOWCASE_IDS.map((id) => MENU.find((item) => item.id === id)).filter(
-  Boolean,
-) as MenuItem[];
 
 function Index() {
   const { t } = useLanguage();
+  const { data: menu = [] } = useMenuItems({ availableOnly: true });
+  const showcaseItems = SHOWCASE_IDS.map((id) => menu.find((item) => item.id === id)).filter(
+    (item): item is MenuItem => Boolean(item),
+  );
+
   return (
     <main className="overflow-x-hidden">
       {/* HERO */}
@@ -217,7 +220,7 @@ function Index() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {SHOWCASE_ITEMS.map((item) => (
+            {showcaseItems.map((item) => (
               <article
                 key={item.name}
                 className="group flex gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-background/60 border border-border/60 hover:border-primary/60 transition-colors"

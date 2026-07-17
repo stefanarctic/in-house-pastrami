@@ -1,9 +1,10 @@
-import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } from "@tanstack/react-router";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { StickyOrder } from "@/components/site/StickyOrder";
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import { AppQueryProvider } from "@/components/AppQueryProvider";
 
 import appCss from "../styles.css?url";
 
@@ -104,13 +105,23 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
+  const isAdmin = useRouterState({
+    select: (s) => s.location.pathname.startsWith("/admin"),
+  });
+
   return (
-    <LanguageProvider>
-      <Header />
-      <Outlet />
-      <Footer />
-      <StickyOrder />
-      <Toaster richColors position="top-center" />
-    </LanguageProvider>
+    <AppQueryProvider>
+      <LanguageProvider>
+        {!isAdmin && <Header />}
+        <Outlet />
+        {!isAdmin && (
+          <>
+            <Footer />
+            <StickyOrder />
+          </>
+        )}
+        <Toaster richColors position="top-center" />
+      </LanguageProvider>
+    </AppQueryProvider>
   );
 }

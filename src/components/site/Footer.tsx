@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Clock, Instagram, Phone } from "lucide-react";
+import { MapPin, Clock, Instagram, Phone, Settings } from "lucide-react";
 import { LOCATIONS } from "@/data/locations";
 import {
   DELIVERY_PLATFORMS,
@@ -124,9 +124,18 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
+        <div className="mt-12 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
           <span>© {new Date().getFullYear()} In House Pastrami &amp; More</span>
-          <span className="font-display tracking-wider text-foreground/60">Afumat cu răbdare.</span>
+          <Link
+            to="/admin"
+            className="inline-flex items-center gap-2 rounded-md border border-foreground/35 px-3.5 py-2 text-sm text-foreground/90 hover:border-primary hover:text-primary transition-colors"
+          >
+            <Settings className="h-4 w-4" />
+            Panou Administrare
+          </Link>
+          <span className="font-display tracking-wider text-foreground/60 hidden sm:inline">
+            Afumat cu răbdare.
+          </span>
         </div>
       </div>
     </footer>

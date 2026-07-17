@@ -20,6 +20,7 @@ dist-ssr
 .env.*
 !.env.example
 dinehub_pass.txt
+pastrami-and-more-firebase-admin-sdk-credentials.json
 
 # Wrangler / Cloudflare
 .wrangler/

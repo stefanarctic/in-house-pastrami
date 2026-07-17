@@ -20,7 +20,7 @@ export const Route = createFileRoute("/api/checkout")({
             );
           }
 
-          const order = validateCheckoutRequest(parsed.data);
+          const order = await validateCheckoutRequest(parsed.data);
           const stripe = getStripe(order.locationId);
           const siteUrl = getSiteUrl();
 

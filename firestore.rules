@@ -1,0 +1,20 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in [
+          // paste the same emails as ADMIN_EMAILS
+          "aleluianu09@gmail.com",
+          "stefandrosu02@gmail.com",
+          "pastramipayments@gmail.com",
+          "cristian_sea@yahoo.com"
+        ];
+    }
+
+    match /menuItems/{itemId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+  }
+}
