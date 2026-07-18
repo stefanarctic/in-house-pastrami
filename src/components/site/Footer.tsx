@@ -7,6 +7,7 @@ import {
   INSTAGRAM_HANDLE,
   googleMapsUrl,
 } from "@/data/site";
+import logo from "@/assets/logo.png";
 
 export function Footer() {
   return (
@@ -15,11 +16,20 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <div className="font-display text-xl tracking-widest text-foreground">
-              IN HOUSE
-              <br />
-              <span className="text-primary">PASTRAMI</span> &amp; MORE
-            </div>
+            <Link to="/" className="inline-flex items-center gap-3">
+              <img
+                src={logo}
+                alt="In House Pastrami & More"
+                width={64}
+                height={64}
+                className="h-14 w-14 rounded-full shrink-0"
+              />
+              <div className="font-display text-xl tracking-widest text-foreground leading-tight">
+                IN HOUSE
+                <br />
+                <span className="text-primary">PASTRAMI</span> &amp; MORE
+              </div>
+            </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
               Pastramă afumată în casă, sandvișuri Reuben și burgeri. Două locații în București.
             </p>

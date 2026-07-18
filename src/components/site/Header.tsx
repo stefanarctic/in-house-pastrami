@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { CartButton } from "@/components/site/CartButton";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import logo from "@/assets/logo.png";
 
 export function Header() {
   const { t } = useLanguage();
@@ -10,9 +11,15 @@ export function Header() {
       <div className="container mx-auto flex items-center justify-between px-4 py-3 gap-4">
         <Link
           to="/"
-          className="flex items-center gap-2 font-display text-lg md:text-xl tracking-wider"
+          className="flex items-center gap-2.5 font-display text-lg md:text-xl tracking-wider"
         >
-          <span className="inline-block h-2 w-2 rounded-full bg-primary shadow-meat" />
+          <img
+            src={logo}
+            alt="In House Pastrami & More"
+            width={44}
+            height={44}
+            className="h-10 w-10 md:h-11 md:w-11 rounded-full shrink-0"
+          />
           <span className="hidden sm:inline">IN HOUSE</span>{" "}
           <span className="text-primary">PASTRAMI</span>
           <span className="hidden sm:inline">&amp; MORE</span>
