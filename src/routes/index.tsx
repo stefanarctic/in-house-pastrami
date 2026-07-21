@@ -13,6 +13,7 @@ import {
   ShoppingBag,
 } from "lucide-react";
 import heroImg from "@/assets/hero-pastrami.webp";
+import logo from "@/assets/logo.png";
 import seasoningImg from "@/assets/seasoning.webp";
 import smokingImg from "@/assets/smoking.webp";
 import slicingImg from "@/assets/slicing.webp";
@@ -129,6 +130,42 @@ function Index() {
               <span className="text-primary">●</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ABOUT / OUR STORY */}
+      <section id="about" className="relative py-14 md:py-20 overflow-hidden bg-background border-y border-border/40">
+        <div className="container mx-auto px-4 relative">
+          <div className="max-w-3xl mx-auto font-hand text-center text-foreground">
+            <img
+              src={logo}
+              alt="In House Pastrami & More"
+              width={88}
+              height={88}
+              className="mx-auto mb-5 h-16 w-16 md:h-20 md:w-20 rounded-full shadow-meat"
+            />
+            <p className="text-xl md:text-2xl text-muted-foreground leading-none mb-1">
+              Descoperă povestea
+            </p>
+            <h2 className="text-4xl md:text-5xl leading-none text-accent mb-6">
+              Pastrami &amp; more
+            </h2>
+            <div className="space-y-4 text-xl md:text-2xl leading-snug text-foreground/90">
+              <p>
+                Călătoria a doi prieteni în lumea gusturilor autentice. Am plecat de la pastrami,
+                renumita pastramă de vită dusă peste ocean de evreii români la sfârșitul secolului
+                XIX-lea, iar după luni de încercări și sute de kilograme de Brisket gătite, am
+                ajuns la rețeta actuală.
+              </p>
+              <p>
+                Am îmbogățit meniul cu preparate surprinzătoare și, pentru a vă oferi o experiență
+                culinară de neuitat, suntem tot timpul în căutare de gusturi noi.
+              </p>
+              <p className="text-accent">
+                Vă așteptăm să ne bucurăm împreună de această călătorie!
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -2,7 +2,7 @@
 @source "../src";
 @import "tw-animate-css";
 
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,600;1,700&display=swap");
 
 @custom-variant dark (&:is(.dark *));
 
@@ -110,6 +110,7 @@
   --font-display: "Bebas Neue", "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
   --font-script: "Playfair Display", serif;
+  --font-hand: "Caveat", cursive;
   --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -151,6 +152,7 @@
 @theme inline {
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
+  --font-hand: var(--font-hand);
 }
 
 @layer base {
@@ -172,6 +174,10 @@
   h1, h2, h3, .font-display {
     font-family: var(--font-display);
     letter-spacing: 0.01em;
+  }
+
+  .font-hand {
+    font-family: var(--font-hand);
   }
 }
 
@@ -210,6 +216,19 @@
     to { transform: translateX(-50%); }
   }
   .animate-marquee { animation: marquee 30s linear infinite; }
+
+  .chalkboard {
+    background-color: #1a1a1a;
+    background-image:
+      repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        rgba(255, 255, 255, 0.04) 31px,
+        rgba(255, 255, 255, 0.04) 32px
+      ),
+      radial-gradient(ellipse at 20% 10%, rgba(255, 80, 60, 0.08), transparent 45%),
+      radial-gradient(ellipse at 85% 90%, rgba(80, 180, 90, 0.07), transparent 40%);
+  }
 
   .scrollbar-dark {
     scrollbar-width: thin;

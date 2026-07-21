@@ -90,7 +90,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="/#story" className="text-muted-foreground hover:text-primary transition-colors">
+                <a href="/#about" className="text-muted-foreground hover:text-primary transition-colors">
                   Povestea pastramei
                 </a>
               </li>
