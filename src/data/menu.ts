@@ -115,6 +115,67 @@ export function resolveMenuImage(imageKey: string | undefined, id: string): stri
   return MENU_IMAGES[imageKey ?? id] ?? MENU_IMAGES[id] ?? "";
 }
 
+/** Card image preview framing (not dialog). Default: cover + center. */
+export type MenuImageFrame = {
+  fit?: "cover" | "contain";
+  /** CSS object-position, e.g. "50% 70%" */
+  position?: string;
+};
+
+/**
+ * Per-item framing for menu card thumbnails (square preview).
+ * Always fill the card (cover); position nudges the product into center.
+ */
+export const MENU_IMAGE_FRAME: Record<string, MenuImageFrame> = {
+  // Tall stacks — bias toward top so skewer/bread aren't clipped
+  "pastrami-reuben": { fit: "cover", position: "50% 34%" },
+  "pastrami-in-house": { fit: "cover", position: "50% 36%" },
+  "turkey-pastrami-classic": { fit: "cover", position: "50% 38%" },
+  pljeskavica: { fit: "cover", position: "50% 38%" },
+  "homemade-sausages-in-house": { fit: "cover", position: "50% 42%" },
+  "branza-picanta": { fit: "cover", position: "50% 68%" },
+  "sos-in-house": { fit: "cover", position: "50% 68%" },
+  "sos-rusesc": { fit: "cover", position: "50% 68%" },
+  "sos-trufe": { fit: "cover", position: "50% 50%" },
+  "pastrami-poutine": { fit: "cover", position: "50% 50%" },
+  "turkey-pastrami-poutine": { fit: "cover", position: "50% 50%" },
+  "salata-pastrami": { fit: "cover", position: "50% 50%" },
+
+  // Subject low / off-center — cover + bias toward the food
+  "pulled-beef": { fit: "cover", position: "55% 70%" },
+  "turkey-pastrami-in-house": { fit: "cover", position: "50% 72%" },
+  "philly-cheesesteak": { fit: "cover", position: "50% 68%" },
+  "homemade-spicy-sausages": { fit: "cover", position: "50% 45%" },
+  "mici-truffle-sandwich": { fit: "cover", position: "62% 78%" },
+  "cartofi-usturoi-patrunjel": { fit: "cover", position: "50% 50%" },
+  "cartofi-parmezan": { fit: "cover", position: "50% 50%" },
+  "cartofi-prajiti": { fit: "cover", position: "50% 50%" },
+  "salata-vegana": { fit: "cover", position: "50% 68%" },
+  "mix-salata-anghinare": { fit: "cover", position: "50% 42%" },
+  "salata-sfecla-rosie": { fit: "cover", position: "50% 55%" },
+
+  // Landscape heroes
+  "pastrami-classic": { fit: "cover", position: "58% 48%" },
+  "homemade-classic-sausages": { fit: "cover", position: "50% 52%" },
+  "burger-fresh": { fit: "cover", position: "65% 55%" },
+  "burger-in-house": { fit: "cover", position: "62% 60%" },
+  "burger-truffle": { fit: "cover", position: "65% 55%" },
+  "burger-vegan": { fit: "cover", position: "62% 55%" },
+  "salata-turkey-pastrami": { fit: "cover", position: "50% 55%" },
+  "castraveti-murati": { fit: "cover", position: "50% 50%" },
+  "varza-murata": { fit: "cover", position: "50% 50%" },
+  "salata-coleslaw": { fit: "cover", position: "50% 50%" },
+};
+
+export function resolveMenuImageFrame(imageKey: string | undefined, id: string): Required<MenuImageFrame> {
+  const key = imageKey ?? id;
+  const frame = MENU_IMAGE_FRAME[key] ?? MENU_IMAGE_FRAME[id] ?? {};
+  return {
+    fit: frame.fit ?? "cover",
+    position: frame.position ?? "50% 50%",
+  };
+}
+
 export function menuItemFromDoc(doc: MenuItemDoc): MenuItem {
   return {
     id: doc.id,
