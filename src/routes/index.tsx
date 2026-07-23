@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Star,
@@ -29,7 +30,9 @@ import { type MenuItem } from "@/data/menu";
 import { LOCATIONS, mapsEmbedUrl } from "@/data/locations";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { GalleryBento } from "@/components/site/GalleryBento";
+import { MenuItemDialog } from "@/components/site/MenuItemDialog";
 import { useMenuItems } from "@/hooks/useMenuItems";
+import { useCart } from "@/store/cart";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -49,9 +52,22 @@ const SHOWCASE_IDS = [
 function Index() {
   const { t } = useLanguage();
   const { data: menu = [] } = useMenuItems({ availableOnly: true });
+  const syncFromMenu = useCart((s) => s.syncFromMenu);
+  const [selected, setSelected] = useState<MenuItem | null>(null);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (menu.length) syncFromMenu(menu);
+  }, [menu, syncFromMenu]);
+
   const showcaseItems = SHOWCASE_IDS.map((id) => menu.find((item) => item.id === id)).filter(
     (item): item is MenuItem => Boolean(item),
   );
+
+  const openItem = (item: MenuItem) => {
+    setSelected(item);
+    setOpen(true);
+  };
 
   return (
     <main className="overflow-x-hidden">
@@ -257,9 +273,11 @@ function Index() {
 
           <div className="grid md:grid-cols-2 gap-6">
             {showcaseItems.map((item) => (
-              <article
-                key={item.name}
-                className="group flex gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-background/60 border border-border/60 hover:border-primary/60 transition-colors"
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => openItem(item)}
+                className="group text-left flex gap-4 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-background/60 border border-border/60 hover:border-primary/60 transition-colors cursor-pointer"
               >
                 <div className="shrink-0 w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-xl overflow-hidden">
                   <img
@@ -285,19 +303,18 @@ function Index() {
                     <span className="font-display text-xl sm:text-2xl text-accent">
                       {item.price} lei
                     </span>
-                    <Link
-                      to="/menu"
-                      className="text-xs uppercase tracking-widest text-primary hover:underline whitespace-nowrap"
-                    >
+                    <span className="text-xs uppercase tracking-widest text-primary group-hover:underline whitespace-nowrap">
                       Adaugă →
-                    </Link>
+                    </span>
                   </div>
                 </div>
-              </article>
+              </button>
             ))}
           </div>
         </div>
       </section>
+
+      <MenuItemDialog item={selected} open={open} onOpenChange={setOpen} />
 
       {/* GALLERY */}
       <section id="gallery" className="py-24 md:py-32 border-t border-border/40">
