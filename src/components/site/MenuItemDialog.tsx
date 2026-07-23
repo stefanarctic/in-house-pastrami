@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Flame, ShoppingBag } from "lucide-react";
-import type { MenuItem } from "@/data/menu";
+import { resolveMenuImageFrame, type MenuItem } from "@/data/menu";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
 import { useLanguage } from "@/i18n/LanguageProvider";
@@ -23,6 +23,8 @@ export function MenuItemDialog({
 
   if (!item) return null;
 
+  const frame = resolveMenuImageFrame(item.imageKey, item.id);
+
   const handleAdd = () => {
     add(item, qty, notes.trim() || undefined);
     toast.success(`${qty} × ${item.name} adăugat`, {
@@ -39,10 +41,17 @@ export function MenuItemDialog({
         onOpenAutoFocus={(e) => e.preventDefault()}
         className="max-w-2xl w-[calc(100%-2rem)] p-0 overflow-hidden bg-card border-border/60 max-h-[85vh] grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-2 gap-0 rounded-2xl"
       >
-        <div className="relative h-32 sm:h-40 md:h-auto bg-muted">
-          <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
+        <div className="relative aspect-[4/3] md:aspect-auto md:h-full overflow-hidden bg-black md:bg-muted isolate">
+          <img
+            src={item.image}
+            alt={item.name}
+            className={`absolute inset-0 size-full object-cover ${
+              frame.fit === "contain" ? "max-md:object-contain" : ""
+            } max-md:[object-position:var(--menu-img-pos)]`}
+            style={{ ["--menu-img-pos" as string]: frame.position }}
+          />
           {item.tag && (
-            <span className="absolute top-3 left-3 text-[10px] uppercase tracking-widest px-2 py-1 bg-primary text-primary-foreground rounded">
+            <span className="absolute top-3 left-3 z-10 text-[10px] uppercase tracking-widest px-2 py-1 bg-primary text-primary-foreground rounded">
               {item.tag}
             </span>
           )}

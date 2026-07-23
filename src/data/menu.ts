@@ -115,7 +115,7 @@ export function resolveMenuImage(imageKey: string | undefined, id: string): stri
   return MENU_IMAGES[imageKey ?? id] ?? MENU_IMAGES[id] ?? "";
 }
 
-/** Card image preview framing (not dialog). Default: cover + center. */
+/** Card + mobile-dialog image framing. Default: cover + center. */
 export type MenuImageFrame = {
   fit?: "cover" | "contain";
   /** CSS object-position, e.g. "50% 70%" */
@@ -123,8 +123,8 @@ export type MenuImageFrame = {
 };
 
 /**
- * Per-item framing for menu card thumbnails (square preview).
- * Always fill the card (cover); position nudges the product into center.
+ * Per-item framing for menu card thumbnails and mobile dialog.
+ * Always fill the frame (cover); position nudges the product into center.
  */
 export const MENU_IMAGE_FRAME: Record<string, MenuImageFrame> = {
   // Tall stacks — bias toward top so skewer/bread aren't clipped
