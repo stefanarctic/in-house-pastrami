@@ -37,9 +37,9 @@ export function MenuItemDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         onOpenAutoFocus={(e) => e.preventDefault()}
-        className="max-w-2xl w-[calc(100%-2rem)] p-0 overflow-hidden bg-card border-border/60 max-h-[85vh] grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-2 gap-0 rounded-2xl"
+        className="max-w-2xl w-[calc(100%-1rem)] sm:w-[calc(100%-2rem)] p-0 overflow-hidden bg-card border-border/60 max-h-[min(90dvh,900px)] grid grid-rows-[auto_minmax(0,1fr)] md:grid-rows-1 md:grid-cols-2 gap-0 rounded-2xl"
       >
-        <div className="relative h-32 sm:h-40 md:h-auto bg-muted">
+        <div className="relative aspect-[16/10] sm:aspect-auto sm:h-44 md:h-auto md:min-h-full bg-muted">
           <img src={item.image} alt={item.name} className="w-full h-full object-cover" />
           {item.tag && (
             <span className="absolute top-3 left-3 text-[10px] uppercase tracking-widest px-2 py-1 bg-primary text-primary-foreground rounded">
@@ -49,8 +49,8 @@ export function MenuItemDialog({
         </div>
 
         <div className="flex flex-col min-h-0 overflow-hidden">
-          <div className="p-5 md:p-6 flex-1 overflow-y-auto min-h-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-            <DialogTitle className="font-display text-2xl md:text-3xl leading-none pr-8">
+          <div className="p-4 sm:p-5 md:p-6 flex-1 overflow-y-auto overscroll-contain min-h-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+            <DialogTitle className="font-display text-2xl sm:text-3xl leading-none pr-8">
               {item.name}
             </DialogTitle>
             <div className="mt-1.5 font-display text-xl text-accent">{item.price} lei</div>
@@ -100,12 +100,12 @@ export function MenuItemDialog({
             </div>
           </div>
 
-          <div className="flex items-center gap-2 p-4 md:p-5 border-t border-border/40 bg-card">
+          <div className="flex items-center gap-2 p-3 sm:p-4 md:p-5 border-t border-border/40 bg-card pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:pb-4 md:pb-5">
             <div className="flex items-center border border-border rounded-md shrink-0">
               <button
                 type="button"
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
-                className="h-10 w-9 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
+                className="h-11 w-10 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
                 aria-label="Decrease quantity"
               >
                 <Minus className="h-4 w-4" />
@@ -114,7 +114,7 @@ export function MenuItemDialog({
               <button
                 type="button"
                 onClick={() => setQty((q) => q + 1)}
-                className="h-10 w-9 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
+                className="h-11 w-10 grid place-items-center hover:bg-muted transition-colors cursor-pointer"
                 aria-label="Increase quantity"
               >
                 <Plus className="h-4 w-4" />
@@ -123,10 +123,12 @@ export function MenuItemDialog({
             <Button
               onClick={handleAdd}
               size="lg"
-              className="flex-1 bg-gradient-meat shadow-meat hover:opacity-95 h-11"
+              className="flex-1 bg-gradient-meat shadow-meat hover:opacity-95 h-11 min-w-0"
             >
-              <ShoppingBag className="h-4 w-4" />
-              {t("cta.add")} · {(qty * item.price).toFixed(0)} lei
+              <ShoppingBag className="h-4 w-4 shrink-0" />
+              <span className="truncate">
+                {t("cta.add")} · {(qty * item.price).toFixed(0)} lei
+              </span>
             </Button>
           </div>
         </div>

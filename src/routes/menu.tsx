@@ -78,20 +78,20 @@ function MenuPage() {
 
   return (
     <main className="overflow-x-hidden">
-      <section className="relative pt-16 pb-10 md:pt-24 md:pb-14 border-b border-border/40">
+      <section className="relative pt-12 pb-8 sm:pt-16 sm:pb-10 md:pt-24 md:pb-14 border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-ember pointer-events-none" />
         <div className="container mx-auto px-4 relative">
           <p className="text-accent uppercase tracking-[0.3em] text-xs mb-3">{t("menu.heroKicker")}</p>
-          <h1 className="font-display text-5xl md:text-7xl leading-none">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-7xl leading-none">
             {t("menu.heroTitle1")}{" "}
             <span className="text-gradient-meat">{t("menu.heroTitleAccent")}</span>
           </h1>
-          <p className="mt-5 text-muted-foreground max-w-xl text-lg">{t("menu.heroSub")}</p>
+          <p className="mt-4 sm:mt-5 text-muted-foreground max-w-xl text-base sm:text-lg">{t("menu.heroSub")}</p>
         </div>
       </section>
 
-      <section className="sticky top-[57px] z-30 bg-background/85 backdrop-blur-md border-b border-border/40">
-        <div className="container mx-auto px-4 py-3 flex gap-2 overflow-x-auto">
+      <section className="sticky top-[53px] sm:top-[57px] z-30 bg-background/85 backdrop-blur-md border-b border-border/40">
+        <div className="container mx-auto px-4 py-3 flex gap-2 overflow-x-auto scrollbar-none snap-x snap-mandatory overscroll-x-contain">
           {[
             { id: "all" as const, label: t("menu.tabsAll") },
             ...CATEGORIES.map((c) => ({ id: c.id, label: c.label })),
@@ -99,7 +99,7 @@ function MenuPage() {
             <button
               key={tab.id}
               onClick={() => setActive(tab.id)}
-              className={`shrink-0 px-4 py-2 rounded-full text-xs uppercase tracking-widest border transition-colors ${
+              className={`snap-start shrink-0 px-3.5 sm:px-4 py-2 rounded-full text-[11px] sm:text-xs uppercase tracking-widest border transition-colors ${
                 active === tab.id
                   ? "bg-primary text-primary-foreground border-primary shadow-meat"
                   : "bg-transparent border-border/60 text-muted-foreground hover:text-foreground hover:border-border"
@@ -111,8 +111,8 @@ function MenuPage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4 space-y-16">
+      <section className="py-10 sm:py-12 md:py-16">
+        <div className="container mx-auto px-4 space-y-12 sm:space-y-16">
           {!isFirebaseClientConfigured() && (
             <p className="text-destructive text-sm">
               Firebase nu este configurat. Adaugă variabilele VITE_FIREBASE_* în .env.
@@ -140,12 +140,12 @@ function MenuPage() {
             if (!items.length) return null;
             return (
               <div key={cat.id} id={cat.id}>
-                <div className="mb-6">
-                  <h2 className="font-display text-3xl md:text-5xl leading-none">{cat.label}</h2>
+                <div className="mb-5 sm:mb-6">
+                  <h2 className="font-display text-2xl sm:text-3xl md:text-5xl leading-none">{cat.label}</h2>
                   <p className="text-sm text-muted-foreground mt-1">{cat.blurb}</p>
                 </div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
                   {items.map((item) => {
                     const frame = resolveMenuImageFrame(item.imageKey, item.id);
                     return (
@@ -168,18 +168,24 @@ function MenuPage() {
                             style={{ objectPosition: frame.position }}
                           />
                         </div>
-                        <div className="p-5 flex flex-col flex-1">
+                        <div className="p-4 sm:p-5 flex flex-col flex-1">
                           <div className="flex items-start gap-2">
-                            <h3 className="font-display text-2xl flex-1">{item.name}</h3>
+                            <h3 className="font-display text-xl sm:text-2xl flex-1 min-w-0 leading-tight">
+                              {item.name}
+                            </h3>
                             {item.tag && (
-                              <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-primary/15 text-primary rounded">
+                              <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-primary/15 text-primary rounded shrink-0">
                                 {item.tag}
                               </span>
                             )}
                           </div>
-                          <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.shortDesc}</p>
-                          <div className="mt-4 flex items-center justify-between">
-                            <span className="font-display text-2xl text-accent">{item.price} lei</span>
+                          <p className="text-sm text-muted-foreground mt-1.5 flex-1 line-clamp-3">
+                            {item.shortDesc}
+                          </p>
+                          <div className="mt-4 flex items-center justify-between gap-3">
+                            <span className="font-display text-xl sm:text-2xl text-accent shrink-0">
+                              {item.price} lei
+                            </span>
                             <span
                               role="button"
                               tabIndex={0}
@@ -189,7 +195,7 @@ function MenuPage() {
                                   quickAdd(e as unknown as React.MouseEvent, item);
                                 }
                               }}
-                              className="inline-flex items-center gap-1 h-9 px-3 rounded-md bg-gradient-meat text-primary-foreground text-xs uppercase tracking-widest shadow-meat hover:opacity-95"
+                              className="inline-flex items-center gap-1 h-9 px-3 rounded-md bg-gradient-meat text-primary-foreground text-xs uppercase tracking-widest shadow-meat hover:opacity-95 shrink-0"
                             >
                               <Plus className="h-3.5 w-3.5" /> {t("cta.add")}
                             </span>
@@ -205,13 +211,13 @@ function MenuPage() {
         </div>
       </section>
 
-      <section className="py-16 border-t border-border/40 bg-card/30">
-        <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+      <section className="py-12 sm:py-16 border-t border-border/40 bg-card/30">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-5 sm:gap-6">
           <div>
-            <h3 className="font-display text-3xl md:text-4xl">{t("menu.readyTitle")}</h3>
-            <p className="text-muted-foreground mt-1">{t("menu.readySub")}</p>
+            <h3 className="font-display text-2xl sm:text-3xl md:text-4xl">{t("menu.readyTitle")}</h3>
+            <p className="text-muted-foreground mt-1 text-sm sm:text-base">{t("menu.readySub")}</p>
           </div>
-          <Button asChild size="lg" className="bg-gradient-meat shadow-meat hover:opacity-95 h-12 px-7">
+          <Button asChild size="lg" className="bg-gradient-meat shadow-meat hover:opacity-95 h-12 px-7 w-full md:w-auto">
             <Link to="/checkout">
               {t("cta.checkout")} <ArrowRight className="ml-1 h-4 w-4" />
             </Link>

@@ -11,20 +11,20 @@ import logo from "@/assets/logo.png";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/50 mt-20 bg-card/20">
-      <div className="container mx-auto px-4 py-12 md:py-16">
+    <footer className="border-t border-border/50 mt-12 sm:mt-20 bg-card/20 pb-safe-sticky">
+      <div className="container mx-auto px-4 py-10 sm:py-12 md:py-16">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link to="/" className="inline-flex items-center gap-3">
+            <Link to="/" className="inline-flex items-center gap-3 min-w-0">
               <img
                 src={logo}
                 alt="In House Pastrami & More"
                 width={64}
                 height={64}
-                className="h-14 w-14 rounded-full shrink-0"
+                className="h-12 w-12 sm:h-14 sm:w-14 rounded-full shrink-0"
               />
-              <div className="font-display text-xl tracking-widest text-foreground leading-tight">
+              <div className="font-display text-lg sm:text-xl tracking-widest text-foreground leading-tight">
                 IN HOUSE
                 <br />
                 <span className="text-primary">PASTRAMI</span> &amp; MORE

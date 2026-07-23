@@ -113,11 +113,11 @@ function CheckoutPage() {
 
   if (!lines.length) {
     return (
-      <main className="container mx-auto px-4 py-24 max-w-xl text-center">
+      <main className="container mx-auto px-4 py-16 sm:py-24 max-w-xl text-center">
         <div className="mx-auto h-16 w-16 grid place-items-center rounded-full bg-muted text-muted-foreground mb-6">
           <ShoppingBag className="h-8 w-8" />
         </div>
-        <h1 className="font-display text-5xl">Coșul tău e gol.</h1>
+        <h1 className="font-display text-4xl sm:text-5xl">Coșul tău e gol.</h1>
         <p className="text-muted-foreground mt-4">
           Alege ceva din meniu — îți recomandăm Reuben-ul.
         </p>
@@ -148,10 +148,10 @@ function CheckoutPage() {
         Comandă direct. Mai rapid, mai proaspăt, fără comisioane de platformă.
       </p>
 
-      <div className="grid lg:grid-cols-[1fr_400px] gap-10">
-        <div className="space-y-8">
+      <div className="grid lg:grid-cols-[1fr_400px] gap-8 lg:gap-10">
+        <div className="space-y-7 sm:space-y-8">
           <section>
-            <h2 className="font-display text-2xl mb-4">Comanda ta</h2>
+            <h2 className="font-display text-xl sm:text-2xl mb-4">Comanda ta</h2>
             <ul className="rounded-2xl border border-border/60 bg-card/40 divide-y divide-border/60 overflow-hidden">
               {lines.map((line) => {
                 const key = lineKey(line);
@@ -212,7 +212,7 @@ function CheckoutPage() {
 
           <form onSubmit={onSubmit} className="space-y-6">
             <div>
-              <h2 className="font-display text-2xl mb-1">De unde ridici?</h2>
+              <h2 className="font-display text-xl sm:text-2xl mb-1">De unde ridici?</h2>
               <p className="text-sm text-muted-foreground mb-4">
                 Comenzile de pe site sunt doar cu ridicare.
               </p>
@@ -245,7 +245,7 @@ function CheckoutPage() {
             </div>
 
             <div className="space-y-4">
-              <h2 className="font-display text-2xl">Datele tale</h2>
+              <h2 className="font-display text-xl sm:text-2xl">Datele tale</h2>
               <div className="grid sm:grid-cols-2 gap-4">
                 <Field label="Nume" required>
                   <input
@@ -310,8 +310,8 @@ function CheckoutPage() {
         </div>
 
         <aside className="lg:sticky lg:top-24 h-fit">
-          <div className="rounded-2xl border border-border/60 bg-card/60 p-6 space-y-4">
-            <h2 className="font-display text-2xl">Sumar</h2>
+          <div className="rounded-2xl border border-border/60 bg-card/60 p-4 sm:p-6 space-y-4">
+            <h2 className="font-display text-xl sm:text-2xl">Sumar</h2>
             <Row label="Subtotal" value={`${subtotal} lei`} />
             <Row label="Ridicare" value="Gratis" />
             <div className="rounded-lg bg-muted/40 px-3 py-2.5 text-sm">

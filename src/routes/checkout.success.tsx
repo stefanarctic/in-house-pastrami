@@ -108,7 +108,7 @@ function CheckoutSuccessPage() {
 
   if (loading) {
     return (
-      <main className="container mx-auto px-4 py-24 max-w-xl text-center">
+      <main className="container mx-auto px-4 py-16 sm:py-24 max-w-xl text-center">
         <Loader2 className="h-10 w-10 animate-spin mx-auto text-primary mb-6" />
         <p className="text-muted-foreground">Verificăm plata…</p>
       </main>
@@ -117,8 +117,8 @@ function CheckoutSuccessPage() {
 
   if (error || !details) {
     return (
-      <main className="container mx-auto px-4 py-24 max-w-xl text-center">
-        <h1 className="font-display text-4xl">Ceva nu a mers bine</h1>
+      <main className="container mx-auto px-4 py-16 sm:py-24 max-w-xl text-center">
+        <h1 className="font-display text-3xl sm:text-4xl">Ceva nu a mers bine</h1>
         <p className="text-muted-foreground mt-4">{error ?? "Plata nu a putut fi confirmată."}</p>
         <Button asChild size="lg" className="mt-8" variant="outline">
           <Link to="/checkout">Înapoi la checkout</Link>
@@ -128,12 +128,12 @@ function CheckoutSuccessPage() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-24 max-w-xl text-center">
+    <main className="container mx-auto px-4 py-16 sm:py-24 max-w-xl text-center">
       <div className="mx-auto h-16 w-16 grid place-items-center rounded-full bg-primary/15 text-primary mb-6">
         <CheckCircle2 className="h-8 w-8" />
       </div>
-      <h1 className="font-display text-5xl">Comandă confirmată.</h1>
-      <p className="text-muted-foreground mt-4">
+      <h1 className="font-display text-3xl sm:text-5xl leading-none">Comandă confirmată.</h1>
+      <p className="text-muted-foreground mt-4 text-sm sm:text-base">
         Plata a fost procesată. Ridică comanda de la{" "}
         <span className="text-foreground font-semibold">{details.locationName}</span> (
         {details.locationAddress}) — {details.pickupTime}.
