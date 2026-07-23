@@ -1,10 +1,26 @@
-import { initializeApp, getApps, cert, type App } from "firebase-admin/app";
-import { getFirestore, type Firestore } from "firebase-admin/firestore";
+import { createRequire } from "node:module";
+import type { App, ServiceAccount } from "firebase-admin/app";
+import type { Firestore } from "firebase-admin/firestore";
 
 let app: App | undefined;
 let db: Firestore | undefined;
 
-function getAdminCredentials() {
+type AdminAppModule = typeof import("firebase-admin/app");
+type AdminFirestoreModule = typeof import("firebase-admin/firestore");
+
+function loadAdminApp(): AdminAppModule {
+  // CommonJS require keeps `__dirname` working. Nitro's ESM rewrite of google-gax
+  // crashes on Vercel: ReferenceError: __dirname is not defined in ES module scope.
+  const require = createRequire(import.meta.url);
+  return require("firebase-admin/app") as AdminAppModule;
+}
+
+function loadAdminFirestore(): AdminFirestoreModule {
+  const require = createRequire(import.meta.url);
+  return require("firebase-admin/firestore") as AdminFirestoreModule;
+}
+
+function getAdminCredentials(): ServiceAccount {
   const projectId = process.env.FIREBASE_ADMIN_PROJECT_ID;
   const clientEmail = process.env.FIREBASE_ADMIN_CLIENT_EMAIL;
   let privateKey = process.env.FIREBASE_ADMIN_PRIVATE_KEY;
@@ -22,13 +38,13 @@ function getAdminCredentials() {
 
 export function getFirebaseAdminApp(): App {
   if (app) return app;
+  const { initializeApp, getApps, cert } = loadAdminApp();
   if (getApps().length) {
     app = getApps()[0]!;
     return app;
   }
-  const { projectId, clientEmail, privateKey } = getAdminCredentials();
   app = initializeApp({
-    credential: cert({ projectId, clientEmail, privateKey }),
+    credential: cert(getAdminCredentials()),
   });
   return app;
 }
@@ -36,7 +52,7 @@ export function getFirebaseAdminApp(): App {
 export function getAdminFirestore(): Firestore {
   if (!db) {
     getFirebaseAdminApp();
-    db = getFirestore();
+    db = loadAdminFirestore().getFirestore();
   }
   return db;
 }
