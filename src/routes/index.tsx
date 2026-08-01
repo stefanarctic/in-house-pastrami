@@ -360,13 +360,16 @@ function Index() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                q: "Reuben-ul de aici mi-a stricat orice alt sandviș. Sincer, cea mai bună pastramă din oraș.",
-                a: "Andrei M.",
+                q: "Bomba! Un gust simplu, dar totodată complex, cu gusturi care se combină foarte bine. Eu clar că se pune pasiune în produs. Ușor picant, iar la final gustul care îți rămâne în gură te face să ți-l aduci aminte și să revii. Data viitoare voi încerca și restul preparatelor din meniu. Voi reveni!",
+                a: "Ilie Marius",
               },
-              { q: "Simți fumul. Simți timpul. Merită fiecare leu.", a: "Ioana D." },
               {
-                q: "Am mâncat pastramă în NYC. Asta se ridică la nivel. Nu glumesc.",
-                a: "Mihai R.",
+                q: "Recomand, mai ales pentru un mic detur dacă ești la plimbare prin oraș și vrei să te oprești pentru un sandwich super delicios. Nu pot recomanda un singur sandwich pe care să îl încercați — trebuie testat tot ce au în meniu.",
+                a: "Csok Balint",
+              },
+              {
+                q: "Totul la superlativ. Nu există sandwichuri mai bune nicăieri în țară. Toate ingredientele sunt făcute în casă. Prețurile reflectă calitatea superioară.",
+                a: "Tiberiu Domuncu",
               },
             ].map((t) => (
               <div key={t.a} className="p-7 rounded-2xl border border-border/60 bg-card/60">
