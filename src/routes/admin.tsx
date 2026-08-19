@@ -298,7 +298,7 @@ function AdminPage() {
         <div className="max-w-md text-center space-y-4">
           <h1 className="font-display text-3xl">Acces interzis</h1>
           <p className="text-sm text-muted-foreground">
-            Contul {user.email} nu este în lista de admini (VITE_ADMIN_EMAILS).
+            Contul {user.email} nu este admin.
           </p>
           <div className="flex gap-2 justify-center">
             <Button variant="outline" onClick={handleLogout}>
