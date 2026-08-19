@@ -19,6 +19,7 @@ export const Route = createFileRoute("/checkout/success")({
 });
 
 interface SessionDetails {
+  orderId: string;
   customerName: string;
   customerPhone: string;
   pickupTime: string;
@@ -133,6 +134,11 @@ function CheckoutSuccessPage() {
         <CheckCircle2 className="h-8 w-8" />
       </div>
       <h1 className="font-display text-5xl">Comandă confirmată.</h1>
+      {details.orderId ? (
+        <p className="mt-4 font-display text-3xl tracking-wide text-accent">
+          #{details.orderId}
+        </p>
+      ) : null}
       <p className="text-muted-foreground mt-4">
         Plata a fost procesată. Ridică comanda de la{" "}
         <span className="text-foreground font-semibold">{details.locationName}</span> (

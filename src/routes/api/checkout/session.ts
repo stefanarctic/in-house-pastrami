@@ -25,6 +25,7 @@ export const Route = createFileRoute("/api/checkout/session")({
           return Response.json({
             paid: true,
             sessionId: session.id,
+            orderId: metadata.orderId ?? "",
             customerName: metadata.customerName ?? "",
             customerPhone: metadata.customerPhone ?? "",
             pickupTime: pickupTimeLabel(metadata.pickupTime ?? "asap"),

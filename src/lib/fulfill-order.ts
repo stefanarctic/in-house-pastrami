@@ -5,7 +5,7 @@ import {
   setDineHubOrderPending,
   setDineHubOrderSuccess,
 } from "@/lib/dinehub-order-status";
-import { orderFromStripeSession } from "@/lib/order";
+import { orderFromStripeSession, readableOrderIdFromSession } from "@/lib/order";
 import { getStripe } from "@/lib/stripe";
 
 export interface FulfillOrderResult {
@@ -40,9 +40,10 @@ export async function fulfillOrderToDineHub(
 
     const lineItems = fullSession.line_items?.data ?? [];
     const order = orderFromStripeSession(fullSession, lineItems);
-    const payload = buildDineHubPayload(sessionId, order);
+    const readableOrderId = readableOrderIdFromSession(fullSession);
+    const payload = buildDineHubPayload(readableOrderId, order);
     const result = await submitOrderToDineHub(payload, locationId);
-    const dinehubOrderId = result.order_id ?? sessionId;
+    const dinehubOrderId = result.order_id ?? readableOrderId;
 
     setDineHubOrderSuccess(sessionId, dinehubOrderId);
     return { status: "success", dinehubOrderId };

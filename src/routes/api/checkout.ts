@@ -4,6 +4,7 @@ import {
   checkoutRequestSchema,
   validateCheckoutRequest,
   buildStripeLineItems,
+  generateReadableOrderId,
 } from "@/lib/order";
 
 export const Route = createFileRoute("/api/checkout")({
@@ -23,12 +24,15 @@ export const Route = createFileRoute("/api/checkout")({
           const order = await validateCheckoutRequest(parsed.data);
           const stripe = getStripe(order.locationId);
           const siteUrl = getSiteUrl();
+          const orderId = generateReadableOrderId();
 
           const session = await stripe.checkout.sessions.create({
             mode: "payment",
             currency: "ron",
+            client_reference_id: orderId,
             line_items: buildStripeLineItems(order.lines),
             metadata: {
+              orderId,
               locationId: order.locationId,
               customerName: order.customerName,
               customerPhone: order.customerPhone,

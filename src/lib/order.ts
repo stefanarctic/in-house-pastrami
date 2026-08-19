@@ -52,6 +52,41 @@ export function pickupTimeLabel(value: string): string {
   return PICKUP_TIME_LABELS[value] ?? value;
 }
 
+/** Crockford Base32 — no I/L/O/U, so kitchen staff can read the ID aloud. */
+const ORDER_ID_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
+
+function bucharestDateStamp(date: Date): string {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Bucharest",
+    year: "2-digit",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(date);
+
+  const year = parts.find((p) => p.type === "year")?.value ?? "00";
+  const month = parts.find((p) => p.type === "month")?.value ?? "01";
+  const day = parts.find((p) => p.type === "day")?.value ?? "01";
+  return `${year}${month}${day}`;
+}
+
+export function generateReadableOrderId(date = new Date()): string {
+  const bytes = new Uint8Array(5);
+  crypto.getRandomValues(bytes);
+  const suffix = Array.from(bytes, (b) => ORDER_ID_ALPHABET[b % ORDER_ID_ALPHABET.length]).join("");
+  return `IH-${bucharestDateStamp(date)}-${suffix}`;
+}
+
+export function readableOrderIdFromSession(session: {
+  id: string;
+  metadata?: Stripe.Metadata | null;
+}): string {
+  const stored = session.metadata?.orderId?.trim();
+  if (stored) return stored;
+
+  const compact = session.id.replace(/[^a-zA-Z0-9]/g, "").slice(-6).toUpperCase();
+  return compact ? `IH-${compact}` : generateReadableOrderId();
+}
+
 export async function validateCheckoutRequest(body: CheckoutRequest): Promise<ValidatedOrder> {
   const location = getLocation(body.locationId);
   if (!location) {
