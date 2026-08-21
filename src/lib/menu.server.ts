@@ -1,4 +1,4 @@
-import { getAdminFirestore } from "@/lib/firebase.admin";
+import { getFirestoreDocument, listFirestoreDocuments } from "@/lib/firestore-rest";
 import { MENU_ITEMS_COLLECTION, type MenuItemDoc } from "@/lib/menu-types";
 import { menuItemFromDoc, type MenuItem } from "@/data/menu";
 
@@ -31,9 +31,9 @@ function parseMenuItemDoc(id: string, data: Record<string, unknown>): MenuItemDo
 }
 
 export async function getMenuItemDocById(id: string): Promise<MenuItemDoc | null> {
-  const snap = await getAdminFirestore().collection(MENU_ITEMS_COLLECTION).doc(id).get();
-  if (!snap.exists) return null;
-  return parseMenuItemDoc(snap.id, (snap.data() ?? {}) as Record<string, unknown>);
+  const doc = await getFirestoreDocument(MENU_ITEMS_COLLECTION, id);
+  if (!doc) return null;
+  return parseMenuItemDoc(doc.id, doc.data);
 }
 
 export async function getMenuItemById(id: string): Promise<MenuItem | null> {
@@ -44,10 +44,10 @@ export async function getMenuItemById(id: string): Promise<MenuItem | null> {
 export async function listMenuItemDocs(options?: {
   availableOnly?: boolean;
 }): Promise<MenuItemDoc[]> {
-  const snap = await getAdminFirestore().collection(MENU_ITEMS_COLLECTION).get();
+  const docs = await listFirestoreDocuments(MENU_ITEMS_COLLECTION);
   const items: MenuItemDoc[] = [];
-  for (const doc of snap.docs) {
-    const parsed = parseMenuItemDoc(doc.id, doc.data() as Record<string, unknown>);
+  for (const doc of docs) {
+    const parsed = parseMenuItemDoc(doc.id, doc.data);
     if (!parsed) continue;
     if (options?.availableOnly && !parsed.available) continue;
     items.push(parsed);
