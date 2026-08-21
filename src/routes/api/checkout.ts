@@ -23,7 +23,7 @@ export const Route = createFileRoute("/api/checkout")({
 
           const order = await validateCheckoutRequest(parsed.data);
           const stripe = getStripe(order.locationId);
-          const siteUrl = getSiteUrl();
+          const siteUrl = getSiteUrl(request);
           const orderId = generateReadableOrderId();
 
           const session = await stripe.checkout.sessions.create({
