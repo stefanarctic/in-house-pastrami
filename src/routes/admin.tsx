@@ -190,6 +190,7 @@ function AdminPage() {
       price: Number(form.price),
       sortOrder: Number(form.sortOrder) || 0,
       available: Boolean(form.available),
+      sgr: Boolean(form.sgr),
     };
     if (!payload.name || Number.isNaN(payload.price)) {
       toast.error("Nume și preț valide sunt obligatorii");
@@ -485,6 +486,14 @@ function AdminPage() {
                     onCheckedChange={(checked) => setForm((f) => ({ ...f, available: checked }))}
                   />
                   <Label htmlFor="available">Disponibil pe meniu</Label>
+                </div>
+                <div className="flex items-center gap-3 md:pt-6 min-w-0">
+                  <Switch
+                    id="sgr"
+                    checked={Boolean(form.sgr)}
+                    onCheckedChange={(checked) => setForm((f) => ({ ...f, sgr: checked }))}
+                  />
+                  <Label htmlFor="sgr">SGR 0,50 lei</Label>
                 </div>
               </div>
 

@@ -2,6 +2,7 @@ import { z } from "zod";
 import type Stripe from "stripe";
 import { getLocation } from "@/data/locations";
 import { getMenuItemDocById } from "@/lib/menu.server";
+import { SGR_AMOUNT_RON, SGR_ITEM_ID } from "@/lib/sgr";
 
 export const checkoutLineSchema = z.object({
   id: z.string().min(1),
@@ -94,6 +95,7 @@ export async function validateCheckoutRequest(body: CheckoutRequest): Promise<Va
   }
 
   const lines: ValidatedOrderLine[] = [];
+  let depositQty = 0;
   for (const line of body.lines) {
     const item = await getMenuItemDocById(line.id);
     if (!item) {
@@ -102,6 +104,9 @@ export async function validateCheckoutRequest(body: CheckoutRequest): Promise<Va
     if (!item.available) {
       throw new Error(`Produs indisponibil: ${item.name}`);
     }
+    if (item.id === SGR_ITEM_ID) {
+      throw new Error("SGR se calculează automat.");
+    }
     lines.push({
       menuItemId: item.id,
       pos: item.pos ?? item.id,
@@ -109,6 +114,18 @@ export async function validateCheckoutRequest(body: CheckoutRequest): Promise<Va
       quantity: line.quantity,
       unitPriceRon: item.price,
       notes: line.notes?.trim() || undefined,
+    });
+    if (item.sgr) depositQty += line.quantity;
+  }
+
+  if (depositQty > 0) {
+    const sgrItem = await getMenuItemDocById(SGR_ITEM_ID);
+    lines.push({
+      menuItemId: SGR_ITEM_ID,
+      pos: sgrItem?.pos ?? SGR_ITEM_ID,
+      name: sgrItem?.name ?? "SGR",
+      quantity: depositQty,
+      unitPriceRon: sgrItem?.price ?? SGR_AMOUNT_RON,
     });
   }
 

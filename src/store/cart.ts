@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { MenuItem } from "@/data/menu";
 import { resolveMenuImage } from "@/data/menu";
+import { sgrTotalRon } from "@/lib/sgr";
 
 export interface CartLine {
   id: string;
@@ -10,6 +11,7 @@ export interface CartLine {
   image: string;
   quantity: number;
   notes?: string;
+  sgr?: boolean;
 }
 
 export function lineKey(line: Pick<CartLine, "id" | "notes">): string {
@@ -24,6 +26,8 @@ interface CartState {
   clear: () => void;
   syncFromMenu: (items: MenuItem[]) => void;
   totalItems: () => number;
+  itemsSubtotal: () => number;
+  sgrTotal: () => number;
   subtotal: () => number;
 }
 
@@ -52,6 +56,7 @@ export const useCart = create<CartState>()(
                 image: item.image || resolveMenuImage(item.imageKey, item.id),
                 quantity,
                 notes,
+                sgr: item.sgr === true,
               },
             ],
           };
@@ -80,17 +85,23 @@ export const useCart = create<CartState>()(
                   name: item.name,
                   price: item.price,
                   image: item.image || resolveMenuImage(item.imageKey, item.id),
+                  sgr: item.sgr === true,
                 },
               ];
             }),
           };
         }),
       totalItems: () => get().lines.reduce((s, l) => s + l.quantity, 0),
-      subtotal: () => get().lines.reduce((s, l) => s + l.quantity * l.price, 0),
+      itemsSubtotal: () => get().lines.reduce((s, l) => s + l.quantity * l.price, 0),
+      sgrTotal: () => sgrTotalRon(get().lines),
+      subtotal: () => {
+        const state = get();
+        return Math.round((state.itemsSubtotal() + state.sgrTotal()) * 100) / 100;
+      },
     }),
     {
       name: "ihp-cart",
-      version: 3,
+      version: 4,
       migrate: (persisted) => {
         const state = persisted as { lines?: CartLine[] };
         if (!state.lines) return persisted;

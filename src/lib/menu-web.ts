@@ -38,6 +38,7 @@ function parseMenuItemDoc(id: string, data: DocumentData): MenuItemDoc | null {
     imageKey: typeof data.imageKey === "string" ? data.imageKey : id,
     available: data.available !== false,
     sortOrder: typeof data.sortOrder === "number" ? data.sortOrder : 0,
+    sgr: data.sgr === true,
     updatedAt: data.updatedAt,
   };
 }

@@ -17,6 +17,8 @@ export interface MenuItemDoc {
   imageKey: string;
   available: boolean;
   sortOrder: number;
+  /** Eligible for 0,50 lei SGR deposit */
+  sgr?: boolean;
   updatedAt?: unknown;
 }
 

@@ -14,6 +14,7 @@ import { toast } from "sonner";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { isFirebaseClientConfigured } from "@/lib/firebase-web";
+import { formatLei, SGR_AMOUNT_RON } from "@/lib/sgr";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
@@ -54,14 +55,12 @@ function MenuPage() {
   );
 
   const grouped = useMemo(() => {
-    const groups: Record<Category, MenuItem[]> = {
-      carne: [],
-      burgers: [],
-      poutine: [],
-      salate: [],
-      garnituri: [],
-    };
-    visible.forEach((m) => groups[m.category].push(m));
+    const groups = Object.fromEntries(
+      CATEGORIES.map((c) => [c.id, [] as MenuItem[]]),
+    ) as Record<Category, MenuItem[]>;
+    for (const m of visible) {
+      groups[m.category]?.push(m);
+    }
     return groups;
   }, [visible]);
 
@@ -73,7 +72,9 @@ function MenuPage() {
   const quickAdd = (e: React.MouseEvent, item: MenuItem) => {
     e.stopPropagation();
     add(item, 1);
-    toast.success(`${item.name} adăugat`, { description: `${item.price} lei` });
+    toast.success(`${item.name} adăugat`, {
+      description: `${formatLei(item.price + (item.sgr ? SGR_AMOUNT_RON : 0))} lei`,
+    });
   };
 
   return (
@@ -155,7 +156,8 @@ function MenuPage() {
                         onClick={() => openItem(item)}
                         className="group text-left flex flex-col rounded-2xl bg-card/60 border border-border/60 hover:border-primary/60 transition-all overflow-hidden"
                       >
-                        <div className="aspect-[4/3] overflow-hidden bg-black">
+                        <div className="aspect-[4/3] overflow-hidden bg-muted">
+                          {item.image ? (
                           <img
                             src={item.image}
                             alt={item.name}
@@ -167,6 +169,11 @@ function MenuPage() {
                             }`}
                             style={{ objectPosition: frame.position }}
                           />
+                          ) : (
+                            <div className="w-full h-full grid place-items-center text-muted-foreground text-xs uppercase tracking-widest">
+                              Foto în curând
+                            </div>
+                          )}
                         </div>
                         <div className="p-5 flex flex-col flex-1">
                           <div className="flex items-start gap-2">
@@ -179,7 +186,14 @@ function MenuPage() {
                           </div>
                           <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.shortDesc}</p>
                           <div className="mt-4 flex items-center justify-between">
-                            <span className="font-display text-2xl text-accent">{item.price} lei</span>
+                            <span className="font-display text-2xl text-accent leading-none">
+                              {formatLei(item.price)} lei
+                              {item.sgr && (
+                                <span className="block mt-1 text-[10px] font-sans font-normal tracking-normal text-muted-foreground uppercase">
+                                  + {formatLei(SGR_AMOUNT_RON)} lei SGR
+                                </span>
+                              )}
+                            </span>
                             <span
                               role="button"
                               tabIndex={0}

@@ -6,6 +6,7 @@ import { resolveMenuImageFrame, type MenuItem } from "@/data/menu";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
 import { useLanguage } from "@/i18n/LanguageProvider";
+import { formatLei, SGR_AMOUNT_RON } from "@/lib/sgr";
 
 export function MenuItemDialog({
   item,
@@ -28,7 +29,7 @@ export function MenuItemDialog({
   const handleAdd = () => {
     add(item, qty, notes.trim() || undefined);
     toast.success(`${qty} × ${item.name} adăugat`, {
-      description: `${(qty * item.price).toFixed(0)} lei`,
+      description: `${formatLei(qty * (item.price + (item.sgr ? SGR_AMOUNT_RON : 0)))} lei`,
     });
     onOpenChange(false);
     setQty(1);
@@ -41,7 +42,8 @@ export function MenuItemDialog({
         onOpenAutoFocus={(e) => e.preventDefault()}
         className="max-w-2xl w-[calc(100%-2rem)] p-0 overflow-hidden bg-card border-border/60 max-h-[85vh] grid grid-rows-[auto_1fr] md:grid-rows-1 md:grid-cols-2 gap-0 rounded-2xl"
       >
-        <div className="relative aspect-[4/3] md:aspect-auto md:h-full overflow-hidden bg-black md:bg-muted isolate">
+        <div className="relative aspect-[4/3] md:aspect-auto md:h-full overflow-hidden bg-muted isolate">
+          {item.image ? (
           <img
             src={item.image}
             alt={item.name}
@@ -50,6 +52,11 @@ export function MenuItemDialog({
             } max-md:[object-position:var(--menu-img-pos)]`}
             style={{ ["--menu-img-pos" as string]: frame.position }}
           />
+          ) : (
+            <div className="absolute inset-0 grid place-items-center text-muted-foreground text-xs uppercase tracking-widest">
+              Foto în curând
+            </div>
+          )}
           {item.tag && (
             <span className="absolute top-3 left-3 z-10 text-[10px] uppercase tracking-widest px-2 py-1 bg-primary text-primary-foreground rounded">
               {item.tag}
@@ -62,7 +69,14 @@ export function MenuItemDialog({
             <DialogTitle className="font-display text-2xl md:text-3xl leading-none pr-8">
               {item.name}
             </DialogTitle>
-            <div className="mt-1.5 font-display text-xl text-accent">{item.price} lei</div>
+            <div className="mt-1.5 font-display text-xl text-accent">
+              {formatLei(item.price)} lei
+              {item.sgr && (
+                <span className="ml-2 text-sm font-sans font-normal text-muted-foreground">
+                  + {formatLei(SGR_AMOUNT_RON)} lei SGR
+                </span>
+              )}
+            </div>
 
             <DialogDescription className="mt-3 text-foreground/80 text-sm leading-relaxed">
               {item.longDesc}
@@ -135,7 +149,7 @@ export function MenuItemDialog({
               className="flex-1 bg-gradient-meat shadow-meat hover:opacity-95 h-11"
             >
               <ShoppingBag className="h-4 w-4" />
-              {t("cta.add")} · {(qty * item.price).toFixed(0)} lei
+              {t("cta.add")} · {formatLei(qty * (item.price + (item.sgr ? SGR_AMOUNT_RON : 0)))} lei
             </Button>
           </div>
         </div>

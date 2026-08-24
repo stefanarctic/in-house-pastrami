@@ -35,7 +35,7 @@ import extraPastramaVitaImg from "@/assets/menu-items/extra-pastrama-vita.webp";
 import extraPastramaCurcanImg from "@/assets/menu-items/extra-pastrama-curcan.webp";
 import type { MenuItemDoc } from "@/lib/menu-types";
 
-export type Category = "carne" | "burgers" | "poutine" | "salate" | "garnituri";
+export type Category = "carne" | "burgers" | "poutine" | "salate" | "garnituri" | "bauturi";
 
 export interface MenuItem {
   id: string;
@@ -54,6 +54,8 @@ export interface MenuItem {
   available?: boolean;
   sortOrder?: number;
   imageKey?: string;
+  /** Eligible for 0,50 lei SGR deposit */
+  sgr?: boolean;
 }
 
 export const CATEGORIES: { id: Category; label: string; blurb: string }[] = [
@@ -73,6 +75,11 @@ export const CATEGORIES: { id: Category; label: string; blurb: string }[] = [
     id: "garnituri",
     label: "Garnituri & Sosuri",
     blurb: "Cartofi prăjiți, murături și sosuri de casă.",
+  },
+  {
+    id: "bauturi",
+    label: "Băuturi",
+    blurb: "Apă, răcoritoare, limonadă și bere. + 0,50 lei SGR pe ambalaj.",
   },
 ];
 
@@ -199,5 +206,6 @@ export function menuItemFromDoc(doc: MenuItemDoc): MenuItem {
     available: doc.available,
     sortOrder: doc.sortOrder,
     imageKey: doc.imageKey ?? doc.id,
+    sgr: doc.sgr,
   };
 }

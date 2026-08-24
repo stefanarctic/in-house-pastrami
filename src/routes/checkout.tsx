@@ -15,6 +15,7 @@ import {
 import { lineKey, useCart } from "@/store/cart";
 import { LOCATIONS, getLocation } from "@/data/locations";
 import { resolveMenuImage } from "@/data/menu";
+import { formatLei, SGR_AMOUNT_RON, sgrQuantity } from "@/lib/sgr";
 import { toast } from "sonner";
 import { useMenuItems } from "@/hooks/useMenuItems";
 
@@ -46,6 +47,8 @@ function CheckoutPage() {
   const lines = useCart((s) => s.lines);
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
+  const itemsSubtotal = useCart((s) => s.itemsSubtotal());
+  const sgrTotal = useCart((s) => s.sgrTotal());
   const subtotal = useCart((s) => s.subtotal());
   const syncFromMenu = useCart((s) => s.syncFromMenu);
   const { data: menu = [] } = useMenuItems({ availableOnly: true });
@@ -161,11 +164,15 @@ function CheckoutPage() {
                     key={key}
                     className="p-3 sm:p-4 grid grid-cols-[auto_1fr_auto] sm:flex gap-3 sm:gap-4 sm:items-center"
                   >
+                    {image ? (
                     <img
                       src={image}
                       alt={line.name}
                       className="h-14 w-14 sm:h-16 sm:w-16 rounded-lg object-cover row-span-2"
                     />
+                    ) : (
+                      <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-lg bg-muted row-span-2" />
+                    )}
                     <div className="flex-1 min-w-0">
                       <div className="font-display text-base sm:text-xl truncate">{line.name}</div>
                       {line.notes && (
@@ -173,7 +180,14 @@ function CheckoutPage() {
                           Notă: {line.notes}
                         </div>
                       )}
-                      <div className="text-sm text-accent font-display">{line.price} lei</div>
+                      <div className="text-sm text-accent font-display">
+                        {formatLei(line.price)} lei
+                        {line.sgr && (
+                          <span className="ml-1 text-xs font-sans font-normal text-muted-foreground">
+                            + {formatLei(SGR_AMOUNT_RON)} SGR
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <button
                       onClick={() => remove(key)}
@@ -201,7 +215,7 @@ function CheckoutPage() {
                         </button>
                       </div>
                       <div className="sm:w-20 text-right font-display text-base sm:text-lg">
-                        {line.quantity * line.price} lei
+                        {formatLei(line.quantity * line.price)} lei
                       </div>
                     </div>
                   </li>
@@ -303,7 +317,7 @@ function CheckoutPage() {
                   <Loader2 className="h-4 w-4 animate-spin" /> Se redirecționează…
                 </>
               ) : (
-                <>Plătește · {total} lei</>
+                <>Plătește · {formatLei(total)} lei</>
               )}
             </Button>
           </form>
@@ -312,7 +326,13 @@ function CheckoutPage() {
         <aside className="lg:sticky lg:top-24 h-fit">
           <div className="rounded-2xl border border-border/60 bg-card/60 p-6 space-y-4">
             <h2 className="font-display text-2xl">Sumar</h2>
-            <Row label="Subtotal" value={`${subtotal} lei`} />
+            <Row label="Subtotal" value={`${formatLei(itemsSubtotal)} lei`} />
+            {sgrQuantity(lines) > 0 && (
+              <Row
+                label={`SGR × ${sgrQuantity(lines)}`}
+                value={`${formatLei(sgrTotal)} lei`}
+              />
+            )}
             <Row label="Ridicare" value="Gratis" />
             <div className="rounded-lg bg-muted/40 px-3 py-2.5 text-sm">
               <div className="flex items-start gap-2">
@@ -326,7 +346,7 @@ function CheckoutPage() {
             <div className="h-px bg-border/60" />
             <div className="flex items-center justify-between">
               <span className="font-display text-xl">Total</span>
-              <span className="font-display text-3xl text-accent">{total} lei</span>
+              <span className="font-display text-3xl text-accent">{formatLei(total)} lei</span>
             </div>
             <Button
               type="submit"
@@ -340,7 +360,7 @@ function CheckoutPage() {
                   <Loader2 className="h-4 w-4 animate-spin" /> Se redirecționează…
                 </>
               ) : (
-                <>Plătește · {total} lei</>
+                <>Plătește · {formatLei(total)} lei</>
               )}
             </Button>
             <p className="text-xs text-muted-foreground flex items-center gap-2 pt-2">

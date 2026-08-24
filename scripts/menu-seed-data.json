@@ -739,5 +739,170 @@
     "sortOrder": 34,
     "tag": "Extra",
     "pos": "97"
+  },
+  {
+    "id": "aqua-carpatica-plata",
+    "name": "Aqua Carpatica Plată 500ml",
+    "category": "bauturi",
+    "price": 10,
+    "shortDesc": "Apă plată Aqua Carpatica, 500ml.",
+    "longDesc": "Apă plată Aqua Carpatica, sticlă 500ml.",
+    "ingredients": [
+      "Apă plată"
+    ],
+    "imageKey": "aqua-carpatica-plata",
+    "available": true,
+    "sortOrder": 40,
+    "sgr": true,
+    "pos": "49"
+  },
+  {
+    "id": "aqua-carpatica-minerala",
+    "name": "Aqua Carpatica Minerală 500ml",
+    "category": "bauturi",
+    "price": 10,
+    "shortDesc": "Apă minerală Aqua Carpatica, 500ml.",
+    "longDesc": "Apă minerală Aqua Carpatica, sticlă 500ml.",
+    "ingredients": [
+      "Apă minerală"
+    ],
+    "imageKey": "aqua-carpatica-minerala",
+    "available": true,
+    "sortOrder": 41,
+    "sgr": true,
+    "pos": "48"
+  },
+  {
+    "id": "apa-minerala-aroma",
+    "name": "Apă minerală aromă 330ml",
+    "category": "bauturi",
+    "price": 14,
+    "shortDesc": "Apă minerală cu arome, 330ml.",
+    "longDesc": "Apă minerală cu arome, sticlă 330ml.",
+    "ingredients": [
+      "Apă minerală aromată"
+    ],
+    "imageKey": "apa-minerala-aroma",
+    "available": true,
+    "sortOrder": 42,
+    "sgr": true,
+    "pos": "216"
+  },
+  {
+    "id": "pepsi",
+    "name": "Pepsi 330ml",
+    "category": "bauturi",
+    "price": 10,
+    "shortDesc": "Pepsi, doză 330ml.",
+    "longDesc": "Pepsi, doză 330ml.",
+    "ingredients": [
+      "Pepsi"
+    ],
+    "imageKey": "pepsi",
+    "available": true,
+    "sortOrder": 43,
+    "sgr": true,
+    "pos": "173"
+  },
+  {
+    "id": "pepsi-max",
+    "name": "Pepsi Max 330ml",
+    "category": "bauturi",
+    "price": 10,
+    "shortDesc": "Pepsi Max, doză 330ml.",
+    "longDesc": "Pepsi Max, doză 330ml.",
+    "ingredients": [
+      "Pepsi Max"
+    ],
+    "imageKey": "pepsi-max",
+    "available": true,
+    "sortOrder": 44,
+    "sgr": true
+  },
+  {
+    "id": "lemonade",
+    "name": "Limonadă 600ml",
+    "category": "bauturi",
+    "price": 16,
+    "shortDesc": "Limonadă, 600ml.",
+    "longDesc": "Limonadă, sticlă 600ml.",
+    "ingredients": [
+      "Limonadă"
+    ],
+    "imageKey": "lemonade",
+    "available": true,
+    "sortOrder": 45,
+    "sgr": true,
+    "pos": "55"
+  },
+  {
+    "id": "grivita-lager",
+    "name": "Grivița Lager 330ml",
+    "category": "bauturi",
+    "price": 15,
+    "shortDesc": "Bere Grivița Lager, 330ml.",
+    "longDesc": "Bere artizanală Grivița Lager, sticlă 330ml.",
+    "ingredients": [
+      "Bere Grivița Lager"
+    ],
+    "imageKey": "grivita-lager",
+    "available": true,
+    "sortOrder": 46,
+    "sgr": true,
+    "pos": "182",
+    "allergens": [
+      "Gluten"
+    ]
+  },
+  {
+    "id": "grivita-gold",
+    "name": "Grivița Gold 500ml",
+    "category": "bauturi",
+    "price": 20,
+    "shortDesc": "Bere Grivița Gold, 500ml.",
+    "longDesc": "Bere artizanală Grivița Gold, sticlă 500ml.",
+    "ingredients": [
+      "Bere Grivița Gold"
+    ],
+    "imageKey": "grivita-gold",
+    "available": true,
+    "sortOrder": 47,
+    "sgr": true,
+    "pos": "50",
+    "allergens": [
+      "Gluten"
+    ]
+  },
+  {
+    "id": "grivita-hawaiipa",
+    "name": "Grivița Hawaiipa 500ml",
+    "category": "bauturi",
+    "price": 24,
+    "shortDesc": "Bere Grivița Hawaiipa, 500ml.",
+    "longDesc": "Bere artizanală Grivița Hawaiipa, sticlă 500ml.",
+    "ingredients": [
+      "Bere Grivița Hawaiipa"
+    ],
+    "imageKey": "grivita-hawaiipa",
+    "available": true,
+    "sortOrder": 48,
+    "sgr": true,
+    "pos": "51",
+    "allergens": [
+      "Gluten"
+    ]
+  },
+  {
+    "id": "sgr",
+    "name": "SGR",
+    "category": "bauturi",
+    "price": 0.5,
+    "shortDesc": "Garanție ambalaj SGR, 0,50 lei.",
+    "longDesc": "Garanție Sistemul de Garanție-Returnare. Se adaugă automat la băuturi.",
+    "ingredients": [],
+    "imageKey": "sgr",
+    "available": false,
+    "sortOrder": 99,
+    "sgr": false
   }
 ]

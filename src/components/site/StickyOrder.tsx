@@ -1,5 +1,6 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { useCart } from "@/store/cart";
+import { formatLei } from "@/lib/sgr";
 import { useEffect, useState } from "react";
 import { ShoppingBag } from "lucide-react";
 
@@ -34,7 +35,7 @@ export function StickyOrder() {
       {hasItems ? (
         <>
           <ShoppingBag className="h-5 w-5" />
-          <span>VEZI COȘUL · {subtotal} LEI</span>
+          <span>VEZI COȘUL · {formatLei(subtotal)} LEI</span>
         </>
       ) : (
         <span>COMANDĂ ACUM →</span>
