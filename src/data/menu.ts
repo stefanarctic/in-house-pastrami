@@ -39,8 +39,8 @@ export interface MenuItem {
   id: string;
   name: string;
   category: Category;
-  /** DineHub POS SKU; falls back to `id` when omitted */
-  sku?: string;
+  /** DineHub POS Code; falls back to `id` when omitted */
+  pos?: string;
   price: number; // in lei
   image: string;
   shortDesc: string;
@@ -181,7 +181,7 @@ export function menuItemFromDoc(doc: MenuItemDoc): MenuItem {
     id: doc.id,
     name: doc.name,
     category: doc.category,
-    sku: doc.sku,
+    pos: doc.pos,
     price: doc.price,
     image: resolveMenuImage(doc.imageKey, doc.id),
     shortDesc: doc.shortDesc,

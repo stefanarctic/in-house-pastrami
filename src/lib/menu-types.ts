@@ -5,7 +5,8 @@ export interface MenuItemDoc {
   id: string;
   name: string;
   category: Category;
-  sku?: string;
+  /** DineHub POS Code from the menu export */
+  pos?: string;
   price: number;
   shortDesc: string;
   longDesc: string;
@@ -20,3 +21,9 @@ export interface MenuItemDoc {
 }
 
 export const MENU_ITEMS_COLLECTION = "menuItems";
+
+export function parsePosCode(value: unknown): string | undefined {
+  if (typeof value === "string" && value.trim()) return value.trim();
+  if (typeof value === "number" && Number.isFinite(value)) return String(value);
+  return undefined;
+}

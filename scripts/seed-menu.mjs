@@ -100,6 +100,8 @@ async function main() {
         ref,
         {
           ...item,
+          sku: FieldValue.delete(),
+          skus: FieldValue.delete(),
           updatedAt: FieldValue.serverTimestamp(),
         },
         { merge: true },

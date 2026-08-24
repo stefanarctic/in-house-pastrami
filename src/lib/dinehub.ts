@@ -20,7 +20,7 @@ export interface DineHubOrderPayload {
   payment_method: string;
   total_factura: string;
   item_name: string;
-  item_sku: string;
+  pos: string;
   quantity: string;
   item_price_with_tax: string;
   comentarii: string;
@@ -45,7 +45,7 @@ export function buildDineHubPayload(orderId: string, order: ValidatedOrder): Din
     payment_method: "card",
     total_factura: formatRonAmount(order.subtotalRon),
     item_name: order.lines.map((line) => line.name).join(","),
-    item_sku: order.lines.map((line) => line.sku).join(","),
+    pos: order.lines.map((line) => line.pos).join(","),
     quantity: order.lines.map((line) => String(line.quantity)).join(","),
     item_price_with_tax: order.lines.map((line) => formatRonAmount(line.unitPriceRon)).join(","),
     comentarii: buildOrderComments(order),

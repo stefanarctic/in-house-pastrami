@@ -24,7 +24,7 @@ export type CheckoutRequest = z.infer<typeof checkoutRequestSchema>;
 
 export interface ValidatedOrderLine {
   menuItemId: string;
-  sku: string;
+  pos: string;
   name: string;
   quantity: number;
   unitPriceRon: number;
@@ -104,7 +104,7 @@ export async function validateCheckoutRequest(body: CheckoutRequest): Promise<Va
     }
     lines.push({
       menuItemId: item.id,
-      sku: item.sku ?? item.id,
+      pos: item.pos ?? item.id,
       name: item.name,
       quantity: line.quantity,
       unitPriceRon: item.price,
@@ -179,7 +179,7 @@ export function buildStripeLineItems(
         description: line.notes ? `Notă: ${line.notes}` : undefined,
         metadata: {
           menuItemId: line.menuItemId,
-          sku: line.sku,
+          pos: line.pos,
           lineNotes: line.notes ?? "",
         },
       },
@@ -219,14 +219,14 @@ export function orderFromStripeSession(
       product && typeof product !== "string" && !product.deleted
         ? product.name
         : "Item";
-    const skuFromMeta =
+    const posFromMeta =
       product && typeof product !== "string" && !product.deleted
-        ? product.metadata?.sku
+        ? product.metadata?.pos || product.metadata?.sku
         : undefined;
 
     return {
       menuItemId,
-      sku: skuFromMeta || menuItemId,
+      pos: posFromMeta || menuItemId,
       name,
       quantity: item.quantity ?? 1,
       unitPriceRon,

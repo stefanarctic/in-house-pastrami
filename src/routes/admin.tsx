@@ -176,7 +176,7 @@ function AdminPage() {
       id: form.id.trim(),
       name: form.name.trim(),
       imageKey: (form.imageKey || form.id).trim(),
-      sku: form.sku?.trim() || undefined,
+      pos: form.pos?.trim() || undefined,
       tag: form.tag?.trim() || undefined,
       kcal: form.kcal != null && !Number.isNaN(form.kcal) ? form.kcal : undefined,
       ingredients: ingredientsText
@@ -430,12 +430,12 @@ function AdminPage() {
                     className="w-full"
                   />
                 </Field>
-                <Field label="SKU DineHub" htmlFor="sku">
+                <Field label="POS Code" htmlFor="pos">
                   <Input
-                    id="sku"
-                    value={form.sku ?? ""}
-                    onChange={(e) => setForm((f) => ({ ...f, sku: e.target.value }))}
-                    placeholder={form.id}
+                    id="pos"
+                    value={form.pos ?? ""}
+                    onChange={(e) => setForm((f) => ({ ...f, pos: e.target.value }))}
+                    placeholder="ex. 11"
                     className="w-full"
                   />
                 </Field>

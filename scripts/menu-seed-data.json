@@ -19,7 +19,8 @@
       "Gluten",
       "Muștar"
     ],
-    "tag": "Bestseller"
+    "tag": "Bestseller",
+    "pos": "11"
   },
   {
     "id": "pastrami-reuben",
@@ -45,7 +46,8 @@
       "Ou",
       "Muștar"
     ],
-    "tag": "Bestseller"
+    "tag": "Bestseller",
+    "pos": "12"
   },
   {
     "id": "pastrami-in-house",
@@ -71,7 +73,8 @@
       "Gluten",
       "Ou"
     ],
-    "tag": "In house"
+    "tag": "In house",
+    "pos": "13"
   },
   {
     "id": "pulled-beef",
@@ -92,7 +95,8 @@
     "sortOrder": 3,
     "allergens": [
       "Gluten"
-    ]
+    ],
+    "pos": "187"
   },
   {
     "id": "turkey-pastrami-classic",
@@ -113,7 +117,8 @@
     "allergens": [
       "Gluten",
       "Muștar"
-    ]
+    ],
+    "pos": "14"
   },
   {
     "id": "turkey-pastrami-in-house",
@@ -136,7 +141,8 @@
       "Gluten",
       "Lactate",
       "Ou"
-    ]
+    ],
+    "pos": "15"
   },
   {
     "id": "homemade-classic-sausages",
@@ -156,7 +162,8 @@
     "allergens": [
       "Gluten",
       "Muștar"
-    ]
+    ],
+    "pos": "16"
   },
   {
     "id": "homemade-spicy-sausages",
@@ -177,7 +184,8 @@
       "Gluten",
       "Lactate"
     ],
-    "tag": "Picant"
+    "tag": "Picant",
+    "pos": "17"
   },
   {
     "id": "homemade-sausages-in-house",
@@ -199,7 +207,8 @@
       "Gluten",
       "Lactate",
       "Ou"
-    ]
+    ],
+    "pos": "25"
   },
   {
     "id": "mici-truffle-sandwich",
@@ -219,7 +228,8 @@
     "allergens": [
       "Gluten",
       "Ou"
-    ]
+    ],
+    "pos": "121"
   },
   {
     "id": "philly-cheesesteak",
@@ -245,7 +255,8 @@
       "Lactate",
       "Ou"
     ],
-    "tag": "Popular"
+    "tag": "Popular",
+    "pos": "188"
   },
   {
     "id": "burger-fresh",
@@ -270,7 +281,8 @@
     "allergens": [
       "Gluten",
       "Ou"
-    ]
+    ],
+    "pos": "190"
   },
   {
     "id": "burger-in-house",
@@ -298,7 +310,8 @@
       "Lactate",
       "Ou"
     ],
-    "tag": "In house"
+    "tag": "In house",
+    "pos": "152"
   },
   {
     "id": "burger-truffle",
@@ -325,7 +338,8 @@
       "Lactate",
       "Ou"
     ],
-    "tag": "Showcase"
+    "tag": "Showcase",
+    "pos": "189"
   },
   {
     "id": "burger-vegan",
@@ -350,7 +364,8 @@
     "allergens": [
       "Gluten"
     ],
-    "tag": "Vegan"
+    "tag": "Vegan",
+    "pos": "191"
   },
   {
     "id": "pljeskavica",
@@ -371,7 +386,8 @@
     "allergens": [
       "Gluten",
       "Ou"
-    ]
+    ],
+    "pos": "32"
   },
   {
     "id": "pastrami-poutine",
@@ -393,7 +409,8 @@
     "allergens": [
       "Lactate"
     ],
-    "tag": "Popular"
+    "tag": "Popular",
+    "pos": "44"
   },
   {
     "id": "turkey-pastrami-poutine",
@@ -414,7 +431,8 @@
     "sortOrder": 17,
     "allergens": [
       "Lactate"
-    ]
+    ],
+    "pos": "46"
   },
   {
     "id": "salata-pastrami",
@@ -433,7 +451,8 @@
     ],
     "imageKey": "salata-pastrami",
     "available": true,
-    "sortOrder": 18
+    "sortOrder": 18,
+    "pos": "31"
   },
   {
     "id": "salata-turkey-pastrami",
@@ -452,7 +471,8 @@
     ],
     "imageKey": "salata-turkey-pastrami",
     "available": true,
-    "sortOrder": 19
+    "sortOrder": 19,
+    "pos": "192"
   },
   {
     "id": "mix-salata-anghinare",
@@ -470,7 +490,8 @@
     ],
     "imageKey": "mix-salata-anghinare",
     "available": true,
-    "sortOrder": 20
+    "sortOrder": 20,
+    "pos": "193"
   },
   {
     "id": "salata-vegana",
@@ -493,7 +514,8 @@
     "sortOrder": 21,
     "allergens": [
       "Nuci"
-    ]
+    ],
+    "pos": "194"
   },
   {
     "id": "salata-coleslaw",
@@ -512,7 +534,8 @@
     "sortOrder": 22,
     "allergens": [
       "Ou"
-    ]
+    ],
+    "pos": "19"
   },
   {
     "id": "cartofi-prajiti",
@@ -526,7 +549,8 @@
     ],
     "imageKey": "cartofi-prajiti",
     "available": true,
-    "sortOrder": 23
+    "sortOrder": 23,
+    "pos": "22"
   },
   {
     "id": "cartofi-usturoi-patrunjel",
@@ -542,7 +566,8 @@
     ],
     "imageKey": "cartofi-usturoi-patrunjel",
     "available": true,
-    "sortOrder": 24
+    "sortOrder": 24,
+    "pos": "146"
   },
   {
     "id": "cartofi-parmezan",
@@ -560,7 +585,8 @@
     "sortOrder": 25,
     "allergens": [
       "Lactate"
-    ]
+    ],
+    "pos": "23"
   },
   {
     "id": "varza-murata",
@@ -574,7 +600,8 @@
     ],
     "imageKey": "varza-murata",
     "available": true,
-    "sortOrder": 26
+    "sortOrder": 26,
+    "pos": "113"
   },
   {
     "id": "castraveti-murati",
@@ -588,7 +615,8 @@
     ],
     "imageKey": "castraveti-murati",
     "available": true,
-    "sortOrder": 27
+    "sortOrder": 27,
+    "pos": "112"
   },
   {
     "id": "salata-sfecla-rosie",
@@ -602,7 +630,8 @@
     ],
     "imageKey": "salata-sfecla-rosie",
     "available": true,
-    "sortOrder": 28
+    "sortOrder": 28,
+    "pos": "195"
   },
   {
     "id": "sos-in-house",
@@ -620,7 +649,8 @@
     "allergens": [
       "Ou"
     ],
-    "tag": "In house"
+    "tag": "In house",
+    "pos": "26"
   },
   {
     "id": "sos-rusesc",
@@ -637,7 +667,8 @@
     "sortOrder": 30,
     "allergens": [
       "Ou"
-    ]
+    ],
+    "pos": "28"
   },
   {
     "id": "sos-trufe",
@@ -655,7 +686,8 @@
     "allergens": [
       "Ou"
     ],
-    "tag": "Premium"
+    "tag": "Premium",
+    "pos": "125"
   },
   {
     "id": "branza-picanta",
@@ -673,6 +705,7 @@
     "allergens": [
       "Lactate"
     ],
-    "tag": "Picant"
+    "tag": "Picant",
+    "pos": "27"
   }
 ]

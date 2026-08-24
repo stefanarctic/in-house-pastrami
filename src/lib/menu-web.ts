@@ -7,10 +7,11 @@ import {
   query,
   setDoc,
   serverTimestamp,
+  deleteField,
   type DocumentData,
 } from "firebase/firestore";
 import { getClientFirestore } from "@/lib/firebase-web";
-import { MENU_ITEMS_COLLECTION, type MenuItemDoc } from "@/lib/menu-types";
+import { MENU_ITEMS_COLLECTION, parsePosCode, type MenuItemDoc } from "@/lib/menu-types";
 import { menuItemFromDoc, type MenuItem } from "@/data/menu";
 
 function parseMenuItemDoc(id: string, data: DocumentData): MenuItemDoc | null {
@@ -26,7 +27,7 @@ function parseMenuItemDoc(id: string, data: DocumentData): MenuItemDoc | null {
     id,
     name: data.name,
     category: data.category as MenuItemDoc["category"],
-    sku: typeof data.sku === "string" ? data.sku : undefined,
+    pos: parsePosCode(data.pos) ?? parsePosCode(data.sku),
     price: data.price,
     shortDesc: typeof data.shortDesc === "string" ? data.shortDesc : "",
     longDesc: typeof data.longDesc === "string" ? data.longDesc : "",
@@ -85,6 +86,8 @@ export async function saveMenuItemDoc(item: MenuItemDoc): Promise<void> {
     doc(getClientFirestore(), MENU_ITEMS_COLLECTION, item.id),
     {
       ...rest,
+      sku: deleteField(),
+      skus: deleteField(),
       updatedAt: serverTimestamp(),
     },
     { merge: true },

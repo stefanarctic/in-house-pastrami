@@ -1,5 +1,5 @@
 import { getFirestoreDocument, listFirestoreDocuments } from "@/lib/firestore-rest";
-import { MENU_ITEMS_COLLECTION, type MenuItemDoc } from "@/lib/menu-types";
+import { MENU_ITEMS_COLLECTION, parsePosCode, type MenuItemDoc } from "@/lib/menu-types";
 import { menuItemFromDoc, type MenuItem } from "@/data/menu";
 
 function parseMenuItemDoc(id: string, data: Record<string, unknown>): MenuItemDoc | null {
@@ -15,7 +15,7 @@ function parseMenuItemDoc(id: string, data: Record<string, unknown>): MenuItemDo
     id,
     name: data.name,
     category: data.category as MenuItemDoc["category"],
-    sku: typeof data.sku === "string" ? data.sku : undefined,
+    pos: parsePosCode(data.pos) ?? parsePosCode(data.sku),
     price: data.price,
     shortDesc: typeof data.shortDesc === "string" ? data.shortDesc : "",
     longDesc: typeof data.longDesc === "string" ? data.longDesc : "",
