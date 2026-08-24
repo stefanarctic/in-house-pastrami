@@ -13,7 +13,7 @@ import {
   Instagram,
   ShoppingBag,
 } from "lucide-react";
-import heroImg from "@/assets/hero-pastrami.webp";
+import heroImg from "@/assets/hero-pastrami.png";
 import logo from "@/assets/logo.png";
 import seasoningImg from "@/assets/seasoning.webp";
 import smokingImg from "@/assets/smoking.webp";
@@ -76,10 +76,10 @@ function Index() {
         <div className="absolute inset-0">
           <img
             src={heroImg}
-            alt="Sandviș Reuben cu pastramă afumată în casă, București"
+            alt="Pastramă afumată în casă, feliată, București"
             width={1920}
             height={1080}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[65%_center]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />

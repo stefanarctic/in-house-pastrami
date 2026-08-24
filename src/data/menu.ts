@@ -31,6 +31,8 @@ import cartofiParmezanImg from "@/assets/menu-items/cartofi-cu-parmezan.webp";
 import salataColeslawImg from "@/assets/menu-items/salata-coleslaw.webp";
 import salataSfeclaRosieImg from "@/assets/menu-items/salata-sfecla-rosie.webp";
 import sosTrufeImg from "@/assets/menu-items/sos-trufe.webp";
+import extraPastramaVitaImg from "@/assets/menu-items/extra-pastrama-vita.webp";
+import extraPastramaCurcanImg from "@/assets/menu-items/extra-pastrama-curcan.webp";
 import type { MenuItemDoc } from "@/lib/menu-types";
 
 export type Category = "carne" | "burgers" | "poutine" | "salate" | "garnituri";
@@ -109,6 +111,8 @@ export const MENU_IMAGES: Record<string, string> = {
   "salata-coleslaw": salataColeslawImg,
   "salata-sfecla-rosie": salataSfeclaRosieImg,
   "sos-trufe": sosTrufeImg,
+  "extra-pastrama-vita": extraPastramaVitaImg,
+  "extra-pastrama-curcan": extraPastramaCurcanImg,
 };
 
 export function resolveMenuImage(imageKey: string | undefined, id: string): string {
@@ -165,6 +169,8 @@ export const MENU_IMAGE_FRAME: Record<string, MenuImageFrame> = {
   "castraveti-murati": { fit: "cover", position: "50% 50%" },
   "varza-murata": { fit: "cover", position: "50% 50%" },
   "salata-coleslaw": { fit: "cover", position: "50% 50%" },
+  "extra-pastrama-vita": { fit: "cover", position: "50% 50%" },
+  "extra-pastrama-curcan": { fit: "cover", position: "50% 50%" },
 };
 
 export function resolveMenuImageFrame(imageKey: string | undefined, id: string): Required<MenuImageFrame> {

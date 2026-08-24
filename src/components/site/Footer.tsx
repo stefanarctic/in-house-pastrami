@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { MapPin, Clock, Instagram, Phone } from "lucide-react";
+import { MapPin, Clock, Instagram, Phone, FileText } from "lucide-react";
 import { LOCATIONS } from "@/data/locations";
 import {
   DELIVERY_PLATFORMS,
@@ -104,6 +104,16 @@ export function Footer() {
                   Comandă cu ridicare
                 </Link>
               </li>
+              <li>
+                <a
+                  href="/valori-nutritionale-si-alergeni.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Valori nutriționale și alergeni
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -148,6 +158,15 @@ export function Footer() {
 
         <div className="mt-12 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
           <span>© {new Date().getFullYear()} In House Pastrami &amp; More</span>
+          <a
+            href="/valori-nutritionale-si-alergeni.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            Valori nutriționale și alergeni
+          </a>
           <span className="font-display tracking-wider text-foreground/60">Afumat cu răbdare.</span>
         </div>
       </div>

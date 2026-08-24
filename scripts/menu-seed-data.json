@@ -707,5 +707,37 @@
     ],
     "tag": "Picant",
     "pos": "27"
+  },
+  {
+    "id": "extra-pastrama-vita",
+    "name": "Extra Pastramă Vită 50g",
+    "category": "carne",
+    "price": 19,
+    "shortDesc": "Porție extra de pastramă de vită, 50g.",
+    "longDesc": "Pastramă de vită făcută în house, porție extra de 50g. Adaugă-o la sandviș sau la orice comandă.",
+    "ingredients": [
+      "Pastramă de vită"
+    ],
+    "imageKey": "extra-pastrama-vita",
+    "available": true,
+    "sortOrder": 33,
+    "tag": "Extra",
+    "pos": "98"
+  },
+  {
+    "id": "extra-pastrama-curcan",
+    "name": "Extra Pastramă Curcan 50g",
+    "category": "carne",
+    "price": 15,
+    "shortDesc": "Porție extra de pastramă de curcan, 50g.",
+    "longDesc": "Pastramă de curcan făcută în house, porție extra de 50g. Adaugă-o la sandviș sau la orice comandă.",
+    "ingredients": [
+      "Pastramă de curcan"
+    ],
+    "imageKey": "extra-pastrama-curcan",
+    "available": true,
+    "sortOrder": 34,
+    "tag": "Extra",
+    "pos": "97"
   }
 ]
