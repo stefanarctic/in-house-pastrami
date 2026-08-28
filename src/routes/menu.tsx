@@ -93,7 +93,9 @@ function MenuPage() {
               alt={item.name}
               loading="lazy"
               className={`w-full h-full transition-transform duration-500 ${
-                frame.fit === "cover" ? "object-cover group-hover:scale-105" : "object-contain"
+                frame.fit === "cover"
+                  ? "object-cover group-hover:scale-105"
+                  : "object-contain bg-white"
               }`}
               style={{ objectPosition: frame.position }}
             />

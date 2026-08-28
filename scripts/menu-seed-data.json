@@ -773,18 +773,82 @@
     "pos": "48"
   },
   {
-    "id": "apa-minerala-aroma",
-    "name": "Apă minerală aromă 330ml",
+    "id": "aqua-carpatica-capsuna-soc",
+    "name": "Aqua Carpatica Căpșună și Soc 330ml",
     "category": "bauturi",
     "price": 14,
-    "shortDesc": "Apă minerală cu arome, 330ml.",
-    "longDesc": "Apă minerală cu arome, sticlă 330ml.",
+    "shortDesc": "Apă minerală aromată Căpșună și Soc, 330ml.",
+    "longDesc": "Aqua Carpatica Flavours Căpșună și Soc, doză 330ml.",
     "ingredients": [
       "Apă minerală aromată"
     ],
-    "imageKey": "apa-minerala-aroma",
+    "imageKey": "aqua-carpatica-capsuna-soc",
     "available": true,
     "sortOrder": 42,
+    "sgr": true,
+    "pos": "216"
+  },
+  {
+    "id": "aqua-carpatica-zmeura",
+    "name": "Aqua Carpatica Zmeură 330ml",
+    "category": "bauturi",
+    "price": 14,
+    "shortDesc": "Apă minerală aromată Zmeură, 330ml.",
+    "longDesc": "Aqua Carpatica Flavours Zmeură, doză 330ml.",
+    "ingredients": [
+      "Apă minerală aromată"
+    ],
+    "imageKey": "aqua-carpatica-zmeura",
+    "available": true,
+    "sortOrder": 43,
+    "sgr": true,
+    "pos": "216"
+  },
+  {
+    "id": "aqua-carpatica-lime-menta",
+    "name": "Aqua Carpatica Lime și Mentă 330ml",
+    "category": "bauturi",
+    "price": 14,
+    "shortDesc": "Apă minerală aromată Lime și Mentă, 330ml.",
+    "longDesc": "Aqua Carpatica Flavours Lime și Mentă, doză 330ml.",
+    "ingredients": [
+      "Apă minerală aromată"
+    ],
+    "imageKey": "aqua-carpatica-lime-menta",
+    "available": true,
+    "sortOrder": 44,
+    "sgr": true,
+    "pos": "216"
+  },
+  {
+    "id": "aqua-carpatica-piersica-mango",
+    "name": "Aqua Carpatica Piersică și Mango 330ml",
+    "category": "bauturi",
+    "price": 14,
+    "shortDesc": "Apă minerală aromată Piersică și Mango, 330ml.",
+    "longDesc": "Aqua Carpatica Flavours Piersică și Mango, doză 330ml.",
+    "ingredients": [
+      "Apă minerală aromată"
+    ],
+    "imageKey": "aqua-carpatica-piersica-mango",
+    "available": true,
+    "sortOrder": 45,
+    "sgr": true,
+    "pos": "216"
+  },
+  {
+    "id": "aqua-carpatica-grapefruit",
+    "name": "Aqua Carpatica Grapefruit Roz 330ml",
+    "category": "bauturi",
+    "price": 14,
+    "shortDesc": "Apă minerală aromată Grapefruit Roz, 330ml.",
+    "longDesc": "Aqua Carpatica Flavours Grapefruit Roz, doză 330ml.",
+    "ingredients": [
+      "Apă minerală aromată"
+    ],
+    "imageKey": "aqua-carpatica-grapefruit",
+    "available": true,
+    "sortOrder": 46,
     "sgr": true,
     "pos": "216"
   },
@@ -800,7 +864,7 @@
     ],
     "imageKey": "pepsi",
     "available": true,
-    "sortOrder": 43,
+    "sortOrder": 47,
     "sgr": true,
     "pos": "173"
   },
@@ -816,22 +880,87 @@
     ],
     "imageKey": "pepsi-max",
     "available": true,
-    "sortOrder": 44,
-    "sgr": true
+    "sortOrder": 48,
+    "sgr": true,
+    "pos": "173"
+  },
+  {
+    "id": "pop-cola",
+    "name": "Pop Cola 330ml",
+    "category": "bauturi",
+    "price": 10,
+    "shortDesc": "Pop Cola Botanical Classic, doză 330ml.",
+    "longDesc": "Pop Cola Botanical Classic, doză 330ml.",
+    "ingredients": [
+      "Pop Cola"
+    ],
+    "imageKey": "pop-cola",
+    "available": true,
+    "sortOrder": 49,
+    "sgr": true,
+    "pos": "58"
+  },
+  {
+    "id": "pop-cola-zero",
+    "name": "Pop Cola Zero 330ml",
+    "category": "bauturi",
+    "price": 10,
+    "shortDesc": "Pop Cola Botanical Zero, doză 330ml.",
+    "longDesc": "Pop Cola Botanical Zero, doză 330ml.",
+    "ingredients": [
+      "Pop Cola Zero"
+    ],
+    "imageKey": "pop-cola-zero",
+    "available": true,
+    "sortOrder": 50,
+    "sgr": true,
+    "pos": "58"
   },
   {
     "id": "lemonade",
-    "name": "Limonadă 600ml",
+    "name": "Limonadă Lămâie 600ml",
     "category": "bauturi",
     "price": 16,
-    "shortDesc": "Limonadă, 600ml.",
-    "longDesc": "Limonadă, sticlă 600ml.",
+    "shortDesc": "Limonadă Merlin's Lămâie, 600ml.",
+    "longDesc": "Limonadă Merlin's No. 1 Lămâie, sticlă 600ml.",
     "ingredients": [
       "Limonadă"
     ],
     "imageKey": "lemonade",
     "available": true,
-    "sortOrder": 45,
+    "sortOrder": 51,
+    "sgr": true,
+    "pos": "55"
+  },
+  {
+    "id": "lemonade-lime-menta",
+    "name": "Limonadă Lime și Mentă 600ml",
+    "category": "bauturi",
+    "price": 16,
+    "shortDesc": "Limonadă Merlin's Lime și Mentă, 600ml.",
+    "longDesc": "Limonadă Merlin's No. 2 Lime și Mentă, sticlă 600ml.",
+    "ingredients": [
+      "Limonadă"
+    ],
+    "imageKey": "lemonade-lime-menta",
+    "available": true,
+    "sortOrder": 52,
+    "sgr": true,
+    "pos": "55"
+  },
+  {
+    "id": "lemonade-lamaie-ghimbir",
+    "name": "Limonadă Lămâie și Ghimbir 600ml",
+    "category": "bauturi",
+    "price": 16,
+    "shortDesc": "Limonadă Merlin's Lămâie și Ghimbir, 600ml.",
+    "longDesc": "Limonadă Merlin's No. 3 Lămâie și Ghimbir, sticlă 600ml.",
+    "ingredients": [
+      "Limonadă"
+    ],
+    "imageKey": "lemonade-lamaie-ghimbir",
+    "available": true,
+    "sortOrder": 53,
     "sgr": true,
     "pos": "55"
   },
@@ -847,7 +976,7 @@
     ],
     "imageKey": "grivita-lager",
     "available": true,
-    "sortOrder": 46,
+    "sortOrder": 54,
     "sgr": true,
     "pos": "182",
     "allergens": [
@@ -866,7 +995,7 @@
     ],
     "imageKey": "grivita-gold",
     "available": true,
-    "sortOrder": 47,
+    "sortOrder": 55,
     "sgr": true,
     "pos": "50",
     "allergens": [
@@ -885,9 +1014,28 @@
     ],
     "imageKey": "grivita-hawaiipa",
     "available": true,
-    "sortOrder": 48,
+    "sortOrder": 56,
     "sgr": true,
     "pos": "51",
+    "allergens": [
+      "Gluten"
+    ]
+  },
+  {
+    "id": "grivita-fara-alcool",
+    "name": "Grivița Fără Alcool 330ml",
+    "category": "bauturi",
+    "price": 15,
+    "shortDesc": "Bere Grivița Clasic fără alcool, 330ml.",
+    "longDesc": "Bere artizanală Grivița Clasic fără alcool, sticlă 330ml.",
+    "ingredients": [
+      "Bere Grivița fără alcool"
+    ],
+    "imageKey": "grivita-fara-alcool",
+    "available": true,
+    "sortOrder": 57,
+    "sgr": true,
+    "pos": "234",
     "allergens": [
       "Gluten"
     ]

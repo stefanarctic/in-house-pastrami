@@ -33,6 +33,24 @@ import salataSfeclaRosieImg from "@/assets/menu-items/salata-sfecla-rosie.webp";
 import sosTrufeImg from "@/assets/menu-items/sos-trufe.webp";
 import extraPastramaVitaImg from "@/assets/menu-items/extra-pastrama-vita.webp";
 import extraPastramaCurcanImg from "@/assets/menu-items/extra-pastrama-curcan.webp";
+import aquaCarpaticaPlataImg from "@/assets/menu-items/aqua-carpatica-plata.webp";
+import aquaCarpaticaMineralaImg from "@/assets/menu-items/aqua-carpatica-minerala.webp";
+import aquaCarpaticaCapsunaSocImg from "@/assets/menu-items/aqua-carpatica-capsuna-soc.webp";
+import aquaCarpaticaZmeuraImg from "@/assets/menu-items/aqua-carpatica-zmeura.webp";
+import aquaCarpaticaLimeMentaImg from "@/assets/menu-items/aqua-carpatica-lime-menta.webp";
+import aquaCarpaticaPiersicaMangoImg from "@/assets/menu-items/aqua-carpatica-piersica-mango.webp";
+import aquaCarpaticaGrapefruitImg from "@/assets/menu-items/aqua-carpatica-grapefruit.webp";
+import pepsiImg from "@/assets/menu-items/pepsi.webp";
+import pepsiMaxImg from "@/assets/menu-items/pepsi-max.webp";
+import popColaImg from "@/assets/menu-items/pop-cola.webp";
+import popColaZeroImg from "@/assets/menu-items/pop-cola-zero.webp";
+import lemonadeImg from "@/assets/menu-items/lemonade.webp";
+import lemonadeLimeMentaImg from "@/assets/menu-items/lemonade-lime-menta.webp";
+import lemonadeLamaieGhimbirImg from "@/assets/menu-items/lemonade-lamaie-ghimbir.webp";
+import grivitaLagerImg from "@/assets/menu-items/grivita-lager.webp";
+import grivitaGoldImg from "@/assets/menu-items/grivita-gold.webp";
+import grivitaHawaiipaImg from "@/assets/menu-items/grivita-hawaiipa.webp";
+import grivitaFaraAlcoolImg from "@/assets/menu-items/grivita-fara-alcool.webp";
 import type { MenuItemDoc } from "@/lib/menu-types";
 
 export type Category = "carne" | "burgers" | "salate" | "garnituri" | "bauturi";
@@ -115,6 +133,24 @@ export const MENU_IMAGES: Record<string, string> = {
   "sos-trufe": sosTrufeImg,
   "extra-pastrama-vita": extraPastramaVitaImg,
   "extra-pastrama-curcan": extraPastramaCurcanImg,
+  "aqua-carpatica-plata": aquaCarpaticaPlataImg,
+  "aqua-carpatica-minerala": aquaCarpaticaMineralaImg,
+  "aqua-carpatica-capsuna-soc": aquaCarpaticaCapsunaSocImg,
+  "aqua-carpatica-zmeura": aquaCarpaticaZmeuraImg,
+  "aqua-carpatica-lime-menta": aquaCarpaticaLimeMentaImg,
+  "aqua-carpatica-piersica-mango": aquaCarpaticaPiersicaMangoImg,
+  "aqua-carpatica-grapefruit": aquaCarpaticaGrapefruitImg,
+  pepsi: pepsiImg,
+  "pepsi-max": pepsiMaxImg,
+  "pop-cola": popColaImg,
+  "pop-cola-zero": popColaZeroImg,
+  lemonade: lemonadeImg,
+  "lemonade-lime-menta": lemonadeLimeMentaImg,
+  "lemonade-lamaie-ghimbir": lemonadeLamaieGhimbirImg,
+  "grivita-lager": grivitaLagerImg,
+  "grivita-gold": grivitaGoldImg,
+  "grivita-hawaiipa": grivitaHawaiipaImg,
+  "grivita-fara-alcool": grivitaFaraAlcoolImg,
 };
 
 export function resolveMenuImage(imageKey: string | undefined, id: string): string {
@@ -173,6 +209,26 @@ export const MENU_IMAGE_FRAME: Record<string, MenuImageFrame> = {
   "salata-coleslaw": { fit: "cover", position: "50% 50%" },
   "extra-pastrama-vita": { fit: "cover", position: "50% 50%" },
   "extra-pastrama-curcan": { fit: "cover", position: "50% 50%" },
+
+  // Drink product shots — show the full bottle/can
+  "aqua-carpatica-plata": { fit: "contain", position: "50% 50%" },
+  "aqua-carpatica-minerala": { fit: "contain", position: "50% 50%" },
+  "aqua-carpatica-capsuna-soc": { fit: "contain", position: "50% 50%" },
+  "aqua-carpatica-zmeura": { fit: "contain", position: "50% 50%" },
+  "aqua-carpatica-lime-menta": { fit: "contain", position: "50% 50%" },
+  "aqua-carpatica-piersica-mango": { fit: "contain", position: "50% 50%" },
+  "aqua-carpatica-grapefruit": { fit: "contain", position: "50% 50%" },
+  pepsi: { fit: "contain", position: "50% 50%" },
+  "pepsi-max": { fit: "contain", position: "50% 50%" },
+  "pop-cola": { fit: "contain", position: "50% 50%" },
+  "pop-cola-zero": { fit: "contain", position: "50% 50%" },
+  lemonade: { fit: "contain", position: "50% 50%" },
+  "lemonade-lime-menta": { fit: "contain", position: "50% 50%" },
+  "lemonade-lamaie-ghimbir": { fit: "contain", position: "50% 50%" },
+  "grivita-lager": { fit: "contain", position: "50% 50%" },
+  "grivita-gold": { fit: "contain", position: "50% 50%" },
+  "grivita-hawaiipa": { fit: "contain", position: "50% 50%" },
+  "grivita-fara-alcool": { fit: "contain", position: "50% 50%" },
 };
 
 export function resolveMenuImageFrame(imageKey: string | undefined, id: string): Required<MenuImageFrame> {

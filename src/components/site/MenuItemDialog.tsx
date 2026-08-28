@@ -47,9 +47,9 @@ export function MenuItemDialog({
           <img
             src={item.image}
             alt={item.name}
-            className={`absolute inset-0 size-full object-cover ${
-              frame.fit === "contain" ? "max-md:object-contain" : ""
-            } max-md:[object-position:var(--menu-img-pos)]`}
+            className={`absolute inset-0 size-full ${
+              frame.fit === "contain" ? "object-contain bg-white" : "object-cover"
+            } [object-position:var(--menu-img-pos)]`}
             style={{ ["--menu-img-pos" as string]: frame.position }}
           />
           ) : (

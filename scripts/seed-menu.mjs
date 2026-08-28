@@ -111,6 +111,11 @@ async function main() {
     written += chunk.length;
   }
 
+  const staleIds = ["apa-minerala-aroma"];
+  for (const id of staleIds) {
+    await db.collection("menuItems").doc(id).delete();
+  }
+
   console.log(`Seeded ${written} menuItems.`);
 }
 
