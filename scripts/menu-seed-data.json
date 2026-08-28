@@ -259,6 +259,105 @@
     "pos": "188"
   },
   {
+    "id": "pljeskavica",
+    "name": "Pljeskavica",
+    "category": "carne",
+    "price": 52,
+    "shortDesc": "Carne de vită, sos In House, varză albă și chiflă.",
+    "longDesc": "Pljeskavica cu carne de vită, sos In House, varză albă și chiflă.",
+    "ingredients": [
+      "Carne de vită",
+      "Sos In House",
+      "Varză albă",
+      "Chiflă"
+    ],
+    "imageKey": "pljeskavica",
+    "available": true,
+    "sortOrder": 11,
+    "allergens": [
+      "Gluten",
+      "Ou"
+    ],
+    "pos": "32"
+  },
+  {
+    "id": "pastrami-poutine",
+    "name": "Pastrami Poutine",
+    "category": "carne",
+    "price": 58,
+    "shortDesc": "Pastramă de vită, cartofi prăjiți, sos brânzeturi și caș de vacă.",
+    "longDesc": "Pastramă de vită peste cartofi prăjiți, cu sos brânzeturi, caș de vacă și castraveți murați.",
+    "ingredients": [
+      "Pastramă de vită",
+      "Cartofi prăjiți",
+      "Sos brânzeturi",
+      "Caș de vacă",
+      "Castraveți murați"
+    ],
+    "imageKey": "pastrami-poutine",
+    "available": true,
+    "sortOrder": 12,
+    "allergens": [
+      "Lactate"
+    ],
+    "tag": "Popular",
+    "pos": "44"
+  },
+  {
+    "id": "turkey-pastrami-poutine",
+    "name": "Turkey Pastrami Poutine",
+    "category": "carne",
+    "price": 56,
+    "shortDesc": "Pastramă de curcan, cartofi prăjiți, sos brânzeturi și caș de vacă.",
+    "longDesc": "Pastramă de curcan peste cartofi prăjiți, cu sos brânzeturi, castraveți murați și caș de vacă.",
+    "ingredients": [
+      "Pastramă de curcan",
+      "Cartofi prăjiți",
+      "Sos brânzeturi",
+      "Castraveți murați",
+      "Caș de vacă"
+    ],
+    "imageKey": "turkey-pastrami-poutine",
+    "available": true,
+    "sortOrder": 13,
+    "allergens": [
+      "Lactate"
+    ],
+    "pos": "46"
+  },
+  {
+    "id": "extra-pastrama-vita",
+    "name": "Extra Pastramă Vită 50g",
+    "category": "carne",
+    "price": 19,
+    "shortDesc": "Porție extra de pastramă de vită, 50g.",
+    "longDesc": "Pastramă de vită făcută în house, porție extra de 50g. Adaugă-o la sandviș sau la orice comandă.",
+    "ingredients": [
+      "Pastramă de vită"
+    ],
+    "imageKey": "extra-pastrama-vita",
+    "available": true,
+    "sortOrder": 14,
+    "tag": "Extra",
+    "pos": "98"
+  },
+  {
+    "id": "extra-pastrama-curcan",
+    "name": "Extra Pastramă Curcan 50g",
+    "category": "carne",
+    "price": 15,
+    "shortDesc": "Porție extra de pastramă de curcan, 50g.",
+    "longDesc": "Pastramă de curcan făcută în house, porție extra de 50g. Adaugă-o la sandviș sau la orice comandă.",
+    "ingredients": [
+      "Pastramă de curcan"
+    ],
+    "imageKey": "extra-pastrama-curcan",
+    "available": true,
+    "sortOrder": 15,
+    "tag": "Extra",
+    "pos": "97"
+  },
+  {
     "id": "burger-fresh",
     "name": "Burger Fresh cu Cartofi Prăjiți",
     "category": "burgers",
@@ -366,73 +465,6 @@
     ],
     "tag": "Vegan",
     "pos": "191"
-  },
-  {
-    "id": "pljeskavica",
-    "name": "Pljeskavica",
-    "category": "burgers",
-    "price": 52,
-    "shortDesc": "Carne de vită, sos In House, varză albă și chiflă.",
-    "longDesc": "Pljeskavica cu carne de vită, sos In House, varză albă și chiflă.",
-    "ingredients": [
-      "Carne de vită",
-      "Sos In House",
-      "Varză albă",
-      "Chiflă"
-    ],
-    "imageKey": "pljeskavica",
-    "available": true,
-    "sortOrder": 15,
-    "allergens": [
-      "Gluten",
-      "Ou"
-    ],
-    "pos": "32"
-  },
-  {
-    "id": "pastrami-poutine",
-    "name": "Pastrami Poutine",
-    "category": "poutine",
-    "price": 58,
-    "shortDesc": "Pastramă de vită, cartofi prăjiți, sos brânzeturi și caș de vacă.",
-    "longDesc": "Pastramă de vită peste cartofi prăjiți, cu sos brânzeturi, caș de vacă și castraveți murați.",
-    "ingredients": [
-      "Pastramă de vită",
-      "Cartofi prăjiți",
-      "Sos brânzeturi",
-      "Caș de vacă",
-      "Castraveți murați"
-    ],
-    "imageKey": "pastrami-poutine",
-    "available": true,
-    "sortOrder": 16,
-    "allergens": [
-      "Lactate"
-    ],
-    "tag": "Popular",
-    "pos": "44"
-  },
-  {
-    "id": "turkey-pastrami-poutine",
-    "name": "Turkey Pastrami Poutine",
-    "category": "poutine",
-    "price": 56,
-    "shortDesc": "Pastramă de curcan, cartofi prăjiți, sos brânzeturi și caș de vacă.",
-    "longDesc": "Pastramă de curcan peste cartofi prăjiți, cu sos brânzeturi, castraveți murați și caș de vacă.",
-    "ingredients": [
-      "Pastramă de curcan",
-      "Cartofi prăjiți",
-      "Sos brânzeturi",
-      "Castraveți murați",
-      "Caș de vacă"
-    ],
-    "imageKey": "turkey-pastrami-poutine",
-    "available": true,
-    "sortOrder": 17,
-    "allergens": [
-      "Lactate"
-    ],
-    "pos": "46"
   },
   {
     "id": "salata-pastrami",
@@ -707,38 +739,6 @@
     ],
     "tag": "Picant",
     "pos": "27"
-  },
-  {
-    "id": "extra-pastrama-vita",
-    "name": "Extra Pastramă Vită 50g",
-    "category": "carne",
-    "price": 19,
-    "shortDesc": "Porție extra de pastramă de vită, 50g.",
-    "longDesc": "Pastramă de vită făcută în house, porție extra de 50g. Adaugă-o la sandviș sau la orice comandă.",
-    "ingredients": [
-      "Pastramă de vită"
-    ],
-    "imageKey": "extra-pastrama-vita",
-    "available": true,
-    "sortOrder": 33,
-    "tag": "Extra",
-    "pos": "98"
-  },
-  {
-    "id": "extra-pastrama-curcan",
-    "name": "Extra Pastramă Curcan 50g",
-    "category": "carne",
-    "price": 15,
-    "shortDesc": "Porție extra de pastramă de curcan, 50g.",
-    "longDesc": "Pastramă de curcan făcută în house, porție extra de 50g. Adaugă-o la sandviș sau la orice comandă.",
-    "ingredients": [
-      "Pastramă de curcan"
-    ],
-    "imageKey": "extra-pastrama-curcan",
-    "available": true,
-    "sortOrder": 34,
-    "tag": "Extra",
-    "pos": "97"
   },
   {
     "id": "aqua-carpatica-plata",

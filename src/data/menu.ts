@@ -35,7 +35,7 @@ import extraPastramaVitaImg from "@/assets/menu-items/extra-pastrama-vita.webp";
 import extraPastramaCurcanImg from "@/assets/menu-items/extra-pastrama-curcan.webp";
 import type { MenuItemDoc } from "@/lib/menu-types";
 
-export type Category = "carne" | "burgers" | "poutine" | "salate" | "garnituri" | "bauturi";
+export type Category = "carne" | "burgers" | "salate" | "garnituri" | "bauturi";
 
 export interface MenuItem {
   id: string;
@@ -65,11 +65,6 @@ export const CATEGORIES: { id: Category; label: string; blurb: string }[] = [
     blurb: "",
   },
   { id: "burgers", label: "Burgeri", blurb: "Burgeri cu vită, sosuri de casă și cartofi prăjiți." },
-  {
-    id: "poutine",
-    label: "Poutine",
-    blurb: "Cartofi prăjiți, sos brânzeturi și carne făcută în house.",
-  },
   { id: "salate", label: "Salate", blurb: "Boluri fresh cu pastramă, anghinare sau legume." },
   {
     id: "garnituri",

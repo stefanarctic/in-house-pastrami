@@ -77,6 +77,70 @@ function MenuPage() {
     });
   };
 
+  const renderCard = (item: MenuItem) => {
+    const frame = resolveMenuImageFrame(item.imageKey, item.id);
+    return (
+      <button
+        key={item.id}
+        type="button"
+        onClick={() => openItem(item)}
+        className="group text-left flex flex-col rounded-2xl bg-card/60 border border-border/60 hover:border-primary/60 transition-all overflow-hidden"
+      >
+        <div className="aspect-[4/3] overflow-hidden bg-muted">
+          {item.image ? (
+            <img
+              src={item.image}
+              alt={item.name}
+              loading="lazy"
+              className={`w-full h-full transition-transform duration-500 ${
+                frame.fit === "cover" ? "object-cover group-hover:scale-105" : "object-contain"
+              }`}
+              style={{ objectPosition: frame.position }}
+            />
+          ) : (
+            <div className="w-full h-full grid place-items-center text-muted-foreground text-xs uppercase tracking-widest">
+              Foto în curând
+            </div>
+          )}
+        </div>
+        <div className="p-5 flex flex-col flex-1">
+          <div className="flex items-start gap-2">
+            <h3 className="font-display text-2xl flex-1">{item.name}</h3>
+            {item.tag && (
+              <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-primary/15 text-primary rounded">
+                {item.tag}
+              </span>
+            )}
+          </div>
+          <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.shortDesc}</p>
+          <div className="mt-4 flex items-center justify-between">
+            <span className="font-display text-2xl text-accent leading-none">
+              {formatLei(item.price)} lei
+              {item.sgr && (
+                <span className="block mt-1 text-[10px] font-sans font-normal tracking-normal text-muted-foreground uppercase">
+                  + {formatLei(SGR_AMOUNT_RON)} lei SGR
+                </span>
+              )}
+            </span>
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={(e) => quickAdd(e, item)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  quickAdd(e as unknown as React.MouseEvent, item);
+                }
+              }}
+              className="inline-flex items-center gap-1 h-9 px-3 rounded-md bg-gradient-meat text-primary-foreground text-xs uppercase tracking-widest shadow-meat hover:opacity-95"
+            >
+              <Plus className="h-3.5 w-3.5" /> {t("cta.add")}
+            </span>
+          </div>
+        </div>
+      </button>
+    );
+  };
+
   return (
     <main className="overflow-x-hidden">
       <section className="relative pt-16 pb-10 md:pt-24 md:pb-14 border-b border-border/40">
@@ -139,6 +203,8 @@ function MenuPage() {
           {CATEGORIES.map((cat) => {
             const items = grouped[cat.id];
             if (!items.length) return null;
+            const extras = items.filter((item) => item.tag === "Extra");
+            const mains = extras.length ? items.filter((item) => item.tag !== "Extra") : items;
             return (
               <div key={cat.id} id={cat.id}>
                 <div className="mb-6">
@@ -146,73 +212,10 @@ function MenuPage() {
                   <p className="text-sm text-muted-foreground mt-1">{cat.blurb}</p>
                 </div>
 
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                  {items.map((item) => {
-                    const frame = resolveMenuImageFrame(item.imageKey, item.id);
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => openItem(item)}
-                        className="group text-left flex flex-col rounded-2xl bg-card/60 border border-border/60 hover:border-primary/60 transition-all overflow-hidden"
-                      >
-                        <div className="aspect-[4/3] overflow-hidden bg-muted">
-                          {item.image ? (
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            loading="lazy"
-                            className={`w-full h-full transition-transform duration-500 ${
-                              frame.fit === "cover"
-                                ? "object-cover group-hover:scale-105"
-                                : "object-contain"
-                            }`}
-                            style={{ objectPosition: frame.position }}
-                          />
-                          ) : (
-                            <div className="w-full h-full grid place-items-center text-muted-foreground text-xs uppercase tracking-widest">
-                              Foto în curând
-                            </div>
-                          )}
-                        </div>
-                        <div className="p-5 flex flex-col flex-1">
-                          <div className="flex items-start gap-2">
-                            <h3 className="font-display text-2xl flex-1">{item.name}</h3>
-                            {item.tag && (
-                              <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-primary/15 text-primary rounded">
-                                {item.tag}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.shortDesc}</p>
-                          <div className="mt-4 flex items-center justify-between">
-                            <span className="font-display text-2xl text-accent leading-none">
-                              {formatLei(item.price)} lei
-                              {item.sgr && (
-                                <span className="block mt-1 text-[10px] font-sans font-normal tracking-normal text-muted-foreground uppercase">
-                                  + {formatLei(SGR_AMOUNT_RON)} lei SGR
-                                </span>
-                              )}
-                            </span>
-                            <span
-                              role="button"
-                              tabIndex={0}
-                              onClick={(e) => quickAdd(e, item)}
-                              onKeyDown={(e) => {
-                                if (e.key === "Enter" || e.key === " ") {
-                                  quickAdd(e as unknown as React.MouseEvent, item);
-                                }
-                              }}
-                              className="inline-flex items-center gap-1 h-9 px-3 rounded-md bg-gradient-meat text-primary-foreground text-xs uppercase tracking-widest shadow-meat hover:opacity-95"
-                            >
-                              <Plus className="h-3.5 w-3.5" /> {t("cta.add")}
-                            </span>
-                          </div>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">{mains.map(renderCard)}</div>
+                {extras.length > 0 && (
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-5">{extras.map(renderCard)}</div>
+                )}
               </div>
             );
           })}
