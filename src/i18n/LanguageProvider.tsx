@@ -16,6 +16,7 @@ const DICT: Dict = {
   "cta.checkout": { ro: "Mergi la finalizare", en: "Go to checkout" },
   "cta.add": { ro: "Adaugă", en: "Add" },
 
+  "hero.est": { ro: "Est. 2021", en: "Est. 2021" },
   "hero.badge": { ro: "Afumată în casă · București", en: "Smoked in-house · Bucharest" },
   "hero.title1": { ro: "Probabil cea mai", en: "Probably the" },
   "hero.titleAccent": { ro: "bună pastramă", en: "best pastrami" },

@@ -86,6 +86,11 @@ function Index() {
         </div>
         <div className="relative container mx-auto px-4 py-24 grid md:grid-cols-2 gap-10 items-center">
           <div className="max-w-xl">
+            <p className="mb-5 flex items-center gap-3 text-accent">
+              <span className="h-px w-8 bg-accent/70" />
+              <span className="font-display text-sm tracking-[0.4em]">{t("hero.est")}</span>
+              <span className="h-px w-8 bg-accent/70" />
+            </p>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/40 bg-accent/10 text-accent text-xs uppercase tracking-widest mb-6">
               <Flame className="h-3.5 w-3.5" /> {t("hero.badge")}
             </div>
@@ -124,6 +129,15 @@ function Index() {
               <span>{t("hero.reviews")}</span>
             </div>
           </div>
+          <div className="hidden md:flex justify-end items-center pr-4 lg:pr-12">
+            <div
+              className="rotate-[-12deg] size-36 rounded-full border-2 border-accent/80 flex flex-col items-center justify-center text-accent bg-background/35 backdrop-blur-[2px] shadow-meat"
+              aria-hidden
+            >
+              <span className="font-display text-[11px] tracking-[0.45em] leading-none">EST.</span>
+              <span className="font-display text-4xl leading-none mt-1">2021</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -141,6 +155,8 @@ function Index() {
               <span>FELIATĂ LA COMANDĂ</span>
               <span className="text-primary">●</span>
               <span>★ 5.0 PE WOLT</span>
+              <span className="text-primary">●</span>
+              <span>EST. 2021</span>
               <span className="text-primary">●</span>
               <span>DOROBANȚI &amp; PIAȚA ROSETTI</span>
               <span className="text-primary">●</span>
@@ -161,17 +177,17 @@ function Index() {
               className="mx-auto mb-5 h-16 w-16 md:h-20 md:w-20 rounded-full shadow-meat"
             />
             <p className="text-xl md:text-2xl text-muted-foreground leading-none mb-1">
-              Descoperă povestea
+              Descoperă povestea · din 2021
             </p>
             <h2 className="text-4xl md:text-5xl leading-none text-accent mb-6">
               Pastrami &amp; more
             </h2>
             <div className="space-y-4 text-xl md:text-2xl leading-snug text-foreground/90">
               <p>
-                Călătoria a doi prieteni în lumea gusturilor autentice. Am plecat de la pastrami,
-                renumita pastramă de vită dusă peste ocean de imigranții români la sfârșitul secolului
-                XIX-lea, iar după luni de încercări și sute de kilograme de Brisket gătite, am
-                ajuns la rețeta actuală.
+                Din 2021, călătoria a doi prieteni în lumea gusturilor autentice. Am plecat de la
+                pastrami, renumita pastramă de vită dusă peste ocean de imigranții români la
+                sfârșitul secolului XIX-lea, iar după luni de încercări și sute de kilograme de
+                Brisket gătite, am ajuns la rețeta actuală.
               </p>
               <p>
                 Am îmbogățit meniul cu preparate surprinzătoare și, pentru a vă oferi o experiență

@@ -31,7 +31,8 @@ export function Footer() {
               </div>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Pastramă, sandvișuri și burgeri. <br /> Produse preparate in casă. <br /><br /> <div className="text-accent">Două locații în București.</div>
+              Pastramă, sandvișuri și burgeri. <br /> Produse preparate in casă. <br /><br />
+              <span className="text-accent">Est. 2021 · două locații în București.</span>
             </p>
             <a
               href={INSTAGRAM}
@@ -157,7 +158,7 @@ export function Footer() {
         </div>
 
         <div className="mt-12 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} In House Pastrami &amp; More</span>
+          <span>© 2021–{new Date().getFullYear()} In House Pastrami &amp; More</span>
           <a
             href="/valori-nutritionale-si-alergeni.pdf"
             target="_blank"
