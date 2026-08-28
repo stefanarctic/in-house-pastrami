@@ -72,40 +72,40 @@
   --card-foreground: oklch(0.96 0.02 75);
   --popover: oklch(0.18 0.015 40);
   --popover-foreground: oklch(0.96 0.02 75);
-  /* Pastrami-meat red as primary */
-  --primary: oklch(0.62 0.21 25);
-  --primary-foreground: oklch(0.98 0.01 75);
-  --primary-glow: oklch(0.70 0.22 35);
+  /* Logo mustard yellow as primary */
+  --primary: oklch(0.84 0.18 95);
+  --primary-foreground: oklch(0.16 0.02 95);
+  --primary-glow: oklch(0.91 0.16 102);
   --secondary: oklch(0.26 0.02 40);
   --secondary-foreground: oklch(0.96 0.02 75);
   --muted: oklch(0.24 0.015 40);
   --muted-foreground: oklch(0.70 0.03 70);
-  --accent: oklch(0.78 0.16 75); /* warm amber */
+  --accent: oklch(0.88 0.16 98); /* bright yellow */
   --accent-foreground: oklch(0.16 0.012 40);
   --destructive: oklch(0.60 0.24 27);
   --destructive-foreground: oklch(0.98 0.01 75);
   --border: oklch(0.30 0.02 40);
   --input: oklch(0.26 0.02 40);
-  --ring: oklch(0.62 0.21 25);
-  --chart-1: oklch(0.62 0.21 25);
-  --chart-2: oklch(0.78 0.16 75);
+  --ring: oklch(0.84 0.18 95);
+  --chart-1: oklch(0.84 0.18 95);
+  --chart-2: oklch(0.88 0.16 98);
   --chart-3: oklch(0.50 0.10 40);
   --chart-4: oklch(0.40 0.06 40);
   --chart-5: oklch(0.96 0.02 75);
   --sidebar: oklch(0.18 0.015 40);
   --sidebar-foreground: oklch(0.96 0.02 75);
-  --sidebar-primary: oklch(0.62 0.21 25);
-  --sidebar-primary-foreground: oklch(0.98 0.01 75);
+  --sidebar-primary: oklch(0.84 0.18 95);
+  --sidebar-primary-foreground: oklch(0.16 0.02 95);
   --sidebar-accent: oklch(0.24 0.015 40);
   --sidebar-accent-foreground: oklch(0.96 0.02 75);
   --sidebar-border: oklch(0.30 0.02 40);
-  --sidebar-ring: oklch(0.62 0.21 25);
+  --sidebar-ring: oklch(0.84 0.18 95);
 
   /* Brand tokens */
-  --gradient-meat: linear-gradient(135deg, oklch(0.62 0.21 25), oklch(0.70 0.22 35));
+  --gradient-meat: linear-gradient(135deg, oklch(0.80 0.18 92), oklch(0.91 0.16 102));
   --gradient-smoke: linear-gradient(180deg, oklch(0.16 0.012 40 / 0), oklch(0.16 0.012 40 / 0.95));
-  --gradient-ember: radial-gradient(ellipse at center, oklch(0.78 0.16 75 / 0.25), transparent 70%);
-  --shadow-meat: 0 20px 60px -15px oklch(0.62 0.21 25 / 0.45);
+  --gradient-ember: radial-gradient(ellipse at center, oklch(0.88 0.16 98 / 0.25), transparent 70%);
+  --shadow-meat: 0 20px 60px -15px oklch(0.84 0.18 95 / 0.45);
   --shadow-deep: 0 30px 80px -20px oklch(0 0 0 / 0.6);
   --font-display: "Bebas Neue", "Inter", sans-serif;
   --font-body: "Inter", sans-serif;
@@ -226,7 +226,7 @@
         rgba(255, 255, 255, 0.04) 31px,
         rgba(255, 255, 255, 0.04) 32px
       ),
-      radial-gradient(ellipse at 20% 10%, rgba(255, 80, 60, 0.08), transparent 45%),
+      radial-gradient(ellipse at 20% 10%, rgba(245, 200, 40, 0.10), transparent 45%),
       radial-gradient(ellipse at 85% 90%, rgba(80, 180, 90, 0.07), transparent 40%);
   }
 
