@@ -10,7 +10,7 @@ import {
 } from "@/data/menu";
 import { MenuItemDialog } from "@/components/site/MenuItemDialog";
 import { useCart } from "@/store/cart";
-import { toast } from "sonner";
+import { useAddToCart } from "@/hooks/useAddToCart";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { isFirebaseClientConfigured } from "@/lib/firebase-web";
@@ -40,7 +40,7 @@ function MenuPage() {
   const [active, setActive] = useState<Category | "all">("all");
   const [selected, setSelected] = useState<MenuItem | null>(null);
   const [open, setOpen] = useState(false);
-  const add = useCart((s) => s.add);
+  const addToCart = useAddToCart();
   const syncFromMenu = useCart((s) => s.syncFromMenu);
   const { t } = useLanguage();
   const { data: menu = [], isLoading, isError, error } = useMenuItems({ availableOnly: true });
@@ -71,10 +71,7 @@ function MenuPage() {
 
   const quickAdd = (e: React.MouseEvent, item: MenuItem) => {
     e.stopPropagation();
-    add(item, 1);
-    toast.success(`${item.name} adăugat`, {
-      description: `${formatLei(item.price + (item.sgr ? SGR_AMOUNT_RON : 0))} lei`,
-    });
+    addToCart(item, 1);
   };
 
   const renderCard = (item: MenuItem) => {

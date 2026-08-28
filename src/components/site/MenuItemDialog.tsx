@@ -3,8 +3,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/compone
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Flame, ShoppingBag } from "lucide-react";
 import { resolveMenuImageFrame, type MenuItem } from "@/data/menu";
-import { useCart } from "@/store/cart";
-import { toast } from "sonner";
+import { useAddToCart } from "@/hooks/useAddToCart";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { formatLei, SGR_AMOUNT_RON } from "@/lib/sgr";
 
@@ -19,7 +18,7 @@ export function MenuItemDialog({
 }) {
   const [qty, setQty] = useState(1);
   const [notes, setNotes] = useState("");
-  const add = useCart((s) => s.add);
+  const addToCart = useAddToCart();
   const { t } = useLanguage();
 
   if (!item) return null;
@@ -27,10 +26,7 @@ export function MenuItemDialog({
   const frame = resolveMenuImageFrame(item.imageKey, item.id);
 
   const handleAdd = () => {
-    add(item, qty, notes.trim() || undefined);
-    toast.success(`${qty} × ${item.name} adăugat`, {
-      description: `${formatLei(qty * (item.price + (item.sgr ? SGR_AMOUNT_RON : 0)))} lei`,
-    });
+    addToCart(item, qty, notes.trim() || undefined, { upsellDelayMs: 180 });
     onOpenChange(false);
     setQty(1);
     setNotes("");

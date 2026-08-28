@@ -2,6 +2,7 @@ import { Outlet, Link, createRootRoute, HeadContent, Scripts, useRouterState } f
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { StickyOrder } from "@/components/site/StickyOrder";
+import { CartUpsellDialog } from "@/components/site/CartUpsellDialog";
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { AppQueryProvider } from "@/components/AppQueryProvider";
@@ -127,6 +128,7 @@ function RootComponent() {
           <>
             <Footer />
             <StickyOrder />
+            <CartUpsellDialog />
           </>
         )}
         <Toaster richColors position="top-center" />
