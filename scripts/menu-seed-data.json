@@ -550,26 +550,6 @@
     "pos": "194"
   },
   {
-    "id": "salata-coleslaw",
-    "name": "Salată Coleslaw",
-    "category": "salate",
-    "price": 18,
-    "shortDesc": "Varză albă, morcov, dressing și condimente.",
-    "longDesc": "Salată coleslaw proaspătă, cu varză albă, morcov și dressing de casă.",
-    "ingredients": [
-      "Varză albă",
-      "Morcov",
-      "Dressing"
-    ],
-    "imageKey": "salata-coleslaw",
-    "available": true,
-    "sortOrder": 22,
-    "allergens": [
-      "Ou"
-    ],
-    "pos": "19"
-  },
-  {
     "id": "cartofi-prajiti",
     "name": "Cartofi Prăjiți",
     "category": "garnituri",
@@ -621,6 +601,26 @@
     "pos": "23"
   },
   {
+    "id": "salata-coleslaw",
+    "name": "Salată Coleslaw",
+    "category": "garnituri",
+    "price": 18,
+    "shortDesc": "Varză albă, morcov, dressing și condimente.",
+    "longDesc": "Salată coleslaw proaspătă, cu varză albă, morcov și dressing de casă.",
+    "ingredients": [
+      "Varză albă",
+      "Morcov",
+      "Dressing"
+    ],
+    "imageKey": "salata-coleslaw",
+    "available": true,
+    "sortOrder": 26,
+    "allergens": [
+      "Ou"
+    ],
+    "pos": "19"
+  },
+  {
     "id": "varza-murata",
     "name": "Varză Murată",
     "category": "garnituri",
@@ -632,7 +632,7 @@
     ],
     "imageKey": "varza-murata",
     "available": true,
-    "sortOrder": 26,
+    "sortOrder": 27,
     "pos": "113"
   },
   {
@@ -647,7 +647,7 @@
     ],
     "imageKey": "castraveti-murati",
     "available": true,
-    "sortOrder": 27,
+    "sortOrder": 28,
     "pos": "112"
   },
   {
@@ -662,7 +662,7 @@
     ],
     "imageKey": "salata-sfecla-rosie",
     "available": true,
-    "sortOrder": 28,
+    "sortOrder": 29,
     "pos": "195"
   },
   {
@@ -677,7 +677,7 @@
     ],
     "imageKey": "sos-in-house",
     "available": true,
-    "sortOrder": 29,
+    "sortOrder": 30,
     "allergens": [
       "Ou"
     ],
@@ -696,7 +696,7 @@
     ],
     "imageKey": "sos-rusesc",
     "available": true,
-    "sortOrder": 30,
+    "sortOrder": 31,
     "allergens": [
       "Ou"
     ],
@@ -714,7 +714,7 @@
     ],
     "imageKey": "sos-trufe",
     "available": true,
-    "sortOrder": 31,
+    "sortOrder": 32,
     "allergens": [
       "Ou"
     ],
@@ -733,7 +733,7 @@
     ],
     "imageKey": "branza-picanta",
     "available": true,
-    "sortOrder": 32,
+    "sortOrder": 33,
     "allergens": [
       "Lactate"
     ],
