@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Minus, Plus, Flame, ShoppingBag } from "lucide-react";
-import { resolveMenuImageFrame, type MenuItem } from "@/data/menu";
+import { formatWeightGrams, resolveMenuImageFrame, type MenuItem } from "@/data/menu";
 import { useAddToCart } from "@/hooks/useAddToCart";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { formatLei, SGR_AMOUNT_RON } from "@/lib/sgr";
@@ -24,6 +24,7 @@ export function MenuItemDialog({
   if (!item) return null;
 
   const frame = resolveMenuImageFrame(item.imageKey, item.id);
+  const weight = formatWeightGrams(item.weightGrams);
 
   const handleAdd = () => {
     addToCart(item, qty, notes.trim() || undefined, { upsellDelayMs: 180 });
@@ -64,6 +65,12 @@ export function MenuItemDialog({
           <div className="p-5 md:p-6 flex-1 overflow-y-auto min-h-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
             <DialogTitle className="font-display text-2xl md:text-3xl leading-none pr-8">
               {item.name}
+              {weight && (
+                <span className="ml-2 font-sans text-base font-normal text-muted-foreground tracking-normal align-middle">
+                  {" "}
+                  {weight}
+                </span>
+              )}
             </DialogTitle>
             <div className="mt-1.5 font-display text-xl text-accent">
               {formatLei(item.price)} lei

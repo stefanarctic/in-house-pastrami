@@ -2,6 +2,17 @@ import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tan
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
   Minus,
   Plus,
   Trash2,
@@ -47,6 +58,7 @@ function CheckoutPage() {
   const lines = useCart((s) => s.lines);
   const setQuantity = useCart((s) => s.setQuantity);
   const remove = useCart((s) => s.remove);
+  const clear = useCart((s) => s.clear);
   const itemsSubtotal = useCart((s) => s.itemsSubtotal());
   const sgrTotal = useCart((s) => s.sgrTotal());
   const subtotal = useCart((s) => s.subtotal());
@@ -154,7 +166,44 @@ function CheckoutPage() {
       <div className="grid lg:grid-cols-[1fr_400px] gap-10">
         <div className="space-y-8">
           <section>
-            <h2 className="font-display text-2xl mb-4">Comanda ta</h2>
+            <div className="flex items-center justify-between gap-3 mb-4">
+              <h2 className="font-display text-2xl">Comanda ta</h2>
+              <AlertDialog>
+                <AlertDialogTrigger asChild>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    className="text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                  >
+                    <Trash2 />
+                    Golește coșul
+                  </Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                  <AlertDialogHeader>
+                    <AlertDialogTitle className="font-display text-2xl">
+                      Golești coșul?
+                    </AlertDialogTitle>
+                    <AlertDialogDescription>
+                      Toate produsele vor fi eliminate din comandă. Poți adăuga din nou din meniu.
+                    </AlertDialogDescription>
+                  </AlertDialogHeader>
+                  <AlertDialogFooter>
+                    <AlertDialogCancel>Anulează</AlertDialogCancel>
+                    <AlertDialogAction
+                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                      onClick={() => {
+                        clear();
+                        toast.success("Coșul a fost golit.");
+                      }}
+                    >
+                      Șterge tot
+                    </AlertDialogAction>
+                  </AlertDialogFooter>
+                </AlertDialogContent>
+              </AlertDialog>
+            </div>
             <ul className="rounded-2xl border border-border/60 bg-card/40 divide-y divide-border/60 overflow-hidden">
               {lines.map((line) => {
                 const key = lineKey(line);

@@ -29,6 +29,7 @@ function parseMenuItemDoc(id: string, data: DocumentData): MenuItemDoc | null {
     category: data.category as MenuItemDoc["category"],
     pos: parsePosCode(data.pos) ?? parsePosCode(data.sku),
     price: data.price,
+    weightGrams: typeof data.weightGrams === "number" ? data.weightGrams : undefined,
     shortDesc: typeof data.shortDesc === "string" ? data.shortDesc : "",
     longDesc: typeof data.longDesc === "string" ? data.longDesc : "",
     ingredients: Array.isArray(data.ingredients) ? data.ingredients.map(String) : [],

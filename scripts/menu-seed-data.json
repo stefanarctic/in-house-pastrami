@@ -4,6 +4,7 @@
     "name": "Pastrami Classic",
     "category": "carne",
     "price": 66,
+    "weightGrams": 350,
     "shortDesc": "Pastramă de vită, muștar, pâine cu maia și castraveți murați.",
     "longDesc": "Porție generoasă de pastramă de vită făcută în house, servită cu muștar, pâine cu maia și castraveți murați. Simplu, direct, clasic.",
     "ingredients": [
@@ -27,6 +28,7 @@
     "name": "Pastrami Reuben",
     "category": "carne",
     "price": 72,
+    "weightGrams": 490,
     "shortDesc": "Pastramă de vită, sos rusesc, sos brânzeturi și varză murată.",
     "longDesc": "Pastramă de vită stivuită pe pâine cu maia, cu sos rusesc, sos de brânzeturi, varză murată și castraveți murați.",
     "ingredients": [
@@ -54,6 +56,7 @@
     "name": "Pastrami In House",
     "category": "carne",
     "price": 70,
+    "weightGrams": 420,
     "shortDesc": "Pastramă de vită cu sos In House, varză albă, morcov și praz.",
     "longDesc": "Varianta casei cu pastramă de vită, sos In House, varză albă, morcov, praz, dressing, pâine cu maia și castraveți murați.",
     "ingredients": [
@@ -81,6 +84,7 @@
     "name": "Pulled Beef",
     "category": "carne",
     "price": 64,
+    "weightGrams": 420,
     "shortDesc": "Carne de vită, pâine cu maia, sos și salată de sfeclă roșie.",
     "longDesc": "Pulled beef fraged, servit în pâine cu maia, cu sos, salată de sfeclă roșie și castraveți murați.",
     "ingredients": [
@@ -103,6 +107,7 @@
     "name": "Turkey Pastrami Classic",
     "category": "carne",
     "price": 58,
+    "weightGrams": 350,
     "shortDesc": "Pastramă de curcan, muștar, pâine cu maia și castraveți murați.",
     "longDesc": "Pastramă de curcan în varianta clasică, cu muștar, pâine cu maia și castraveți murați.",
     "ingredients": [
@@ -125,6 +130,7 @@
     "name": "Turkey Pastrami In House",
     "category": "carne",
     "price": 62,
+    "weightGrams": 420,
     "shortDesc": "Pastramă de curcan cu sos In House și sos brânzeturi.",
     "longDesc": "Pastramă de curcan în pâine cu maia, cu sos In House, sos brânzeturi și castraveți murați.",
     "ingredients": [
@@ -149,6 +155,7 @@
     "name": "Homemade Classic Sausages",
     "category": "carne",
     "price": 50,
+    "weightGrams": 350,
     "shortDesc": "Cârnați de porc și vită afumați, muștar și baghetă cu maia.",
     "longDesc": "Cârnați de porc și vită afumați în house, serviți cu muștar și baghetă cu maia.",
     "ingredients": [
@@ -170,6 +177,7 @@
     "name": "Homemade Spicy Sausages",
     "category": "carne",
     "price": 54,
+    "weightGrams": 400,
     "shortDesc": "Cârnați afumați, brânză picantă și baghetă cu maia.",
     "longDesc": "Cârnați de porc și vită afumați, serviți cu brânză picantă și baghetă cu maia.",
     "ingredients": [
@@ -192,6 +200,7 @@
     "name": "Homemade Sausages In House",
     "category": "carne",
     "price": 54,
+    "weightGrams": 400,
     "shortDesc": "Cârnați afumați cu sos In House, sos brânzeturi și baghetă cu maia.",
     "longDesc": "Cârnați de porc și vită afumați, serviți cu sos In House, sos brânzeturi și baghetă cu maia.",
     "ingredients": [
@@ -215,6 +224,7 @@
     "name": "Sandwich cu Mici și Sos de Trufe",
     "category": "carne",
     "price": 54,
+    "weightGrams": 360,
     "shortDesc": "Carne de vită, sos de trufe și baghetă cu maia.",
     "longDesc": "Sandwich cu mici din carne de vită, sos de trufe și baghetă cu maia.",
     "ingredients": [
@@ -236,6 +246,7 @@
     "name": "Philly Cheesesteak",
     "category": "carne",
     "price": 78,
+    "weightGrams": 480,
     "shortDesc": "Carne de vită, cheddar, ardei kapia, ceapă și maioneză.",
     "longDesc": "Carne de vită cu cheddar, ardei kapia, ceapă, maioneză, ciabatta și castraveți murați.",
     "ingredients": [
@@ -263,6 +274,7 @@
     "name": "Pljeskavica",
     "category": "carne",
     "price": 52,
+    "weightGrams": 420,
     "shortDesc": "Carne de vită, sos In House, varză albă și chiflă.",
     "longDesc": "Pljeskavica cu carne de vită, sos In House, varză albă și chiflă.",
     "ingredients": [
@@ -285,6 +297,7 @@
     "name": "Pastrami Poutine",
     "category": "carne",
     "price": 58,
+    "weightGrams": 400,
     "shortDesc": "Pastramă de vită, cartofi prăjiți, sos brânzeturi și caș de vacă.",
     "longDesc": "Pastramă de vită peste cartofi prăjiți, cu sos brânzeturi, caș de vacă și castraveți murați.",
     "ingredients": [
@@ -308,6 +321,7 @@
     "name": "Turkey Pastrami Poutine",
     "category": "carne",
     "price": 56,
+    "weightGrams": 400,
     "shortDesc": "Pastramă de curcan, cartofi prăjiți, sos brânzeturi și caș de vacă.",
     "longDesc": "Pastramă de curcan peste cartofi prăjiți, cu sos brânzeturi, castraveți murați și caș de vacă.",
     "ingredients": [
@@ -327,9 +341,10 @@
   },
   {
     "id": "extra-pastrama-vita",
-    "name": "Extra Pastramă Vită 50g",
+    "name": "Extra Pastramă Vită",
     "category": "carne",
     "price": 19,
+    "weightGrams": 50,
     "shortDesc": "Porție extra de pastramă de vită, 50g.",
     "longDesc": "Pastramă de vită făcută în house, porție extra de 50g. Adaugă-o la sandviș sau la orice comandă.",
     "ingredients": [
@@ -343,9 +358,10 @@
   },
   {
     "id": "extra-pastrama-curcan",
-    "name": "Extra Pastramă Curcan 50g",
+    "name": "Extra Pastramă Curcan",
     "category": "carne",
     "price": 15,
+    "weightGrams": 50,
     "shortDesc": "Porție extra de pastramă de curcan, 50g.",
     "longDesc": "Pastramă de curcan făcută în house, porție extra de 50g. Adaugă-o la sandviș sau la orice comandă.",
     "ingredients": [
@@ -362,6 +378,7 @@
     "name": "Burger Fresh cu Cartofi Prăjiți",
     "category": "burgers",
     "price": 56,
+    "weightGrams": 420,
     "shortDesc": "Carne de vită, salată, castraveți, roșii, ceapă și sos.",
     "longDesc": "Burger fresh cu carne de vită, chiflă, salată, castraveți, roșii, ceapă, sos și cartofi prăjiți.",
     "ingredients": [
@@ -388,6 +405,7 @@
     "name": "Burger In House cu Cartofi Prăjiți",
     "category": "burgers",
     "price": 58,
+    "weightGrams": 450,
     "shortDesc": "Carne de vită, bacon, ceapă, salată și sosuri de casă.",
     "longDesc": "Burger cu carne de vită, chiflă, ceapă, bacon, salată, sos In House, sos roșii, sos brânzeturi și cartofi prăjiți.",
     "ingredients": [
@@ -417,6 +435,7 @@
     "name": "Burger cu Sos de Trufe și Cartofi Prăjiți",
     "category": "burgers",
     "price": 62,
+    "weightGrams": 450,
     "shortDesc": "Carne de vită, bacon, brânză cu mucegai, salată și sos de trufe.",
     "longDesc": "Burger cu carne de vită, chiflă, bacon, brânză cu mucegai, salată, roșii, sos de trufe și cartofi prăjiți.",
     "ingredients": [
@@ -445,6 +464,7 @@
     "name": "Burger Vegan cu Cartofi Prăjiți",
     "category": "burgers",
     "price": 62,
+    "weightGrams": 420,
     "shortDesc": "Burger vegan, salată, castraveți, roșii, ceapă și sos.",
     "longDesc": "Burger vegan cu chiflă, salată, castraveți, roșii, ceapă, sos și cartofi prăjiți.",
     "ingredients": [
@@ -471,6 +491,7 @@
     "name": "Salată Pastrami",
     "category": "salate",
     "price": 40,
+    "weightGrams": 350,
     "shortDesc": "Salată iceberg, castraveți, roșii cherry, pătrunjel și pastramă de vită.",
     "longDesc": "Salată cu iceberg, castraveți, roșii cherry, pătrunjel, pastramă de vită și dressing.",
     "ingredients": [
@@ -491,6 +512,7 @@
     "name": "Salată Turkey Pastrami",
     "category": "salate",
     "price": 40,
+    "weightGrams": 350,
     "shortDesc": "Salată iceberg, castraveți, roșii cherry, pătrunjel și pastramă de curcan.",
     "longDesc": "Salată cu iceberg, castraveți, roșii cherry, pătrunjel, pastramă de curcan și dressing.",
     "ingredients": [
@@ -511,6 +533,7 @@
     "name": "Mix de Salată cu Anghinare",
     "category": "salate",
     "price": 46,
+    "weightGrams": 350,
     "shortDesc": "Mix de salată, anghinare, avocado, roșii uscate în ulei și dressing.",
     "longDesc": "Mix de salată cu anghinare, avocado, roșii uscate în ulei și dressing.",
     "ingredients": [
@@ -530,6 +553,7 @@
     "name": "Salată Vegană",
     "category": "salate",
     "price": 38,
+    "weightGrams": 300,
     "shortDesc": "Ardei gras, castraveți, rucola, roșii, morcov, miez de nucă și dressing.",
     "longDesc": "Salată vegană cu ardei gras, castraveți, rucola, roșii, morcov, miez de nucă și dressing.",
     "ingredients": [
@@ -554,6 +578,7 @@
     "name": "Cartofi Prăjiți",
     "category": "garnituri",
     "price": 17,
+    "weightGrams": 150,
     "shortDesc": "Cartofi proaspeți prăjiți, porție 150g.",
     "longDesc": "Cartofi proaspeți prăjiți, crocanți la exterior și moi la interior.",
     "ingredients": [
@@ -569,6 +594,7 @@
     "name": "Cartofi cu Usturoi și Pătrunjel",
     "category": "garnituri",
     "price": 19,
+    "weightGrams": 160,
     "shortDesc": "Cartofi prăjiți cu usturoi și pătrunjel, porție 160g.",
     "longDesc": "Cartofi proaspeți prăjiți, condimentați cu usturoi și pătrunjel proaspăt.",
     "ingredients": [
@@ -586,6 +612,7 @@
     "name": "Cartofi cu Parmezan",
     "category": "garnituri",
     "price": 21,
+    "weightGrams": 180,
     "shortDesc": "Cartofi prăjiți cu parmezan, porție generoasă.",
     "longDesc": "Cartofi proaspeți prăjiți, presărați cu parmezan ras.",
     "ingredients": [
@@ -605,6 +632,7 @@
     "name": "Salată Coleslaw",
     "category": "garnituri",
     "price": 18,
+    "weightGrams": 150,
     "shortDesc": "Varză albă, morcov, dressing și condimente.",
     "longDesc": "Salată coleslaw proaspătă, cu varză albă, morcov și dressing de casă.",
     "ingredients": [
@@ -625,6 +653,7 @@
     "name": "Varză Murată",
     "category": "garnituri",
     "price": 11,
+    "weightGrams": 150,
     "shortDesc": "Varză murată de casă, porție 150g.",
     "longDesc": "Varză murată preparată în house, porție 150g.",
     "ingredients": [
@@ -640,6 +669,7 @@
     "name": "Castraveți Murați",
     "category": "garnituri",
     "price": 7,
+    "weightGrams": 150,
     "shortDesc": "Castraveți murați de casă, porție 150g.",
     "longDesc": "Castraveți murați preparați în house, porție 150g.",
     "ingredients": [
@@ -655,6 +685,7 @@
     "name": "Salată Sfeclă Roșie",
     "category": "garnituri",
     "price": 11,
+    "weightGrams": 150,
     "shortDesc": "Salată de sfeclă roșie de casă, porție 150g.",
     "longDesc": "Salată de sfeclă roșie preparată în house, porție 150g.",
     "ingredients": [
@@ -670,6 +701,7 @@
     "name": "Sos In House",
     "category": "garnituri",
     "price": 7,
+    "weightGrams": 60,
     "shortDesc": "Sos In House de casă, porție 60g.",
     "longDesc": "Sosul signature In House, preparat în bucătărie.",
     "ingredients": [
@@ -689,6 +721,7 @@
     "name": "Sos Rusesc",
     "category": "garnituri",
     "price": 7,
+    "weightGrams": 60,
     "shortDesc": "Sos rusesc de casă, porție 60g.",
     "longDesc": "Sos rusesc preparat în house, porție 60g.",
     "ingredients": [
@@ -707,6 +740,7 @@
     "name": "Sos Trufe",
     "category": "garnituri",
     "price": 12,
+    "weightGrams": 60,
     "shortDesc": "Sos de trufe de casă, porție 60g.",
     "longDesc": "Sos de trufe preparat în house, porție 60g.",
     "ingredients": [
@@ -726,6 +760,7 @@
     "name": "Brânză Picantă",
     "category": "garnituri",
     "price": 12,
+    "weightGrams": 90,
     "shortDesc": "Brânză picantă de casă, porție 90g.",
     "longDesc": "Brânză picantă preparată în house, porție 90g.",
     "ingredients": [

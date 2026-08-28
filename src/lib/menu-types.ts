@@ -8,6 +8,8 @@ export interface MenuItemDoc {
   /** DineHub POS Code from the menu export */
   pos?: string;
   price: number;
+  /** Portion weight in grams, when applicable */
+  weightGrams?: number;
   shortDesc: string;
   longDesc: string;
   ingredients: string[];

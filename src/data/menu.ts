@@ -62,6 +62,8 @@ export interface MenuItem {
   /** DineHub POS Code; falls back to `id` when omitted */
   pos?: string;
   price: number; // in lei
+  /** Portion weight in grams, when applicable */
+  weightGrams?: number;
   image: string;
   shortDesc: string;
   longDesc: string;
@@ -240,6 +242,11 @@ export function resolveMenuImageFrame(imageKey: string | undefined, id: string):
   };
 }
 
+export function formatWeightGrams(grams: number | undefined): string | undefined {
+  if (typeof grams !== "number" || !Number.isFinite(grams) || grams <= 0) return undefined;
+  return `${Math.round(grams)}g`;
+}
+
 export function menuItemFromDoc(doc: MenuItemDoc): MenuItem {
   return {
     id: doc.id,
@@ -247,6 +254,7 @@ export function menuItemFromDoc(doc: MenuItemDoc): MenuItem {
     category: doc.category,
     pos: doc.pos,
     price: doc.price,
+    weightGrams: doc.weightGrams,
     image: resolveMenuImage(doc.imageKey, doc.id),
     shortDesc: doc.shortDesc,
     longDesc: doc.longDesc,

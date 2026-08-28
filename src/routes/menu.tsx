@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Plus, ArrowRight, Loader2 } from "lucide-react";
 import {
   CATEGORIES,
+  formatWeightGrams,
   resolveMenuImageFrame,
   type MenuItem,
   type Category,
@@ -76,6 +77,7 @@ function MenuPage() {
 
   const renderCard = (item: MenuItem) => {
     const frame = resolveMenuImageFrame(item.imageKey, item.id);
+    const weight = formatWeightGrams(item.weightGrams);
     return (
       <button
         key={item.id}
@@ -104,7 +106,15 @@ function MenuPage() {
         </div>
         <div className="p-5 flex flex-col flex-1">
           <div className="flex items-start gap-2">
-            <h3 className="font-display text-2xl flex-1">{item.name}</h3>
+            <h3 className="font-display text-2xl flex-1">
+              {item.name}
+              {weight && (
+                <span className="ml-2 font-sans text-sm font-normal text-muted-foreground tracking-normal align-middle">
+                  {" "}
+                  {weight}
+                </span>
+              )}
+            </h3>
             {item.tag && (
               <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-primary/15 text-primary rounded">
                 {item.tag}

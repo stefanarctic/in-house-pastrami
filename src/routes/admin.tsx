@@ -179,6 +179,10 @@ function AdminPage() {
       pos: form.pos?.trim() || undefined,
       tag: form.tag?.trim() || undefined,
       kcal: form.kcal != null && !Number.isNaN(form.kcal) ? form.kcal : undefined,
+      weightGrams:
+        form.weightGrams != null && !Number.isNaN(form.weightGrams)
+          ? form.weightGrams
+          : undefined,
       ingredients: ingredientsText
         .split(",")
         .map((s) => s.trim())
@@ -353,7 +357,10 @@ function AdminPage() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <span className="font-medium text-sm">{item.name}</span>
-                    <span className="text-accent text-sm shrink-0">{item.price} lei</span>
+                    <span className="text-accent text-sm shrink-0">
+                      {item.weightGrams ? `${item.weightGrams}g · ` : ""}
+                      {item.price} lei
+                    </span>
                   </div>
                   <div className="text-[11px] text-muted-foreground mt-0.5 flex gap-2">
                     <span>{item.id}</span>
@@ -462,6 +469,22 @@ function AdminPage() {
                     type="number"
                     value={form.sortOrder}
                     onChange={(e) => setForm((f) => ({ ...f, sortOrder: Number(e.target.value) }))}
+                    className="w-full"
+                  />
+                </Field>
+                <Field label="Gramaj (g)" htmlFor="weightGrams">
+                  <Input
+                    id="weightGrams"
+                    type="number"
+                    min={0}
+                    step={1}
+                    value={form.weightGrams ?? ""}
+                    onChange={(e) =>
+                      setForm((f) => ({
+                        ...f,
+                        weightGrams: e.target.value === "" ? undefined : Number(e.target.value),
+                      }))
+                    }
                     className="w-full"
                   />
                 </Field>

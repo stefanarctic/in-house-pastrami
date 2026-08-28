@@ -26,7 +26,7 @@ import galBurgerTrufe from "@/assets/menu-items/burger sos trufe.webp";
 import galSausages from "@/assets/menu-items/HOMEMADE SAUSAGES IN HOUSE  420G.webp";
 import galPulled from "@/assets/menu-items/pulled beef.webp";
 import galSalata from "@/assets/menu-items/SALATA PASTRAMI 350G.webp";
-import { type MenuItem } from "@/data/menu";
+import { formatWeightGrams, type MenuItem } from "@/data/menu";
 import { LOCATIONS, mapsEmbedUrl } from "@/data/locations";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { GalleryBento } from "@/components/site/GalleryBento";
@@ -272,7 +272,9 @@ function Index() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
-            {showcaseItems.map((item) => (
+            {showcaseItems.map((item) => {
+              const weight = formatWeightGrams(item.weightGrams);
+              return (
               <button
                 key={item.id}
                 type="button"
@@ -291,7 +293,15 @@ function Index() {
                 </div>
                 <div className="flex-1 min-w-0 flex flex-col">
                   <div className="flex items-start gap-2 flex-wrap">
-                    <h3 className="font-display text-xl sm:text-2xl md:text-3xl">{item.name}</h3>
+                    <h3 className="font-display text-xl sm:text-2xl md:text-3xl">
+                      {item.name}
+                      {weight ? (
+                        <span className="ml-2 font-sans text-sm font-normal text-muted-foreground tracking-normal align-middle">
+                          {" "}
+                          {weight}
+                        </span>
+                      ) : null}
+                    </h3>
                     {item.tag && (
                       <span className="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-primary/15 text-primary rounded">
                         {item.tag}
@@ -309,7 +319,8 @@ function Index() {
                   </div>
                 </div>
               </button>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
