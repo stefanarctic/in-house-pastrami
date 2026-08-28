@@ -62,7 +62,7 @@ export const CATEGORIES: { id: Category; label: string; blurb: string }[] = [
   {
     id: "carne",
     label: "Carne & Sandvișuri",
-    blurb: "Pastramă, beef, cârnați și baghete cu maia.",
+    blurb: "",
   },
   { id: "burgers", label: "Burgeri", blurb: "Burgeri cu vită, sosuri de casă și cartofi prăjiți." },
   {

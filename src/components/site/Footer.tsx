@@ -31,13 +31,13 @@ export function Footer() {
               </div>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Pastramă afumată în casă, sandvișuri Reuben și burgeri. Două locații în București.
+              Pastramă, sandvișuri și burgeri. <br /> Produse preparate in casă. <br /><br /> <div className="text-accent">Două locații în București.</div>
             </p>
             <a
               href={INSTAGRAM}
               target="_blank"
               rel="noreferrer"
-              className="mt-5 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
             >
               <Instagram className="h-4 w-4" />
               {INSTAGRAM_HANDLE}

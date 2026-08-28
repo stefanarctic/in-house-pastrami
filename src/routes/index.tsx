@@ -169,7 +169,7 @@ function Index() {
             <div className="space-y-4 text-xl md:text-2xl leading-snug text-foreground/90">
               <p>
                 Călătoria a doi prieteni în lumea gusturilor autentice. Am plecat de la pastrami,
-                renumita pastramă de vită dusă peste ocean de evreii români la sfârșitul secolului
+                renumita pastramă de vită dusă peste ocean de imigranții români la sfârșitul secolului
                 XIX-lea, iar după luni de încercări și sute de kilograme de Brisket gătite, am
                 ajuns la rețeta actuală.
               </p>
@@ -198,7 +198,7 @@ function Index() {
             </h2>
             <p className="mt-6 text-muted-foreground text-lg">
               Pastramă adevărată, nu e fast food. E un meșteșug. Maturăm piepturi întregi de vită
-              zile întregi, le ungem cu piper negru spart și coriandru, apoi le afumăm până când
+              zile la rând, le condimentăm cu piper negru spart, usturoi, sare, boia și alte mirodenii, apoi le afumăm până când
               crusta e închisă la culoare și carnea se topește.
             </p>
           </div>
@@ -326,7 +326,7 @@ function Index() {
                 Vezi cu <span className="text-gradient-meat">ochii tăi.</span>
               </h2>
               <p className="mt-5 text-muted-foreground text-lg">
-                Crustă neagră, miez roz-rubiniu, fum, unt topit pe pâine prăjită. Fără filtre,
+                Crustă, miez roz-rubiniu, fum. Fără filtre,
                 fără efecte. Doar carne adevărată.
               </p>
             </div>
