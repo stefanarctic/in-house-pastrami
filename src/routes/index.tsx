@@ -158,8 +158,13 @@ function Index() {
               alt="In House Pastrami & More"
               width={88}
               height={88}
-              className="mx-auto mb-5 h-16 w-16 md:h-20 md:w-20 rounded-full shadow-meat"
+              className="mx-auto mb-4 h-16 w-16 md:h-20 md:w-20 rounded-full shadow-meat"
             />
+            <p className="mb-5 flex items-center justify-center gap-3 text-accent">
+              <span className="h-px w-8 bg-accent/70" />
+              <span className="font-display text-sm tracking-[0.4em]">{t("hero.est")}</span>
+              <span className="h-px w-8 bg-accent/70" />
+            </p>
             <p className="text-xl md:text-2xl text-muted-foreground leading-none mb-1">
               Descoperă povestea
             </p>
@@ -168,10 +173,10 @@ function Index() {
             </h2>
             <div className="space-y-4 text-xl md:text-2xl leading-snug text-foreground/90">
               <p>
-                Călătoria a doi prieteni în lumea gusturilor autentice. Am plecat de la pastrami,
-                renumita pastramă de vită dusă peste ocean de imigranții români la sfârșitul secolului
-                XIX-lea, iar după luni de încercări și sute de kilograme de Brisket gătite, am
-                ajuns la rețeta actuală.
+                Din 2021, călătoria a doi prieteni în lumea gusturilor autentice. Am plecat de la
+                pastrami, renumita pastramă de vită dusă peste ocean de imigranții români la
+                sfârșitul secolului XIX-lea, iar după luni de încercări și sute de kilograme de
+                Brisket gătite, am ajuns la rețeta actuală.
               </p>
               <p>
                 Am îmbogățit meniul cu preparate surprinzătoare și, pentru a vă oferi o experiență

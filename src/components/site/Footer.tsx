@@ -31,7 +31,8 @@ export function Footer() {
               </div>
             </Link>
             <p className="mt-4 text-sm text-muted-foreground leading-relaxed max-w-xs">
-              Pastramă, sandvișuri și burgeri. <br /> Produse preparate in casă. <br /><br /> <div className="text-accent">Două locații în București.</div>
+              Pastramă, sandvișuri și burgeri. <br /> Produse preparate in casă. <br /><br />
+              <span className="text-accent">Două locații în București.</span>
             </p>
             <a
               href={INSTAGRAM}
