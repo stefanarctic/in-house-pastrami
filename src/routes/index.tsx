@@ -84,7 +84,7 @@ function Index() {
           <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/30" />
           <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/40" />
         </div>
-        <div className="relative container mx-auto px-4 py-24 grid md:grid-cols-2 gap-10 items-center">
+        <div className="relative w-full px-4 lg:px-12 py-24">
           <div className="max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/40 bg-accent/10 text-accent text-xs uppercase tracking-widest mb-6">
               <Flame className="h-3.5 w-3.5" /> {t("hero.badge")}

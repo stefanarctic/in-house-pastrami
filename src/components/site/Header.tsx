@@ -8,7 +8,7 @@ export function Header() {
   const { t } = useLanguage();
   return (
     <header className="sticky top-0 z-40 backdrop-blur-md bg-background/75 border-b border-border/50">
-      <div className="container mx-auto flex items-center justify-between px-4 py-3 gap-4">
+      <div className="flex w-full items-center justify-between px-4 lg:px-12 py-3 gap-4">
         <Link
           to="/"
           className="flex items-center gap-2.5 font-display text-lg md:text-xl tracking-wider"
