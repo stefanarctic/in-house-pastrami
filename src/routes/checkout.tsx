@@ -29,19 +29,16 @@ import { resolveMenuImage } from "@/data/menu";
 import { formatLei, SGR_AMOUNT_RON, sgrQuantity } from "@/lib/sgr";
 import { toast } from "sonner";
 import { useMenuItems } from "@/hooks/useMenuItems";
+import { PAGES, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/checkout")({
-  head: () => ({
-    meta: [
-      { title: "Finalizare comandă — In House Pastrami & More" },
-      {
-        name: "description",
-        content: "Verifică comanda și plătește online pentru ridicare din Dorobanți sau Piața Rosetti.",
-      },
-      { property: "og:title", content: "Finalizare comandă — In House Pastrami & More" },
-      { property: "og:description", content: "Comandă direct. Sari peste platforme." },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: PAGES.checkout.title,
+      description: PAGES.checkout.description,
+      path: "/checkout",
+      index: false,
+    }),
   component: CheckoutLayout,
 });
 

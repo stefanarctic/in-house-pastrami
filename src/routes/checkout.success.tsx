@@ -4,6 +4,7 @@ import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { AlertCircle, CheckCircle2, Loader2 } from "lucide-react";
 import { useCart } from "@/store/cart";
+import { PAGES, pageHead } from "@/lib/seo";
 
 const successSearchSchema = z.object({
   session_id: z.string().min(1),
@@ -12,9 +13,13 @@ const successSearchSchema = z.object({
 
 export const Route = createFileRoute("/checkout/success")({
   validateSearch: successSearchSchema,
-  head: () => ({
-    meta: [{ title: "Comandă confirmată — In House Pastrami & More" }],
-  }),
+  head: () =>
+    pageHead({
+      title: PAGES.checkoutSuccess.title,
+      description: PAGES.checkoutSuccess.description,
+      path: "/checkout/success",
+      index: false,
+    }),
   component: CheckoutSuccessPage,
 });
 

@@ -16,24 +16,16 @@ import { useLanguage } from "@/i18n/LanguageProvider";
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { isFirebaseClientConfigured } from "@/lib/firebase-web";
 import { formatLei, SGR_AMOUNT_RON } from "@/lib/sgr";
+import { JsonLd } from "@/components/site/JsonLd";
+import { PAGES, menuJsonLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/menu")({
-  head: () => ({
-    meta: [
-      { title: "Meniu — In House Pastrami & More · București" },
-      {
-        name: "description",
-        content:
-          "Meniul complet: pastramă făcută în house, burgeri, poutine, salate și sandvișuri cu carne. Comandă direct în București.",
-      },
-      { property: "og:title", content: "Meniu — In House Pastrami & More" },
-      {
-        property: "og:description",
-        content:
-          "Pastrami Classic, Reuben, burgeri cu sos de trufe, poutine cu pastramă și multe altele. Comandă direct.",
-      },
-    ],
-  }),
+  head: () =>
+    pageHead({
+      title: PAGES.menu.title,
+      description: PAGES.menu.description,
+      path: "/menu",
+    }),
   component: MenuPage,
 });
 
@@ -152,6 +144,7 @@ function MenuPage() {
 
   return (
     <main className="overflow-x-hidden">
+      <JsonLd data={menuJsonLd()} />
       <section className="relative pt-16 pb-10 md:pt-24 md:pb-14 border-b border-border/40">
         <div className="absolute inset-0 bg-gradient-ember pointer-events-none" />
         <div className="container mx-auto px-4 relative">

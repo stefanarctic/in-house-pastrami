@@ -33,8 +33,16 @@ import { GalleryBento } from "@/components/site/GalleryBento";
 import { MenuItemDialog } from "@/components/site/MenuItemDialog";
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { useCart } from "@/store/cart";
+import { JsonLd } from "@/components/site/JsonLd";
+import { PAGES, pageHead, restaurantGraphJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
+  head: () =>
+    pageHead({
+      title: PAGES.home.title,
+      description: PAGES.home.description,
+      path: "/",
+    }),
   component: Index,
 });
 
@@ -71,6 +79,7 @@ function Index() {
 
   return (
     <main className="overflow-x-hidden">
+      <JsonLd data={restaurantGraphJsonLd()} />
       {/* HERO */}
       <section className="relative min-h-[92vh] flex items-center">
         <div className="absolute inset-0">
@@ -108,7 +117,7 @@ function Index() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="h-12 px-7 border-foreground/20 hover:bg-foreground/5"
+                className="h-12 px-7 border-foreground/25 bg-transparent text-foreground hover:bg-foreground/10 hover:text-foreground"
               >
                 <Link to="/menu">{t("cta.seeMenu")}</Link>
               </Button>
@@ -346,7 +355,11 @@ function Index() {
                 fără efecte. Doar carne adevărată.
               </p>
             </div>
-            <Button asChild variant="outline" className="border-foreground/20 hover:bg-foreground/5">
+            <Button
+              asChild
+              variant="outline"
+              className="border-foreground/25 bg-transparent text-foreground hover:bg-foreground/10 hover:text-foreground"
+            >
               <a href={INSTAGRAM} target="_blank" rel="noreferrer">
                 <Instagram className="mr-1 h-4 w-4" /> @pastrami.and.more
               </a>
@@ -403,28 +416,28 @@ function Index() {
       </section>
 
       {/* ORDER DIRECT */}
-      <section id="order" className="relative py-24 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-meat opacity-90" />
+      <section id="order" className="relative py-24 md:py-32 overflow-hidden border-y border-border/40">
+        <div className="absolute inset-0 bg-background" />
+        <div className="absolute inset-0 bg-gradient-ember opacity-30 pointer-events-none" />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 pointer-events-none"
           style={{
             backgroundImage: `url(${heroImg})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
-            mixBlendMode: "overlay",
-            opacity: 0.25,
+            opacity: 0.08,
           }}
         />
         <div className="relative container mx-auto px-4 text-center max-w-3xl">
-          <p className="uppercase tracking-[0.3em] text-xs text-primary-foreground/80 mb-4">
+          <p className="uppercase tracking-[0.3em] text-xs text-accent mb-4">
             Comandă Direct
           </p>
-          <h2 className="font-display text-5xl md:text-7xl text-primary-foreground leading-none">
+          <h2 className="font-display text-5xl md:text-7xl text-foreground leading-none">
             Sari peste aplicații.
             <br />
-            Comandă direct de la noi.
+            <span className="text-gradient-meat">Comandă direct de la noi.</span>
           </h2>
-          <p className="mt-5 text-primary-foreground/90 text-lg">
+          <p className="mt-5 text-muted-foreground text-lg">
             Ridicare mai rapidă. Fără întârzieri de platformă. Aceeași pastramă, mai proaspătă în
             mâinile tale.
           </p>
@@ -432,7 +445,7 @@ function Index() {
             <Button
               asChild
               size="lg"
-              className="bg-background text-foreground hover:bg-background/90 h-14 px-8 text-base font-semibold"
+              className="bg-gradient-meat shadow-meat hover:opacity-95 h-14 px-8 text-base font-semibold"
             >
               <Link to="/menu">
                 <ShoppingBag className="mr-2 h-5 w-5" /> Începe comanda
@@ -440,24 +453,20 @@ function Index() {
             </Button>
             <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center">
               {LOCATIONS.map((loc) => (
-                <Button
+                <a
                   key={loc.id}
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="h-14 px-6 text-base border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10"
+                  href={`tel:${loc.phone}`}
+                  className="inline-flex items-center justify-center h-14 px-6 text-base rounded-md border border-foreground/25 bg-transparent text-foreground hover:bg-foreground/10 hover:border-foreground/40 transition-colors"
                 >
-                  <a href={`tel:${loc.phone}`}>
-                    <Phone className="mr-2 h-5 w-5" />
-                    {loc.shortName}: {loc.phoneDisplay}
-                  </a>
-                </Button>
+                  <Phone className="mr-2 h-5 w-5" />
+                  {loc.shortName}: {loc.phoneDisplay}
+                </a>
               ))}
             </div>
           </div>
 
-          <div className="mt-12 pt-8 border-t border-primary-foreground/20">
-            <p className="text-xs uppercase tracking-widest text-primary-foreground/70 mb-4">
+          <div className="mt-12 pt-8 border-t border-border/40">
+            <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
               Sau folosește o aplicație de livrare
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3">
@@ -471,7 +480,7 @@ function Index() {
                   href={p.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-5 py-2.5 rounded-full bg-background/15 hover:bg-background/25 text-primary-foreground text-sm border border-primary-foreground/20 transition-colors"
+                  className="px-5 py-2.5 rounded-full bg-foreground/5 hover:bg-foreground/10 text-foreground text-sm border border-foreground/15 transition-colors"
                 >
                   {p.name}
                 </a>

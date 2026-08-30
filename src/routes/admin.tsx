@@ -25,11 +25,16 @@ import {
 import { fetchMenuItemDocsClient, saveMenuItemDoc } from "@/lib/menu-web";
 import type { MenuItemDoc } from "@/lib/menu-types";
 import { menuQueryKey } from "@/hooks/useMenuItems";
+import { PAGES, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/admin")({
-  head: () => ({
-    meta: [{ title: "Admin meniu — In House Pastrami" }],
-  }),
+  head: () =>
+    pageHead({
+      title: PAGES.admin.title,
+      description: PAGES.admin.description,
+      path: "/admin",
+      index: false,
+    }),
   component: AdminPage,
 });
 
