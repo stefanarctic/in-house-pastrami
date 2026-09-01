@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { MapPin, Clock, Instagram, Phone, FileText } from "lucide-react";
+import { ALLERGENS_PDF, ANPC, LEGAL, LEGAL_PATHS } from "@/data/legal";
 import { LOCATIONS } from "@/data/locations";
 import {
   DELIVERY_PLATFORMS,
@@ -107,13 +108,37 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="/valori-nutritionale-si-alergeni.pdf"
+                  href={ALLERGENS_PDF}
                   target="_blank"
                   rel="noreferrer"
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   Valori nutriționale și alergeni
                 </a>
+              </li>
+              <li>
+                <Link
+                  to={LEGAL_PATHS.terms}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Termeni și condiții
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={LEGAL_PATHS.privacy}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Confidențialitate
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={LEGAL_PATHS.cookies}
+                  className="text-muted-foreground hover:text-primary transition-colors"
+                >
+                  Cookies
+                </Link>
               </li>
             </ul>
           </div>
@@ -157,18 +182,61 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-6 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
-          <span>© {new Date().getFullYear()} In House Pastrami &amp; More</span>
-          <a
-            href="/valori-nutritionale-si-alergeni.pdf"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
-          >
-            <FileText className="h-3.5 w-3.5" />
-            Valori nutriționale și alergeni
-          </a>
-          <span className="font-display tracking-wider text-foreground/60">Afumat cu răbdare.</span>
+        <div className="mt-12 pt-6 border-t border-border/50 space-y-4 text-xs text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+            <div className="space-y-1 text-center sm:text-left">
+              <p className="text-foreground/80">
+                © {new Date().getFullYear()} {LEGAL.companyName}
+              </p>
+              <p>
+                CUI {LEGAL.cuiDisplay} · Nr. Reg. Com. {LEGAL.tradeRegister}
+              </p>
+              <p>Sediu: {LEGAL.registeredOffice}</p>
+              <p>
+                E-mail:{" "}
+                <a href={`mailto:${LEGAL.email}`} className="hover:text-primary transition-colors">
+                  {LEGAL.email}
+                </a>
+              </p>
+            </div>
+            <span className="font-display tracking-wider text-foreground/60 text-center sm:text-right">
+              Afumat cu răbdare.
+            </span>
+          </div>
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-x-4 gap-y-2">
+            <a
+              href={ALLERGENS_PDF}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 hover:text-primary transition-colors"
+            >
+              <FileText className="h-3.5 w-3.5" />
+              Valori nutriționale și alergeni
+            </a>
+            <Link to={LEGAL_PATHS.terms} className="hover:text-primary transition-colors">
+              Termeni
+            </Link>
+            <Link to={LEGAL_PATHS.privacy} className="hover:text-primary transition-colors">
+              Confidențialitate
+            </Link>
+            <Link to={LEGAL_PATHS.cookies} className="hover:text-primary transition-colors">
+              Cookies
+            </Link>
+            <a href={ANPC.home} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+              ANPC
+            </a>
+            <a href={ANPC.sal} target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">
+              SAL
+            </a>
+            <a
+              href={ANPC.complaints}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-primary transition-colors"
+            >
+              Reclamații ANPC
+            </a>
+          </div>
         </div>
       </div>
     </footer>

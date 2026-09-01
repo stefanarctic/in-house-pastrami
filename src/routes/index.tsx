@@ -34,6 +34,7 @@ import { MenuItemDialog } from "@/components/site/MenuItemDialog";
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { useCart } from "@/store/cart";
 import { JsonLd } from "@/components/site/JsonLd";
+import { AllergenNote } from "@/components/site/AllergenNote";
 import { PAGES, pageHead, restaurantGraphJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
@@ -277,6 +278,9 @@ function Index() {
               <h2 className="font-display text-5xl md:text-7xl leading-none">
                 Construit în jurul pastramei.
               </h2>
+              <div className="mt-4 max-w-xl">
+                <AllergenNote />
+              </div>
             </div>
             <Button asChild size="lg" className="bg-gradient-meat shadow-meat hover:opacity-95">
               <Link to="/menu">
@@ -323,6 +327,11 @@ function Index() {
                     )}
                   </div>
                   <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.shortDesc}</p>
+                  {item.allergens && item.allergens.length > 0 && (
+                    <p className="mt-1.5 text-[11px] text-muted-foreground">
+                      Alergeni: {item.allergens.join(", ")}
+                    </p>
+                  )}
                   <div className="flex items-center justify-between gap-2 mt-3 flex-wrap">
                     <span className="font-display text-xl sm:text-2xl text-accent">
                       {item.price} lei

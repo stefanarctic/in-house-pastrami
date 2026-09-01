@@ -6,6 +6,7 @@ import { formatWeightGrams, resolveMenuImageFrame, type MenuItem } from "@/data/
 import { useAddToCart } from "@/hooks/useAddToCart";
 import { useLanguage } from "@/i18n/LanguageProvider";
 import { formatLei, SGR_AMOUNT_RON } from "@/lib/sgr";
+import { AllergenNote } from "@/components/site/AllergenNote";
 
 export function MenuItemDialog({
   item,
@@ -110,6 +111,10 @@ export function MenuItemDialog({
                 ))}
               </div>
             )}
+
+            <div className="mt-3">
+              <AllergenNote compact />
+            </div>
 
             <div className="mt-4">
               <label htmlFor="notes" className="text-xs uppercase tracking-widest text-accent block mb-1.5">

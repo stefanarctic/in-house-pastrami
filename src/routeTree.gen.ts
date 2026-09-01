@@ -9,11 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermeniSiConditiiRouteImport } from './routes/termeni-si-conditii'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as LlmsDottxtRouteImport } from './routes/llms[.]txt'
 import { Route as LlmsFullDottxtRouteImport } from './routes/llms-full[.]txt'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as ConfidentialitateRouteImport } from './routes/confidentialitate'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
@@ -24,6 +27,11 @@ import { Route as ApiCheckoutSessionRouteImport } from './routes/api/checkout/se
 import { Route as ApiCheckoutOrderStatusRouteImport } from './routes/api/checkout/order-status'
 import { Route as ApiCheckoutFulfillRouteImport } from './routes/api/checkout/fulfill'
 
+const TermeniSiConditiiRoute = TermeniSiConditiiRouteImport.update({
+  id: '/termeni-si-conditii',
+  path: '/termeni-si-conditii',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
@@ -47,6 +55,16 @@ const LlmsDottxtRoute = LlmsDottxtRouteImport.update({
 const LlmsFullDottxtRoute = LlmsFullDottxtRouteImport.update({
   id: '/llms-full.txt',
   path: '/llms-full.txt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConfidentialitateRoute = ConfidentialitateRouteImport.update({
+  id: '/confidentialitate',
+  path: '/confidentialitate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckoutRoute = CheckoutRouteImport.update({
@@ -99,11 +117,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/checkout': typeof CheckoutRouteWithChildren
+  '/confidentialitate': typeof ConfidentialitateRoute
+  '/cookies': typeof CookiesRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/menu': typeof MenuRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/termeni-si-conditii': typeof TermeniSiConditiiRoute
   '/api/checkout': typeof ApiCheckoutRouteWithChildren
   '/checkout/success': typeof CheckoutSuccessRoute
   '/api/checkout/fulfill': typeof ApiCheckoutFulfillRoute
@@ -115,11 +136,14 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/checkout': typeof CheckoutRouteWithChildren
+  '/confidentialitate': typeof ConfidentialitateRoute
+  '/cookies': typeof CookiesRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/menu': typeof MenuRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/termeni-si-conditii': typeof TermeniSiConditiiRoute
   '/api/checkout': typeof ApiCheckoutRouteWithChildren
   '/checkout/success': typeof CheckoutSuccessRoute
   '/api/checkout/fulfill': typeof ApiCheckoutFulfillRoute
@@ -132,11 +156,14 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
   '/checkout': typeof CheckoutRouteWithChildren
+  '/confidentialitate': typeof ConfidentialitateRoute
+  '/cookies': typeof CookiesRoute
   '/llms-full.txt': typeof LlmsFullDottxtRoute
   '/llms.txt': typeof LlmsDottxtRoute
   '/menu': typeof MenuRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/termeni-si-conditii': typeof TermeniSiConditiiRoute
   '/api/checkout': typeof ApiCheckoutRouteWithChildren
   '/checkout/success': typeof CheckoutSuccessRoute
   '/api/checkout/fulfill': typeof ApiCheckoutFulfillRoute
@@ -150,11 +177,14 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/checkout'
+    | '/confidentialitate'
+    | '/cookies'
     | '/llms-full.txt'
     | '/llms.txt'
     | '/menu'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/termeni-si-conditii'
     | '/api/checkout'
     | '/checkout/success'
     | '/api/checkout/fulfill'
@@ -166,11 +196,14 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/checkout'
+    | '/confidentialitate'
+    | '/cookies'
     | '/llms-full.txt'
     | '/llms.txt'
     | '/menu'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/termeni-si-conditii'
     | '/api/checkout'
     | '/checkout/success'
     | '/api/checkout/fulfill'
@@ -182,11 +215,14 @@ export interface FileRouteTypes {
     | '/'
     | '/admin'
     | '/checkout'
+    | '/confidentialitate'
+    | '/cookies'
     | '/llms-full.txt'
     | '/llms.txt'
     | '/menu'
     | '/robots.txt'
     | '/sitemap.xml'
+    | '/termeni-si-conditii'
     | '/api/checkout'
     | '/checkout/success'
     | '/api/checkout/fulfill'
@@ -199,17 +235,27 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
   CheckoutRoute: typeof CheckoutRouteWithChildren
+  ConfidentialitateRoute: typeof ConfidentialitateRoute
+  CookiesRoute: typeof CookiesRoute
   LlmsFullDottxtRoute: typeof LlmsFullDottxtRoute
   LlmsDottxtRoute: typeof LlmsDottxtRoute
   MenuRoute: typeof MenuRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  TermeniSiConditiiRoute: typeof TermeniSiConditiiRoute
   ApiCheckoutRoute: typeof ApiCheckoutRouteWithChildren
   ApiWebhooksStripeRoute: typeof ApiWebhooksStripeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/termeni-si-conditii': {
+      id: '/termeni-si-conditii'
+      path: '/termeni-si-conditii'
+      fullPath: '/termeni-si-conditii'
+      preLoaderRoute: typeof TermeniSiConditiiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sitemap.xml': {
       id: '/sitemap.xml'
       path: '/sitemap.xml'
@@ -243,6 +289,20 @@ declare module '@tanstack/react-router' {
       path: '/llms-full.txt'
       fullPath: '/llms-full.txt'
       preLoaderRoute: typeof LlmsFullDottxtRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/confidentialitate': {
+      id: '/confidentialitate'
+      path: '/confidentialitate'
+      fullPath: '/confidentialitate'
+      preLoaderRoute: typeof ConfidentialitateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkout': {
@@ -343,11 +403,14 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
   CheckoutRoute: CheckoutRouteWithChildren,
+  ConfidentialitateRoute: ConfidentialitateRoute,
+  CookiesRoute: CookiesRoute,
   LlmsFullDottxtRoute: LlmsFullDottxtRoute,
   LlmsDottxtRoute: LlmsDottxtRoute,
   MenuRoute: MenuRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  TermeniSiConditiiRoute: TermeniSiConditiiRoute,
   ApiCheckoutRoute: ApiCheckoutRouteWithChildren,
   ApiWebhooksStripeRoute: ApiWebhooksStripeRoute,
 }

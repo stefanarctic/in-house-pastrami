@@ -1,6 +1,7 @@
 import { createFileRoute, Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -25,6 +26,7 @@ import {
 } from "lucide-react";
 import { lineKey, useCart } from "@/store/cart";
 import { LOCATIONS, getLocation } from "@/data/locations";
+import { ALLERGENS_PDF, LEGAL_PATHS, cartHasAlcohol } from "@/data/legal";
 import { resolveMenuImage } from "@/data/menu";
 import { formatLei, SGR_AMOUNT_RON, sgrQuantity } from "@/lib/sgr";
 import { toast } from "sonner";
@@ -68,6 +70,8 @@ function CheckoutPage() {
 
   const [locationId, setLocationId] = useState(LOCATIONS[0].id);
   const [submitting, setSubmitting] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [acceptedAge, setAcceptedAge] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -77,6 +81,7 @@ function CheckoutPage() {
 
   const location = getLocation(locationId)!;
   const total = subtotal;
+  const hasAlcohol = cartHasAlcohol(lines);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -86,6 +91,14 @@ function CheckoutPage() {
     }
     if (!form.name || !form.phone) {
       toast.error("Avem nevoie de numele și numărul tău de telefon.");
+      return;
+    }
+    if (!acceptedTerms) {
+      toast.error("Acceptă termenii și politica de confidențialitate ca să continui.");
+      return;
+    }
+    if (hasAlcohol && !acceptedAge) {
+      toast.error("Confirmă că ai cel puțin 18 ani pentru băuturile alcoolice.");
       return;
     }
 
@@ -350,12 +363,68 @@ function CheckoutPage() {
                   disabled={submitting}
                 />
               </Field>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                Dacă ai alergii sau intoleranțe, scrie-le aici și verifică{" "}
+                <a
+                  href={ALLERGENS_PDF}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-primary hover:underline underline-offset-2"
+                >
+                  valorile nutriționale și alergenii
+                </a>
+                . În bucătărie există risc de contaminare încrucișată.
+              </p>
+
+              <label className="flex items-start gap-3 rounded-xl border border-border/60 bg-card/40 p-3.5 cursor-pointer">
+                <Checkbox
+                  checked={acceptedTerms}
+                  onCheckedChange={(v) => setAcceptedTerms(v === true)}
+                  disabled={submitting}
+                  className="mt-0.5"
+                  aria-required
+                />
+                <span className="text-xs text-muted-foreground leading-relaxed">
+                  Am citit și accept{" "}
+                  <Link
+                    to={LEGAL_PATHS.terms}
+                    className="text-primary hover:underline underline-offset-2"
+                  >
+                    Termenii și condițiile
+                  </Link>{" "}
+                  și{" "}
+                  <Link
+                    to={LEGAL_PATHS.privacy}
+                    className="text-primary hover:underline underline-offset-2"
+                  >
+                    Politica de confidențialitate
+                  </Link>
+                  . Înțeleg că alimentele preparate la comandă nu beneficiază de dreptul de
+                  retragere de 14 zile.
+                </span>
+              </label>
+
+              {hasAlcohol && (
+                <label className="flex items-start gap-3 rounded-xl border border-border/60 bg-card/40 p-3.5 cursor-pointer">
+                  <Checkbox
+                    checked={acceptedAge}
+                    onCheckedChange={(v) => setAcceptedAge(v === true)}
+                    disabled={submitting}
+                    className="mt-0.5"
+                    aria-required
+                  />
+                  <span className="text-xs text-muted-foreground leading-relaxed">
+                    Confirm că am cel puțin 18 ani. La ridicare mi se poate cere actul de identitate
+                    pentru băuturile alcoolice.
+                  </span>
+                </label>
+              )}
             </div>
 
             <Button
               type="submit"
               size="lg"
-              disabled={submitting}
+              disabled={submitting || !acceptedTerms || (hasAlcohol && !acceptedAge)}
               className="w-full lg:hidden bg-gradient-meat shadow-meat h-14 text-base"
             >
               {submitting ? (
@@ -380,6 +449,10 @@ function CheckoutPage() {
               />
             )}
             <Row label="Ridicare" value="Gratis" />
+            <p className="text-[11px] text-muted-foreground leading-relaxed">
+              Prețurile includ TVA. SGR-ul de 0,50 lei/ambalaj este garanție returnabilă la
+              punctele autorizate, nu la restaurant.
+            </p>
             <div className="rounded-lg bg-muted/40 px-3 py-2.5 text-sm">
               <div className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-primary shrink-0 mt-0.5" />
@@ -397,7 +470,7 @@ function CheckoutPage() {
             <Button
               type="submit"
               size="lg"
-              disabled={submitting}
+              disabled={submitting || !acceptedTerms || (hasAlcohol && !acceptedAge)}
               onClick={onSubmit}
               className="hidden lg:flex w-full bg-gradient-meat shadow-meat h-14 text-base"
             >
@@ -410,7 +483,7 @@ function CheckoutPage() {
               )}
             </Button>
             <p className="text-xs text-muted-foreground flex items-center gap-2 pt-2">
-              <CreditCard className="h-3.5 w-3.5" /> Plătești securizat cu cardul. Comanda merge direct în bucătărie.
+              <CreditCard className="h-3.5 w-3.5" /> Plătești securizat cu cardul, prin Stripe. Comanda merge direct în bucătărie.
             </p>
           </div>
         </aside>

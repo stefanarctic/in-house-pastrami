@@ -6,6 +6,7 @@ import { CartUpsellDialog } from "@/components/site/CartUpsellDialog";
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageProvider } from "@/i18n/LanguageProvider";
 import { AppQueryProvider } from "@/components/AppQueryProvider";
+import { isLegalPath } from "@/data/legal";
 import { rootHeadDefaults } from "@/lib/seo";
 
 import appCss from "../styles.css?url";
@@ -68,8 +69,11 @@ function RootShell({ children }: { children: React.ReactNode }) {
 }
 
 function RootComponent() {
-  const isAdmin = useRouterState({
-    select: (s) => s.location.pathname.startsWith("/admin"),
+  const { isAdmin, isLegal } = useRouterState({
+    select: (s) => ({
+      isAdmin: s.location.pathname.startsWith("/admin"),
+      isLegal: isLegalPath(s.location.pathname),
+    }),
   });
 
   return (
@@ -80,8 +84,12 @@ function RootComponent() {
         {!isAdmin && (
           <>
             <Footer />
-            <StickyOrder />
-            <CartUpsellDialog />
+            {!isLegal && (
+              <>
+                <StickyOrder />
+                <CartUpsellDialog />
+              </>
+            )}
           </>
         )}
         <Toaster richColors position="top-center" />

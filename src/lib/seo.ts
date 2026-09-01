@@ -1,3 +1,4 @@
+import { LEGAL, LEGAL_PATHS } from "@/data/legal";
 import { LOCATIONS, type StoreLocation } from "@/data/locations";
 import { DELIVERY_PLATFORMS, INSTAGRAM, googleMapsUrl } from "@/data/site";
 import { getPublicSiteUrl } from "@/lib/site-url";
@@ -31,6 +32,21 @@ export const PAGES = {
   checkoutSuccess: {
     title: "Comandă confirmată — In House Pastrami & More",
     description: "Comanda ta a fost înregistrată. Te așteptăm la ridicare.",
+  },
+  terms: {
+    title: "Termeni și condiții — In House Pastrami & More",
+    description:
+      "Termeni și condiții pentru comenzile cu ridicare de la In House Pastrami & More: plată, alergeni, SGR, anulare și ANPC.",
+  },
+  privacy: {
+    title: "Politica de confidențialitate — In House Pastrami & More",
+    description:
+      "Cum prelucrăm numele, telefonul și datele comenzii, conform GDPR. Drepturile tale și contact ANSPDCP.",
+  },
+  cookies: {
+    title: "Politica de cookies — In House Pastrami & More",
+    description:
+      "Ce stocare folosim pe site: doar date esențiale pentru coș. Fără cookie-uri de marketing sau analiză.",
   },
   admin: {
     title: "Admin meniu — In House Pastrami",
@@ -128,6 +144,9 @@ function restaurantNode(origin: string) {
     "@type": "Restaurant",
     "@id": `${origin}/#restaurant`,
     name: SITE_NAME,
+    legalName: LEGAL.companyName,
+    vatID: LEGAL.cuiDisplay,
+    taxID: LEGAL.cui,
     url: origin,
     image: `${origin}${OG_IMAGE_PATH}`,
     logo: `${origin}/logo.png`,
@@ -266,6 +285,9 @@ ${LOCATIONS.map(locationMarkdown).join("\n")}
 
 - [Acasă](${origin}/): ${PAGES.home.description}
 - [Meniu](${origin}/menu): ${PAGES.menu.description}
+- [Termeni și condiții](${origin}${LEGAL_PATHS.terms})
+- [Confidențialitate](${origin}${LEGAL_PATHS.privacy})
+- [Cookies](${origin}${LEGAL_PATHS.cookies})
 `;
 }
 
@@ -333,6 +355,9 @@ export function buildSitemapXml(origin = getPublicSiteUrl()): string {
   const urls = [
     { loc: `${origin}/`, priority: "1.0", changefreq: "weekly" },
     { loc: `${origin}/menu`, priority: "0.8", changefreq: "weekly" },
+    { loc: `${origin}${LEGAL_PATHS.terms}`, priority: "0.3", changefreq: "yearly" },
+    { loc: `${origin}${LEGAL_PATHS.privacy}`, priority: "0.3", changefreq: "yearly" },
+    { loc: `${origin}${LEGAL_PATHS.cookies}`, priority: "0.3", changefreq: "yearly" },
   ];
 
   const entries = urls

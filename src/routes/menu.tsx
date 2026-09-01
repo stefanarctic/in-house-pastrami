@@ -17,6 +17,7 @@ import { useMenuItems } from "@/hooks/useMenuItems";
 import { isFirebaseClientConfigured } from "@/lib/firebase-web";
 import { formatLei, SGR_AMOUNT_RON } from "@/lib/sgr";
 import { JsonLd } from "@/components/site/JsonLd";
+import { AllergenNote } from "@/components/site/AllergenNote";
 import { PAGES, menuJsonLd, pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/menu")({
@@ -114,6 +115,11 @@ function MenuPage() {
             )}
           </div>
           <p className="text-sm text-muted-foreground mt-1.5 flex-1">{item.shortDesc}</p>
+          {item.allergens && item.allergens.length > 0 && (
+            <p className="mt-2 text-[11px] text-muted-foreground">
+              Alergeni: {item.allergens.join(", ")}
+            </p>
+          )}
           <div className="mt-4 flex items-center justify-between">
             <span className="font-display text-2xl text-accent leading-none">
               {formatLei(item.price)} lei
@@ -154,6 +160,9 @@ function MenuPage() {
             <span className="text-gradient-meat">{t("menu.heroTitleAccent")}</span>
           </h1>
           <p className="mt-5 text-muted-foreground max-w-xl text-lg">{t("menu.heroSub")}</p>
+          <div className="mt-4 max-w-xl">
+            <AllergenNote />
+          </div>
         </div>
       </section>
 
