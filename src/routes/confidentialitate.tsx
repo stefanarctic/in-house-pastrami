@@ -113,8 +113,8 @@ function PrivacyPage() {
           contractuale standard și a altor garanții GDPR. Nu vindem datele tale.
         </p>
         <p>
-          Hărțile din pagina de contact sunt furnizate de Google Maps. Dacă accesezi acea secțiune,
-          Google poate prelucra adresa IP conform{" "}
+          Fonturile de pe site (Google Fonts) și hărțile din pagina de contact (Google Maps) sunt
+          furnizate de Google. Browserul poate transmite adresa IP către Google, conform{" "}
           <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">
             politicii Google
           </a>
