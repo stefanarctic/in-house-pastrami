@@ -65,12 +65,8 @@ function CookiesPage() {
       <section>
         <h2>4. Fonturi</h2>
         <p>
-          Fonturile (Inter, Bebas Neue, Caveat, Playfair Display) sunt încărcate de la Google Fonts.
-          La vizită, browserul poate transmite adresa IP către Google, conform{" "}
-          <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer">
-            politicii Google
-          </a>
-          .
+          Fonturile (Inter, Bebas Neue, Caveat) sunt găzduite pe același server cu site-ul.
+          Nu se încarcă de la Google Fonts.
         </p>
       </section>
 
