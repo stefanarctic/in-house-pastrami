@@ -13,7 +13,7 @@ export function AllergenNote({ compact = false }: { compact?: boolean }) {
       >
         Valori nutriționale și alergeni (PDF)
       </a>
-      . Prețurile includ TVA.
+      .
     </p>
   );
 }

@@ -160,9 +160,6 @@ function MenuPage() {
             <span className="text-gradient-meat">{t("menu.heroTitleAccent")}</span>
           </h1>
           <p className="mt-5 text-muted-foreground max-w-xl text-lg">{t("menu.heroSub")}</p>
-          <div className="mt-4 max-w-xl">
-            <AllergenNote />
-          </div>
         </div>
       </section>
 
@@ -230,6 +227,7 @@ function MenuPage() {
               </div>
             );
           })}
+          <AllergenNote />
         </div>
       </section>
 

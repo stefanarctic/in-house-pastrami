@@ -278,9 +278,6 @@ function Index() {
               <h2 className="font-display text-5xl md:text-7xl leading-none">
                 Construit în jurul pastramei.
               </h2>
-              <div className="mt-4 max-w-xl">
-                <AllergenNote />
-              </div>
             </div>
             <Button asChild size="lg" className="bg-gradient-meat shadow-meat hover:opacity-95">
               <Link to="/menu">
@@ -344,6 +341,9 @@ function Index() {
               </button>
               );
             })}
+          </div>
+          <div className="mt-10 max-w-3xl">
+            <AllergenNote />
           </div>
         </div>
       </section>

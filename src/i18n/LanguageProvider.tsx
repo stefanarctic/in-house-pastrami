@@ -35,8 +35,8 @@ const DICT: Dict = {
   "menu.heroTitle1": { ro: "Alege-ți", en: "Pick your" },
   "menu.heroTitleAccent": { ro: "arma.", en: "weapon." },
   "menu.heroSub": {
-    ro: "Apasă pe orice produs pentru detalii, alergeni și instrucțiuni speciale. Adaugă pe parcurs. Prețurile includ TVA.",
-    en: "Tap any item for full details, allergens and special instructions. Add as you go. Prices include VAT.",
+    ro: "Apasă pe orice produs pentru detalii, alergeni și instrucțiuni speciale. Adaugă pe parcurs.",
+    en: "Tap any item for full details, allergens and special instructions. Add as you go.",
   },
   "menu.readyTitle": { ro: "Gata de mâncat?", en: "Ready to eat?" },
   "menu.readySub": {
