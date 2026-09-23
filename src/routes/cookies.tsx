@@ -65,8 +65,8 @@ function CookiesPage() {
       <section>
         <h2>4. Fonturi</h2>
         <p>
-          Fonturile (Inter, Bebas Neue, Caveat) sunt găzduite pe același server cu site-ul.
-          Nu se încarcă de la Google Fonts.
+          Fonturile sunt cele de sistem (Arial și Comic Sans MS). Nu se încarcă de la Google Fonts
+          și nu se trimit date către un server de fonturi.
         </p>
       </section>
 

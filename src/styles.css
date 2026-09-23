@@ -1,7 +1,3 @@
-@import "@fontsource-variable/inter/wght.css";
-@import "@fontsource-variable/caveat/wght.css";
-@import "@fontsource/bebas-neue/400.css";
-
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
@@ -109,9 +105,9 @@
   --gradient-ember: radial-gradient(ellipse at center, oklch(0.88 0.16 98 / 0.25), transparent 70%);
   --shadow-meat: 0 20px 60px -15px oklch(0.84 0.18 95 / 0.45);
   --shadow-deep: 0 30px 80px -20px oklch(0 0 0 / 0.6);
-  --font-display: "Bebas Neue", "Inter Variable", sans-serif;
-  --font-body: "Inter Variable", "Inter", sans-serif;
-  --font-hand: "Caveat Variable", "Caveat", cursive;
+  --font-display: Arial, Helvetica, sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-hand: "Comic Sans MS", "Comic Sans", cursive;
   --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -151,9 +147,9 @@
 }
 
 @theme inline {
-  --font-display: "Bebas Neue", "Inter Variable", sans-serif;
-  --font-sans: "Inter Variable", "Inter", sans-serif;
-  --font-hand: "Caveat Variable", "Caveat", cursive;
+  --font-display: Arial, Helvetica, sans-serif;
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-hand: "Comic Sans MS", "Comic Sans", cursive;
 }
 
 @layer base {
@@ -180,8 +176,6 @@
 
   h1, h2, h3, .font-display {
     font-family: var(--font-display);
-    font-weight: 400;
-    font-synthesis: none;
     letter-spacing: 0.01em;
   }
 
