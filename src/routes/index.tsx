@@ -15,9 +15,9 @@ import {
 } from "lucide-react";
 import heroImg from "@/assets/hero-pastrami.png";
 import logo from "@/assets/logo.png";
-import seasoningImg from "@/assets/seasoning.webp";
-import smokingImg from "@/assets/smoking.webp";
-import slicingImg from "@/assets/slicing.webp";
+import seasoningImg from "@/assets/process-brisket.webp";
+import smokingImg from "@/assets/process-smoker.webp";
+import slicingImg from "@/assets/process-sliced.webp";
 import galReuben from "@/assets/menu-items/pastrami reuben.webp";
 import galPhilly from "@/assets/menu-items/philly platforme.webp";
 import galPastramiHouse from "@/assets/menu-items/pastrami in house.webp";
@@ -222,6 +222,10 @@ function Index() {
             {[
               {
                 img: seasoningImg,
+                alt: "Piept de vită condimentat, ținut în bucătăria In House Pastrami",
+                width: 682,
+                height: 1024,
+                position: "object-[center_42%]",
                 icon: Beef,
                 step: "01",
                 title: "Maturat & Condimentat",
@@ -229,6 +233,10 @@ function Index() {
               },
               {
                 img: smokingImg,
+                alt: "Piepturi de vită în afumătoare, stropite în timpul afumării",
+                width: 736,
+                height: 1024,
+                position: "object-center",
                 icon: Flame,
                 step: "02",
                 title: "Afumat Lent",
@@ -236,6 +244,10 @@ function Index() {
               },
               {
                 img: slicingImg,
+                alt: "Pastramă feliată, cu inel roz de fum",
+                width: 683,
+                height: 1024,
+                position: "object-[center_68%]",
                 icon: Timer,
                 step: "03",
                 title: "Feliat la Comandă",
@@ -249,11 +261,11 @@ function Index() {
                 <div className="aspect-[4/5] overflow-hidden">
                   <img
                     src={s.img}
-                    alt={s.title}
+                    alt={s.alt}
                     loading="lazy"
-                    width={1280}
-                    height={1280}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    width={s.width}
+                    height={s.height}
+                    className={`w-full h-full object-cover ${s.position} group-hover:scale-105 transition-transform duration-700`}
                   />
                 </div>
                 <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-background via-background/90 to-transparent">
